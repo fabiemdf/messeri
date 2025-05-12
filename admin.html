@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Messeri & Associates</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Admin Dashboard Styles -->
+  <style>
+    :root {
+      --primary-color: #003366;
+      --secondary-color: #e8833a;
+      --accent-color: #4a90e2;
+      --light-color: #f7f9fc;
+      --dark-color: #1a1a1a;
+      --text-color: #333333;
+      --text-light: #666666;
+      --border-color: #e0e0e0;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      --danger-color: #dc3545;
+      --border-radius: 4px;
+      --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 70px;
+      --header-height: 70px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      font-size: 62.5%;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--light-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 2rem;
+      color: var(--dark-color);
+    }
+    
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--secondary-color);
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    /* Layout */
+    .admin-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--primary-color);
+      color: #fff;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      transition: var(--transition);
+      z-index: 100;
+    }
+    
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
+    }
+    
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .logo-text {
+      margin-left: 1rem;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #fff;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    
+    .sidebar.collapsed .logo-text {
+      display: none;
+    }
+    
+    .sidebar-toggle {
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.8rem;
+      transition: var(--transition);
+    }
+    
+    .sidebar-toggle:hover {
+      color: var(--secondary-color);
+    }
+    
+    .sidebar-menu {
+      padding: 2rem 0;
+    }
+    
+    .sidebar-menu-item {
+      margin-bottom: 0.5rem;
+    }
+    
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      color: rgba(255, 255, 255, 0.8);
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+    }
+    
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-left-color: var(--secondary-color);
+    }
+    
+    .sidebar-icon {
+      font-size: 1.8rem;
+      min-width: 30px;
+      text-align: center;
+    }
+    
+    .sidebar-text {
+      margin-left: 1rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    
+    .sidebar.collapsed .sidebar-text {
+      display: none;
+    }
+    
+    .sidebar-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .sidebar-dropdown.active {
+      max-height: 500px;
+    }
+    
+    .sidebar-dropdown-link {
+      display: flex;
+      align-items: center;
+      padding: 1rem 2rem 1rem 5.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      transition: var(--transition);
+    }
+    
+    .sidebar-dropdown-link:hover,
+    .sidebar-dropdown-link.active {
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .sidebar.collapsed .sidebar-dropdown {
+      display: none;
+    }
+    
+    .sidebar-menu-header {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2rem 2rem 1rem;
+    }
+    
+    .sidebar.collapsed .sidebar-menu-header {
+      display: none;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      transition: var(--transition);
+      padding-top: var(--header-height);
+    }
+    
+    .sidebar.collapsed ~ .main-content {
+      margin-left: var(--sidebar-collapsed-width);
+    }
+    
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: var(--sidebar-width);
+      height: var(--header-height);
+      background-color: #fff;
+      box-shadow: var(--box-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      transition: var(--transition);
+      z-index: 99;
+    }
+    
+    .sidebar.collapsed ~ .header {
+      left: var(--sidebar-collapsed-width);
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    
+    .page-title {
+      font-size: 2.2rem;
+      margin: 0;
+    }
+    
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      margin-left: 2rem;
+    }
+    
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      color: var(--text-light);
+    }
+    
+    .breadcrumb-item:not(:last-child)::after {
+      content: '/';
+      margin: 0 0.5rem;
+      color: var(--text-light);
+    }
+    
+    .breadcrumb-link {
+      color: var(--text-light);
+    }
+    
+    .breadcrumb-link:hover {
+      color: var(--primary-color);
+    }
+    
+    .breadcrumb-item.active {
+      color: var(--primary-color);
+    }
+    
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+    
+    .header-search {
+      position: relative;
+      margin-right: 2rem;
+    }
+    
+    .header-search-input {
+      padding: 1rem 1.5rem 1rem 4rem;
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      width: 250px;
+      font-size: 1.4rem;
+      transition: var(--transition);
+    }
+    
+    .header-search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      width: 300px;
+    }
+    
+    .header-search-icon {
+      position: absolute;
+      top: 50%;
+      left: 1.5rem;
+      transform: translateY(-50%);
+      color: var(--text-light);
+    }
+    
+    .header-notification {
+      margin-right: 2rem;
+      position: relative;
+    }
+    
+    .notification-icon {
+      font-size: 2.2rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .notification-icon:hover {
+      color: var(--primary-color);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: var(--danger-color);
+      color: #fff;
+      font-size: 1.2rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .user-dropdown {
+      position: relative;
+    }
+    
+    .user-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    
+    .user-name {
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    
+    .user-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      width: 200px;
+      padding: 1rem 0;
+      margin-top: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .user-dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .user-dropdown-item {
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .user-dropdown-item:hover {
+      background-color: var(--light-color);
+    }
+    
+    .user-dropdown-icon {
+      font-size: 1.6rem;
+      margin-right: 1rem;
+      min-width: 20px;
+      text-align: center;
+    }
+    
+    /* Content Section */
+    .content-section {
+      padding: 2rem;
+    }
+    
+    /* Dashboard Cards */
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .dashboard-card {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      margin-right: 2rem;
+    }
+    
+    .card-icon.blue {
+      background-color: rgba(74, 144, 226, 0.1);
+      color: var(--accent-color);
+    }
+    
+    .card-icon.orange {
+      background-color: rgba(232, 131, 58, 0.1);
+      color: var(--secondary-color);
+    }
+    
+    .card-icon.green {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: var(--success-color);
+    }
+    
+    .card-icon.red {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: var(--danger-color);
+    }
+    
+    .card-info {
+      flex: 1;
+    }
+    
+    .card-label {
+      color: var(--text-light);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-value {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-change {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+    }
+    
+    .card-change.positive {
+      color: var(--success-color);
+    }
+    
+    .card-change.negative {
+      color: var(--danger-color);
+    }
+    
+    .card-change i {
+      margin-right: 0.5rem;
+    }
+    
+    /* Content Widgets */
+    .widget-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .widget {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+    }
+    
+    .widget-header {
+      padding: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .widget-title {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    
+    .widget-actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    .widget-action {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.6rem;
+      margin-left: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .widget-action:hover {
+      color: var(--primary-color);
+    }
+    
+    .widget-body {
+      padding: 2rem;
+    }
+    
+    .widget-footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .widget-footer-link {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+    
+    .widget-footer-link i {
+      margin-left: 0.5rem;
+      font-size: 1.4rem;
+    }
+    
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .table th {
+      text-align: left;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-light);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .table td {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    
+    .table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .table-status {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .status-pending {
+      background-color: rgba(255, 193, 7, 0.1);
+      color: var(--warning-color);
+    }
+    
+    .status-processing {
+      background-color: rgba(74, 144, 226, 0.1);
+      color: var(--accent-color);
+    }
+    
+    .status-completed {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: var(--success-color);
+    }
+    
+    .status-denied {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: var(--danger-color);
+    }
+    
+    .table-actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    .table-action {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.6rem;
+      margin-right: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .table-action:hover {
+      color: var(--primary-color);
+    }
+    
+    .table-action.view:hover {
+      color: var(--accent-color);
+    }
+    
+    .table-action.edit:hover {
+      color: var(--warning-color);
+    }
+    
+    .table-action.delete:hover {
+      color: var(--danger-color);
+    }
+    
+    /* Activity List */
+    .activity-list {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .activity-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .activity-icon.blue {
+      background-color: rgba(74, 144, 226, 0.1);
+      color: var(--accent-color);
+    }
+    
+    .activity-icon.orange {
+      background-color: rgba(232, 131, 58, 0.1);
+      color: var(--secondary-color);
+    }
+    
+    .activity-icon.green {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: var(--success-color);
+    }
+    
+    .activity-icon.red {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: var(--danger-color);
+    }
+    
+    .activity-content {
+      flex: 1;
+    }
+    
+    .activity-title {
+      margin: 0 0 0.5rem;
+      font-size: 1.6rem;
+    }
+    
+    .activity-time {
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+    
+    /* Forms */
+    .form-container {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 3rem;
+    }
+    
+    .form-title {
+      margin-top: 0;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .form-group {
+      flex: 1;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.6rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666666'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      background-size: 2rem;
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .form-check-input {
+      margin-right: 1rem;
+      width: 18px;
+      height: 18px;
+    }
+    
+    .form-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 1.2rem 2.4rem;
+      border-radius: var(--border-radius);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 1.6rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    
+    .btn-primary:hover {
+      background-color: #004b8c;
+      color: #fff;
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary-color);
+      color: #fff;
+    }
+    
+    .btn-secondary:hover {
+      background-color: #f0934a;
+      color: #fff;
+    }
+    
+    .btn-light {
+      background-color: var(--light-color);
+      color: var(--text-color);
+    }
+    
+    .btn-light:hover {
+      background-color: #e9ecef;
+    }
+    
+    .btn-danger {
+      background-color: var(--danger-color);
+      color: #fff;
+    }
+    
+    .btn-danger:hover {
+      background-color: #c82333;
+      color: #fff;
+    }
+    
+    .btn-sm {
+      padding: 0.8rem 1.5rem;
+      font-size: 1.4rem;
+    }
+    
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-icon i {
+      margin-right: 0.8rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 991px) {
+      .sidebar {
+        width: var(--sidebar-collapsed-width);
+      }
+      
+      .sidebar .logo-text,
+      .sidebar .sidebar-text,
+      .sidebar .sidebar-menu-header,
+      .sidebar .sidebar-dropdown {
+        display: none;
+      }
+      
+      .main-content {
+        margin-left: var(--sidebar-collapsed-width);
+      }
+      
+      .header {
+        left: var(--sidebar-collapsed-width);
+      }
+      
+      .widget-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .header-search-input {
+        width: 180px;
+      }
+      
+      .header-search-input:focus {
+        width: 220px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-search {
+        display: none;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      
+      .form-group {
+        margin-bottom: 2rem;
+      }
+      
+      .breadcrumb {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .dashboard-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .user-name {
+        display: none;
+      }
+      
+      .content-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="img/logo-icon.png" alt="Messeri & Associates">
+          <span class="logo-text">Messeri Admin</span>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-menu">
+        <div class="sidebar-menu-item">
+          <a href="dashboard.html" class="sidebar-link active">
+            <div class="sidebar-icon"><i class="fas fa-tachometer-alt"></i></div>
+            <span class="sidebar-text">Dashboard</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-header">Claims Management</div>
+        
+        <div class="sidebar-menu-item">
+          <a href="claims.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-file-alt"></i></div>
+            <span class="sidebar-text">All Claims</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="#" class="sidebar-link" id="claimTypesDropdown">
+            <div class="sidebar-icon"><i class="fas fa-folder"></i></div>
+            <span class="sidebar-text">Claim Types</span>
+            <i class="fas fa-chevron-down ms-auto sidebar-text" style="margin-left: auto;"></i>
+          </a>
+          <div class="sidebar-dropdown" id="claimTypesMenu">
+            <a href="claims.html?type=hurricane" class="sidebar-dropdown-link">Hurricane Claims</a>
+            <a href="claims.html?type=flood" class="sidebar-dropdown-link">Flood Claims</a>
+            <a href="claims.html?type=fire" class="sidebar-dropdown-link">Fire & Smoke Claims</a>
+            <a href="claims.html?type=water" class="sidebar-dropdown-link">Water & Plumbing Claims</a>
+            <a href="claims.html?type=other" class="sidebar-dropdown-link">Other Claims</a>
+          </div>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="client-contacts.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-users"></i></div>
+            <span class="sidebar-text">Client Contacts</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="documents.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-file-pdf"></i></div>
+            <span class="sidebar-text">Documents</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-header">Website Content</div>
+        
+        <div class="sidebar-menu-item">
+          <a href="pages.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-file"></i></div>
+            <span class="sidebar-text">Pages</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="blog-posts.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-blog"></i></div>
+            <span class="sidebar-text">Blog Posts</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="services.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-briefcase"></i></div>
+            <span class="sidebar-text">Services</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="testimonials.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-quote-right"></i></div>
+            <span class="sidebar-text">Testimonials</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="team-members.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-id-card"></i></div>
+            <span class="sidebar-text">Team Members</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-header">Marketing</div>
+        
+        <div class="sidebar-menu-item">
+          <a href="newsletters.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-envelope"></i></div>
+            <span class="sidebar-text">Newsletters</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="subscribers.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-user-check"></i></div>
+            <span class="sidebar-text">Subscribers</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-header">System</div>
+        
+        <div class="sidebar-menu-item">
+          <a href="users.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-user-shield"></i></div>
+            <span class="sidebar-text">Users</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-menu-item">
+          <a href="settings.html" class="sidebar-link">
+            <div class="sidebar-icon"><i class="fas fa-cog"></i></div>
+            <span class="sidebar-text">Settings</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <h2 class="page-title">Dashboard</h2>
+          <div class="breadcrumb">
+            <div class="breadcrumb-item">
+              <a href="dashboard.html" class="breadcrumb-link">Home</a>
+            </div>
+            <div class="breadcrumb-item active">Dashboard</div>
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <div class="header-search">
+            <input type="text" class="header-search-input" placeholder="Search...">
+            <i class="fas fa-search header-search-icon"></i>
+          </div>
+          
+          <div class="header-notification">
+            <i class="fas fa-bell notification-icon"></i>
+            <span class="notification-badge">5</span>
+          </div>
+          
+          <div class="user-dropdown">
+            <div class="user-dropdown-toggle" id="userDropdownToggle">
+              <img src="img/profile.jpg" alt="User Avatar" class="user-avatar">
+              <span class="user-name">David Messeri</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+              <a href="profile.html" class="user-dropdown-item">
+                <i class="fas fa-user user-dropdown-icon"></i>
+                Profile
+              </a>
+              <a href="settings.html" class="user-dropdown-item">
+                <i class="fas fa-cog user-dropdown-icon"></i>
+                Settings
+              </a>
+              <div style="height: 1px; background-color: var(--border-color); margin: 0.5rem 0;"></div>
+              <a href="logout.html" class="user-dropdown-item">
+                <i class="fas fa-sign-out-alt user-dropdown-icon"></i>
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Content -->
+      <div class="content-section">
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+          <div class="dashboard-card">
+            <div class="card-icon blue">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="card-info">
+              <div class="card-label">Active Claims</div>
+              <div class="card-value">48</div>
+              <div class="card-change positive">
+                <i class="fas fa-arrow-up"></i>
+                12% from last month
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-card">
+            <div class="card-icon orange">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="card-info">
+              <div class="card-label">Monthly Revenue</div>
+              <div class="card-value">$42,580</div>
+              <div class="card-change positive">
+                <i class="fas fa-arrow-up"></i>
+                8% from last month
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-card">
+            <div class="card-icon green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="card-info">
+              <div class="card-label">Settled Claims</div>
+              <div class="card-value">18</div>
+              <div class="card-change positive">
+                <i class="fas fa-arrow-up"></i>
+                5% from last month
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-card">
+            <div class="card-icon red">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="card-info">
+              <div class="card-label">New Contacts</div>
+              <div class="card-value">24</div>
+              <div class="card-change negative">
+                <i class="fas fa-arrow-down"></i>
+                3% from last month
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Widgets -->
+        <div class="widget-row">
+          <div class="widget">
+            <div class="widget-header">
+              <h3 class="widget-title">Recent Claims</h3>
+              <div class="widget-actions">
+                <button class="widget-action">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="widget-action">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Claim ID</th>
+                      <th>Client</th>
+                      <th>Type</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>CL-2025-0042</td>
+                      <td>Robert Thompson</td>
+                      <td>Hurricane</td>
+                      <td>Apr 28, 2025</td>
+                      <td><span class="table-status status-processing">Processing</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>CL-2025-0041</td>
+                      <td>Jennifer Klein</td>
+                      <td>Water Damage</td>
+                      <td>Apr 25, 2025</td>
+                      <td><span class="table-status status-pending">Pending</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>CL-2025-0040</td>
+                      <td>Michael Rodriguez</td>
+                      <td>Fire & Smoke</td>
+                      <td>Apr 22, 2025</td>
+                      <td><span class="table-status status-completed">Completed</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>CL-2025-0039</td>
+                      <td>Sarah Miller</td>
+                      <td>Flood</td>
+                      <td>Apr 20, 2025</td>
+                      <td><span class="table-status status-denied">Denied</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>CL-2025-0038</td>
+                      <td>James Wilson</td>
+                      <td>Hurricane</td>
+                      <td>Apr 18, 2025</td>
+                      <td><span class="table-status status-completed">Completed</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="widget-footer">
+              <span>Showing 5 of 48 claims</span>
+              <a href="claims.html" class="widget-footer-link">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <div class="widget">
+            <div class="widget-header">
+              <h3 class="widget-title">Recent Activity</h3>
+            </div>
+            <div class="widget-body">
+              <ul class="activity-list">
+                <li class="activity-item">
+                  <div class="activity-icon blue">
+                    <i class="fas fa-file-alt"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4 class="activity-title">New claim submitted</h4>
+                    <p>Robert Thompson submitted a new hurricane damage claim.</p>
+                    <div class="activity-time">10 minutes ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon green">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4 class="activity-title">Claim settled</h4>
+                    <p>Michael Rodriguez's fire damage claim was settled for $87,500.</p>
+                    <div class="activity-time">2 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon orange">
+                    <i class="fas fa-comment"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4 class="activity-title">New message</h4>
+                    <p>Jennifer Klein sent a message regarding her water damage claim.</p>
+                    <div class="activity-time">3 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon red">
+                    <i class="fas fa-times-circle"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4 class="activity-title">Claim denial challenge</h4>
+                    <p>Sarah Miller requested a review of her denied flood claim.</p>
+                    <div class="activity-time">Yesterday at 4:30 PM</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-icon blue">
+                    <i class="fas fa-calendar-alt"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4 class="activity-title">Inspection scheduled</h4>
+                    <p>Property inspection scheduled for James Wilson on April 30, 2025.</p>
+                    <div class="activity-time">Yesterday at 2:15 PM</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="widget-footer">
+              <a href="activity-log.html" class="widget-footer-link">View All Activities <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Second Widget Row -->
+        <div class="widget-row">
+          <div class="widget">
+            <div class="widget-header">
+              <h3 class="widget-title">Recent Contact Requests</h3>
+              <div class="widget-actions">
+                <button class="widget-action">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="widget-action">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+            <div class="widget-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Subject</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Emily Johnson</td>
+                      <td>emily.johnson@example.com</td>
+                      <td>(305) 555-7890</td>
+                      <td>Hurricane Damage Inquiry</td>
+                      <td>May 1, 2025</td>
+                      <td><span class="table-status status-pending">New</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Daniel Smith</td>
+                      <td>daniel.smith@example.com</td>
+                      <td>(786) 555-1234</td>
+                      <td>Flood Insurance Question</td>
+                      <td>Apr 30, 2025</td>
+                      <td><span class="table-status status-processing">In Progress</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Maria Gonzalez</td>
+                      <td>maria.g@example.com</td>
+                      <td>(954) 555-6789</td>
+                      <td>Fire Damage Consultation</td>
+                      <td>Apr 29, 2025</td>
+                      <td><span class="table-status status-completed">Contacted</span></td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="table-action view"><i class="fas fa-eye"></i></button>
+                          <button class="table-action edit"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="widget-footer">
+              <span>Showing 3 of 12 requests</span>
+              <a href="contact-requests.html" class="widget-footer-link">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sidebar Toggle
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.querySelector('.main-content');
+      const header = document.querySelector('.header');
+      
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('collapsed');
+      });
+      
+      // Claim Types Dropdown
+      const claimTypesDropdown = document.getElementById('claimTypesDropdown');
+      const claimTypesMenu = document.getElementById('claimTypesMenu');
+      
+      claimTypesDropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        claimTypesMenu.classList.toggle('active');
+      });
+      
+      // User Dropdown
+      const userDropdownToggle = document.getElementById('userDropdownToggle');
+      const userDropdownMenu = document.getElementById('userDropdownMenu');
+      
+      userDropdownToggle.addEventListener('click', function() {
+        userDropdownMenu.classList.toggle('active');
+      });
+      
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!claimTypesDropdown.contains(e.target) && !claimTypesMenu.contains(e.target)) {
+          claimTypesMenu.classList.remove('active');
+        }
+        
+        if (!userDropdownToggle.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+          userDropdownMenu.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

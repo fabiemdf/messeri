@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hurricane Damage Claims - Messeri & Associates, LLC</title>
+  <meta name="description" content="Expert public adjusting services for hurricane damage claims in Florida. Maximize your insurance settlement with our strategic advocacy and meticulous documentation.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Additional Service Detail Styles -->
+  <style>
+    .service-detail-page {
+      padding: 12rem 0 6rem;
+    }
+    
+    .service-hero {
+      position: relative;
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 6rem 0;
+      margin-bottom: 5rem;
+      overflow: hidden;
+    }
+    
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('img/services/hurricane-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    
+    .service-hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .service-hero h1 {
+      font-size: 4.2rem;
+      margin-bottom: 2.5rem;
+      color: #fff;
+    }
+    
+    .service-hero p {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    
+    .service-cards {
+      margin-bottom: 6rem;
+    }
+    
+    .service-info-card {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    
+    .service-info-header {
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 2rem;
+    }
+    
+    .service-info-header h2 {
+      margin: 0;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+    
+    .service-info-body {
+      padding: 3rem;
+    }
+    
+    .service-info-body p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .quick-contact-form {
+      background-color: var(--light-color);
+      padding: 3rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 5rem;
+    }
+    
+    .quick-contact-form h3 {
+      margin-top: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .form-group {
+      flex: 1;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.6rem;
+    }
+    
+    .checklist {
+      margin: 3rem 0;
+    }
+    
+    .checklist-title {
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .checklist-icon {
+      color: var(--success-color);
+      font-size: 2rem;
+      margin-right: 1.5rem;
+      min-width: 2rem;
+    }
+    
+    .checklist-text h4 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    
+    .checklist-text p {
+      margin: 0;
+    }
+    
+    .service-process {
+      padding: 6rem 0;
+      background-color: var(--light-color);
+      margin: 6rem 0;
+    }
+    
+    .process-steps {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      margin-top: 5rem;
+    }
+    
+    .process-line {
+      position: absolute;
+      top: 3.5rem;
+      left: calc(10% + 3.5rem);
+      width: calc(80% - 7rem);
+      height: 3px;
+      background-color: var(--primary-color);
+      z-index: 0;
+    }
+    
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      max-width: 200px;
+      margin: 0 1.5rem;
+    }
+    
+    .step-number {
+      width: 7rem;
+      height: 7rem;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+    
+    .step-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .step-description {
+      font-size: 1.4rem;
+      color: var(--text-light);
+    }
+    
+    .case-studies {
+      margin: 6rem 0;
+    }
+    
+    .case-study {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 5rem;
+      align-items: center;
+    }
+    
+    .case-study:last-child {
+      margin-bottom: 0;
+    }
+    
+    .case-study-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .case-study-image img {
+      width: 100%;
+      display: block;
+    }
+    
+    .case-study-content h3 {
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+    
+    .case-stat {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .stat-label {
+      font-weight: 600;
+      width: 180px;
+    }
+    
+    .stat-value {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+    
+    .case-study:nth-child(even) .case-study-image {
+      order: 2;
+    }
+    
+    .case-study:nth-child(even) .case-study-content {
+      order: 1;
+    }
+    
+    .testimonial-highlight {
+      background-color: var(--light-color);
+      padding: 5rem 0;
+      margin: 6rem 0;
+      text-align: center;
+    }
+    
+    .testimonial-highlight-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-highlight-text {
+      font-size: 2.4rem;
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .testimonial-highlight-text:before,
+    .testimonial-highlight-text:after {
+      content: '"';
+      font-size: 6rem;
+      color: rgba(0, 51, 102, 0.1);
+      position: absolute;
+    }
+    
+    .testimonial-highlight-text:before {
+      top: -2rem;
+      left: -3rem;
+    }
+    
+    .testimonial-highlight-text:after {
+      bottom: -5rem;
+      right: -3rem;
+    }
+    
+    .testimonial-author {
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    
+    .testimonial-location {
+      color: var(--text-light);
+    }
+    
+    .faq-section {
+      margin: 6rem 0;
+    }
+    
+    .resources-section {
+      margin: 6rem 0;
+    }
+    
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    .resource-card {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .resource-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .resource-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .resource-card:hover .resource-image img {
+      transform: scale(1.05);
+    }
+    
+    .resource-content {
+      padding: 2rem;
+    }
+    
+    .resource-content h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    
+    .resource-type {
+      display: inline-block;
+      background-color: var(--light-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .resource-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (max-width: 991px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      
+      .form-group {
+        margin-bottom: 2rem;
+      }
+      
+      .process-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+      }
+      
+      .process-line {
+        display: none;
+      }
+      
+      .case-study {
+        grid-template-columns: 1fr;
+      }
+      
+      .case-study-image,
+      .case-study-content,
+      .case-study:nth-child(even) .case-study-image,
+      .case-study:nth-child(even) .case-study-content {
+        order: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="claims.html">Claims</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Service Detail Page -->
+  <section class="service-detail-page">
+    <!-- Service Hero -->
+    <div class="service-hero">
+      <div class="container">
+        <div class="service-hero-content">
+          <h1>Hurricane Damage Claims</h1>
+          <p>Expert advocacy for property owners throughout Florida seeking fair settlements for hurricane damage</p>
+          <div class="hero-buttons">
+            <a href="#contact-form" class="btn btn-secondary">Free Consultation</a>
+            <a href="claims.html" class="btn btn-primary">File a Claim</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <!-- Service Overview Cards -->
+      <div class="service-cards">
+        <div class="service-info-card">
+          <div class="service-info-header">
+            <h2>Hurricane Damage Recovery Specialists</h2>
+          </div>
+          <div class="service-info-body">
+            <p>Florida property owners are all too familiar with the devastating impact of hurricanes and tropical storms. When disaster strikes, having an experienced public adjuster on your side is crucial to ensure you receive the full compensation you're entitled to under your insurance policy.</p>
+            <p>At Messeri & Associates, we specialize in handling hurricane damage claims, providing comprehensive assistance throughout the entire claims process, from initial documentation to final settlement. Our strategic approach and meticulous attention to detail have resulted in settlements that average 74% higher than initial insurance company offers.</p>
+            <p>Unlike insurance company adjusters who work to minimize payouts, our team works exclusively for you. We have extensive experience identifying all types of hurricane-related damage, including:</p>
+            <ul>
+              <li>Wind damage to roofs, siding, windows, and structural components</li>
+              <li>Water intrusion and resulting damage throughout your property</li>
+              <li>Storm surge and flooding impacts</li>
+              <li>Damage to personal property and belongings</li>
+              <li>Business interruption and loss of use</li>
+            </ul>
+            <p>We understand the complex policy language and exclusions that insurance companies use to limit payouts. Our expertise allows us to navigate these challenges and build comprehensive, properly documented claims that maximize your recovery.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Contact Form -->
+      <div class="quick-contact-form" id="contact-form">
+        <h3>Get a Free Consultation for Your Hurricane Damage Claim</h3>
+        <form id="hurricaneConsultForm" action="/contact" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name *</label>
+              <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="location" class="form-label">Property Location *</label>
+              <input type="text" id="location" name="location" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message" class="form-label">Tell us about your hurricane damage</label>
+            <textarea id="message" name="message" rows="4" class="form-control"></textarea>
+          </div>
+          <div class="form-group" style="text-align: center; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">Request Free Consultation</button>
+          </div>
+          <input type="hidden" name="service" value="Hurricane Damage">
+          <input type="hidden" name="source" value="Service Page Form">
+        </form>
+      </div>
+      
+      <!-- Hurricane Claim Documentation Checklist -->
+      <div class="checklist">
+        <h2 class="checklist-title">Hurricane Claim Documentation Checklist</h2>
+        <div class="checklist-grid">
+          <div class="checklist-item">
+            <div class="checklist-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="checklist-text">
+              <h4>Photograph Everything</h4>
+              <p>Take detailed photos and videos of all damage, both exterior and interior, before any repairs are made.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="checklist-text">
+              <h4>Save Communication Records</h4>
+              <p>Keep detailed records of all communications with your insurance company, including dates, names, and notes from conversations.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="checklist-text">
+              <h4>Secure Your Property</h4>
+              <p>Take reasonable steps to protect your property from further damage, such as tarping the roof or boarding broken windows.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="checklist-text">
+              <h4>Inventory Damaged Items</h4>
+              <p>Create a detailed inventory of all damaged personal property, including descriptions, approximate age, and replacement cost.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="checklist-text">
+              <h4>Keep All Receipts</h4>
+              <p>Save receipts for all emergency repairs, temporary accommodations, and other expenses related to the hurricane damage.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="checklist-text">
+              <h4>Review Your Insurance Policy</h4>
+              <p>Carefully read your policy to understand your coverage, exclusions, deductibles, and claim filing deadlines.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Our Hurricane Claim Process -->
+    <div class="service-process">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Hurricane Claim Process</h2>
+          <p>A strategic approach to maximize your recovery</p>
+        </div>
+        
+        <div class="process-steps">
+          <div class="process-line"></div>
+          
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Initial Consultation</h3>
+            <p class="step-description">We assess your situation, review your policy, and develop a strategic approach for your claim.</p>
+          </div>
+          
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Detailed Assessment</h3>
+            <p class="step-description">Our team conducts a comprehensive inspection and thoroughly documents all hurricane damage.</p>
+          </div>
+          
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Claim Development</h3>
+            <p class="step-description">We prepare a detailed claim package that establishes the full extent of covered damages.</p>
+          </div>
+          
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Strategic Negotiation</h3>
+            <p class="step-description">We leverage our expertise to negotiate with your insurance carrier for maximum recovery.</p>
+          </div>
+          
+          <div class="process-step">
+            <div class="step-number">5</div>
+            <h3 class="step-title">Settlement & Recovery</h3>
+            <p class="step-description">We secure your optimal settlement and ensure you receive the funds you deserve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <!-- Hurricane Claim Case Studies -->
+      <div class="case-studies">
+        <div class="section-header">
+          <h2>Hurricane Claim Success Stories</h2>
+          <p>Real results for Florida property owners</p>
+        </div>
+        
+        <div class="case-study">
+          <div class="case-study-image">
+            <img src="img/services/case-study-1.jpg" alt="Miami Beach Condominium Case Study">
+          </div>
+          <div class="case-study-content">
+            <h3>Miami Beach Condominium</h3>
+            <p>This high-rise condominium suffered significant wind and water damage during Hurricane Irma. The insurance company's initial assessment missed substantial hidden damage to the building's envelope and electrical systems.</p>
+            
+            <div class="case-stats">
+              <div class="case-stat">
+                <div class="stat-label">Initial Offer:</div>
+                <div class="stat-value">$245,000</div>
+              </div>
+              <div class="case-stat">
+                <div class="stat-label">Our Settlement:</div>
+                <div class="stat-value">$1,825,000</div>
+              </div>
+              <div class="case-stat">
+                <div class="stat-label">Increase:</div>
+                <div class="stat-value">645%</div>
+              </div>
+            </div>
+            
+            <p>"The insurance company missed extensive water damage that had penetrated the building's walls. Messeri & Associates' thorough inspection revealed the true extent of the damage and secured us the funds needed for proper repairs."</p>
+            <p class="testimonial-author">- Michael R., HOA President</p>
+          </div>
+        </div>
+        
+        <div class="case-study">
+          <div class="case-study-image">
+            <img src="img/services/case-study-2.jpg" alt="Orlando Family Home Case Study">
+          </div>
+          <div class="case-study-content">
+            <h3>Orlando Family Home</h3>
+            <p>This single-family home experienced roof damage from hurricane-force winds, resulting in water intrusion throughout the property. The insurance company initially only offered to pay for minimal roof repairs, ignoring the significant interior damage.</p>
+            
+            <div class="case-stats">
+              <div class="case-stat">
+                <div class="stat-label">Initial Offer:</div>
+                <div class="stat-value">$28,500</div>
+              </div>
+              <div class="case-stat">
+                <div class="stat-label">Our Settlement:</div>
+                <div class="stat-value">$187,250</div>
+              </div>
+              <div class="case-stat">
+                <div class="stat-label">Increase:</div>
+                <div class="stat-value">557%</div>
+              </div>
+            </div>
+            
+            <p>"After months of getting nowhere with our insurance company, we hired Messeri & Associates. They documented every aspect of our damage and negotiated a settlement that allowed us to properly restore our home. We couldn't have done it without them."</p>
+            <p class="testimonial-author">- Jennifer K., Homeowner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Testimonial Highlight -->
+    <div class="testimonial-highlight">
+      <div class="container">
+        <div class="testimonial-highlight-content">
+          <div class="testimonial-highlight-text">
+            David's expertise with hurricane claims was invaluable. He identified numerous damages the insurance adjuster missed, documented everything meticulously, and secured us a settlement that was five times the initial offer.
+          </div>
+          <div class="testimonial-author">Robert T.</div>
+          <div class="testimonial-location">Tampa Property Owner</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <!-- Hurricane Claim FAQs -->
+      <div class="faq-section">
+        <div class="section-header">
+          <h2>Hurricane Claim FAQs</h2>
+          <p>Common questions about hurricane damage insurance claims</p>
+        </div>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              What types of hurricane damage are typically covered by insurance? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Most standard homeowners insurance policies cover wind damage from hurricanes, including damage to your roof, windows, and other structural components. This typically includes resulting water damage from rain entering through openings caused by wind.</p>
+              <p>However, flood damage, including storm surge, is specifically excluded from standard policies and requires separate flood insurance, typically through the National Flood Insurance Program (NFIP) or a private flood insurer.</p>
+              <p>It's important to note that even if you have both homeowners and flood insurance, determining which policy covers which damages can be complex, as insurers often dispute whether water damage resulted from wind-driven rain (covered under homeowners) or flooding (covered under flood insurance).</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              How long do I have to file a hurricane damage claim in Florida? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>In Florida, property owners generally have up to three years from the date of a hurricane or windstorm to file an initial claim, per Florida Statute 627.70132. However, your specific insurance policy may have different notification requirements, often requiring you to provide "prompt notice" of the loss.</p>
+              <p>It's always best to file your claim as soon as possible after identifying damage, as delays can complicate the claims process and give insurance companies reasons to question the cause of damage.</p>
+              <p>Even if you've already filed a claim and received a settlement, you can still file a supplemental claim if you discover additional damage later. However, acting promptly is crucial in these cases as well.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              What if my insurance company denies my hurricane claim? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>If your insurance company denies your hurricane claim, you have several options:</p>
+              <ol>
+                <li>Request a detailed explanation for the denial in writing</li>
+                <li>Ask for a reconsideration with additional documentation</li>
+                <li>File a complaint with the Florida Department of Financial Services</li>
+                <li>Hire a public adjuster (like Messeri & Associates) to evaluate your claim and negotiate on your behalf</li>
+                <li>Consider the appraisal process if available in your policy</li>
+                <li>As a last resort, consult with an attorney specializing in insurance claims</li>
+              </ol>
+              <p>Many claims are initially denied due to insufficient documentation, policy exclusions, or disputes over the cause of damage. Having a professional evaluate your denial can help identify if the denial was justified or if you have grounds to challenge it.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              How much does it cost to hire a public adjuster for a hurricane claim? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>In Florida, public adjusters typically work on a contingency fee basis, meaning they only get paid when you receive a settlement. For hurricane claims, Florida law limits public adjuster fees to 10% of the claim payment for claims filed in the first year after a declared state of emergency. After the first year, the fee cap increases to 20%.</p>
+              <p>At Messeri & Associates, we provide a free initial consultation and claim evaluation. There are no upfront costs, and we only collect our fee when you receive your settlement. The exact percentage is agreed upon in our service contract before we begin work on your claim.</p>
+              <p>Importantly, studies show that property owners who use public adjusters typically receive significantly higher settlements, even after the adjuster's fee is deducted. The Florida Office of Insurance Regulation study found that policyholders with public adjuster representation received settlements 747% higher for hurricane claims than those without representation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hurricane Resources -->
+      <div class="resources-section">
+        <div class="section-header">
+          <h2>Hurricane Claim Resources</h2>
+          <p>Helpful information for property owners dealing with hurricane damage</p>
+        </div>
+        
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-image">
+              <img src="img/resources/resource-1.jpg" alt="Hurricane Preparation Guide">
+            </div>
+            <div class="resource-content">
+              <span class="resource-type">Guide</span>
+              <h3>Hurricane Preparation Guide</h3>
+              <p class="resource-description">Learn how to prepare your property before hurricane season and what documentation to gather to strengthen potential claims.</p>
+              <a href="#" class="read-more">Download Guide</a>
+            </div>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-image">
+              <img src="img/resources/resource-2.jpg" alt="Hurricane Damage Inventory Worksheet">
+            </div>
+            <div class="resource-content">
+              <span class="resource-type">Worksheet</span>
+              <h3>Damage Inventory Worksheet</h3>
+              <p class="resource-description">A comprehensive worksheet to help you document all hurricane damage to your property and personal belongings.</p>
+              <a href="#" class="read-more">Download Worksheet</a>
+            </div>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-image">
+              <img src="img/resources/resource-3.jpg" alt="Understanding Hurricane Deductibles">
+            </div>
+            <div class="resource-content">
+              <span class="resource-type">Article</span>
+              <h3>Understanding Hurricane Deductibles</h3>
+              <p class="resource-description">Learn how hurricane deductibles work in Florida and strategies to manage this significant out-of-pocket expense.</p>
+              <a href="#" class="read-more">Read Article</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to maximize your hurricane damage claim?</h2>
+        <p>Contact us today for a free consultation and professional claim evaluation.</p>
+        <a href="contact.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </div>
+          <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#hurricane" class="active">Hurricane Claims</a></li>
+            <li><a href="services.html#flood">Flood Damage</a></li>
+            <li><a href="services.html#fire">Fire & Smoke</a></li>
+            <li><a href="services.html#water">Water & Plumbing</a></li>
+            <li><a href="services.html#other">Other Claims</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
+            <p><i class="fas fa-phone"></i> (305) 494-5820</p>
+            <p><i class="fas fa-envelope"></i> david@messeriadjusting.com</p>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- FAQ Accordion Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // FAQ Accordion
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          // Toggle active class on the question
+          this.classList.toggle('active');
+          
+          // Toggle active class on the answer
+          const answer = this.nextElementSibling;
+          answer.classList.toggle('active');
+          
+          // Close other open questions
+          faqQuestions.forEach(otherQuestion => {
+            if (otherQuestion !== question) {
+              otherQuestion.classList.remove('active');
+              otherQuestion.nextElementSibling.classList.remove('active');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

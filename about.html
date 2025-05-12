@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Messeri & Associates, LLC</title>
+  <meta name="description" content="Learn about Messeri & Associates, Florida's leading public insurance adjusters. Meet our team and discover our approach to maximizing insurance claim settlements.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Additional About Page Styles -->
+  <style>
+    .about-page {
+      padding: 12rem 0 6rem;
+    }
+    
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 6rem;
+    }
+    
+    .about-image {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .about-image img {
+      width: 100%;
+      display: block;
+    }
+    
+    .about-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(to top, rgba(0, 51, 102, 0.8), transparent);
+      z-index: 1;
+    }
+    
+    .about-content h2 {
+      margin-bottom: 2rem;
+    }
+    
+    .about-content p {
+      margin-bottom: 2rem;
+    }
+    
+    .signature {
+      width: 200px;
+      margin-top: 2rem;
+    }
+    
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin: 5rem 0;
+      text-align: center;
+    }
+    
+    .stat-item {
+      padding: 2rem;
+    }
+    
+    .stat-number {
+      font-size: 4.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .stat-label {
+      font-size: 1.8rem;
+      color: var(--text-light);
+    }
+    
+    .mission-section {
+      padding: 6rem 0;
+      background-color: var(--light-color);
+      text-align: center;
+    }
+    
+    .mission-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .mission-content h2 {
+      margin-bottom: 3rem;
+    }
+    
+    .mission-content p {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    
+    .certifications-section {
+      padding: 6rem 0;
+      text-align: center;
+    }
+    
+    .cert-logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4rem;
+      margin-top: 4rem;
+    }
+    
+    .cert-logo {
+      max-width: 180px;
+      height: auto;
+      filter: grayscale(1);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+    
+    .cert-logo:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    
+    .team-section {
+      padding: 6rem 0;
+      background-color: var(--light-color);
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 4rem;
+      margin-top: 4rem;
+    }
+    
+    .team-member {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .member-image {
+      height: 280px;
+      overflow: hidden;
+    }
+    
+    .member-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .team-member:hover .member-image img {
+      transform: scale(1.05);
+    }
+    
+    .member-info {
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .member-name {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .member-position {
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    
+    .member-bio {
+      margin-bottom: 1.5rem;
+    }
+    
+    .member-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .member-social a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-color);
+      color: var(--primary-color);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .member-social a:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    
+    @media (max-width: 991px) {
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-image {
+        order: -1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="claims.html">Claims</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Page Content -->
+  <section class="about-page">
+    <div class="container">
+      <div class="section-header">
+        <h1>About Messeri & Associates</h1>
+        <p>Your dedicated advocate in the complex world of insurance claims</p>
+      </div>
+      
+      <!-- About Intro -->
+      <div class="about-intro">
+        <div class="about-content">
+          <h2>Strategic Advocacy for Your Insurance Claim</h2>
+          <p>At Messeri & Associates, we are more than just public insurance adjusters. We are strategic advocates who fight for your right to fair compensation after property damage or loss.</p>
+          <p>Founded by David Messeri, our firm combines meticulous attention to detail, relentless negotiation skills, and a deep understanding of policy language and building science to maximize your insurance claim settlement.</p>
+          <p>What sets us apart is our commitment to not just document damage, but to construct compelling cases that withstand scrutiny and push carriers toward fair settlements. Where other adjusters take a passive role, we actively challenge undervaluations and uncover overlooked entitlements.</p>
+          <p>Our clients don't just get an adjuster—they get a dedicated strategist, a tireless advocate, and a results-driven professional committed to maximizing every legitimate dollar under the policy.</p>
+          <img src="img/signature.png" alt="David Messeri Signature" class="signature">
+        </div>
+        <div class="about-image">
+          <img src="img/profile.jpeg" alt="David Messeri, Public Insurance Adjuster">
+        </div>
+      </div>
+      
+      <!-- Stats -->
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Claims Successfully Handled</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">97%</div>
+          <div class="stat-label">Client Satisfaction Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$25M+</div>
+          <div class="stat-label">Recovered for Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mission Section -->
+    <div class="mission-section">
+      <div class="container">
+        <div class="mission-content">
+          <h2>Our Mission & Values</h2>
+          <p>Our mission is to level the playing field between policyholders and insurance companies by providing expert representation that ensures fair and just claim settlements.</p>
+          <p>We believe in absolute integrity, transparent communication, and relentless advocacy. Every client deserves our full attention and expertise, regardless of the size of their claim.</p>
+          <p>We are committed to staying at the forefront of industry knowledge and maintaining the highest ethical standards in all our interactions. This commitment has earned us the trust of property owners throughout Florida.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Meet Our Team</h2>
+          <p>Dedicated professionals with the expertise to maximize your insurance claim</p>
+        </div>
+        
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-image">
+              <img src="img/profile.jpeg" alt="David Messeri">
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">David Messeri</h3>
+              <p class="member-position">Founder & Principal Adjuster</p>
+              <p class="member-bio">David is a licensed Public Insurance Adjuster and WIND Certified Appraiser with extensive experience in handling complex insurance claims throughout Florida.</p>
+              <div class="member-social">
+                <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="far fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-member">
+            <div class="member-image">
+              <img src="img/team-member-2.jpg" alt="Team Member">
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Sarah Johnson</h3>
+              <p class="member-position">Senior Claims Specialist</p>
+              <p class="member-bio">Sarah specializes in hurricane and flood damage claims, with over 10 years of experience navigating complex insurance policies and negotiations.</p>
+              <div class="member-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="far fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-member">
+            <div class="member-image">
+              <img src="img/team-member-3.jpg" alt="Team Member">
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Michael Rodriguez</h3>
+              <p class="member-position">Building Damage Expert</p>
+              <p class="member-bio">With a background in construction and engineering, Michael provides detailed structural assessments and damage documentation for all types of claims.</p>
+              <div class="member-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="far fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-member">
+            <div class="member-image">
+              <img src="img/team-member-4.jpg" alt="Team Member">
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Jennifer Lopez</h3>
+              <p class="member-position">Client Relations Manager</p>
+              <p class="member-bio">Jennifer ensures all clients receive prompt communication and support throughout the claims process, serving as your dedicated point of contact.</p>
+              <div class="member-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="far fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Certifications -->
+    <section class="certifications-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Credentials</h2>
+          <p>Licensed, certified, and committed to the highest standards of professional excellence</p>
+        </div>
+        
+        <div class="cert-content">
+          <p>Messeri & Associates holds all required licenses and certifications to operate as public insurance adjusters in Florida. We are proud members of professional organizations that uphold the highest standards in our industry.</p>
+          
+          <div class="cert-logos">
+            <img src="img/cert-1.png" alt="Florida Licensed Public Adjuster" class="cert-logo">
+            <img src="img/cert-2.png" alt="WIND Certified" class="cert-logo">
+            <img src="img/cert-3.png" alt="Florida Association of Public Insurance Adjusters" class="cert-logo">
+            <img src="img/cert-4.png" alt="National Association of Public Insurance Adjusters" class="cert-logo">
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to work with our expert team?</h2>
+        <p>Schedule a free consultation to discuss your property damage claim.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </div>
+          <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#hurricane">Hurricane Claims</a></li>
+            <li><a href="services.html#flood">Flood Damage</a></li>
+            <li><a href="services.html#fire">Fire & Smoke</a></li>
+            <li><a href="services.html#water">Water & Plumbing</a></li>
+            <li><a href="services.html#other">Other Claims</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
+            <p><i class="fas fa-phone"></i> (305) 494-5820</p>
+            <p><i class="fas fa-envelope"></i> david@messeriadjusting.com</p>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

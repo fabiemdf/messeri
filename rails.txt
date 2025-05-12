@@ -1,0 +1,948 @@
+# Messeri & Associates Website - Rails Implementation Guide
+
+This guide provides instructions for implementing the Messeri & Associates public adjuster website using Ruby on Rails. The guide assumes you have a basic understanding of Rails development.
+
+## Project Setup
+
+1. Create a new Rails application:
+
+```bash
+rails new messeri_adjusting --database=postgresql --javascript=esbuild --css=tailwind
+cd messeri_adjusting
+```
+
+2. Install required gems:
+
+```ruby
+# Gemfile
+gem 'devise' # User authentication
+gem 'friendly_id' # For SEO-friendly URLs
+gem 'image_processing' # For image resizing
+gem 'meta-tags' # For SEO
+gem 'pagy' # For pagination
+gem 'pundit' # For authorization
+gem 'ransack' # For search functionality
+gem 'trix' # Rich text editor for blog
+gem 'active_storage_validations' # For validating file uploads
+
+group :development do
+  gem 'annotate' # Model annotation
+  gem 'bullet' # N+1 query detection
+  gem 'letter_opener' # Email preview
+end
+```
+
+3. Install and run dependencies:
+
+```bash
+bundle install
+rails active_storage:install
+rails g devise:install
+rails g pundit:install
+rails g friendly_id
+```
+
+## Database Design
+
+```ruby
+# db/migrate/YYYYMMDDHHMMSS_create_pages.rb
+class CreatePages < ActiveRecord::Migration[7.1]
+  def change
+    create_table :pages do |t|
+      t.string :title, null: false
+      t.text :content
+      t.string :slug, null: false
+      t.boolean :published, default: false
+      t.datetime :published_at
+      t.string :meta_title
+      t.text :meta_description
+      t.string :layout, default: 'application'
+      
+      t.timestamps
+    end
+    add_index :pages, :slug, unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_service_categories.rb
+class CreateServiceCategories < ActiveRecord::Migration[7.1]
+  def change
+    create_table :service_categories do |t|
+      t.string :name, null: false
+      t.text :description
+      t.string :slug, null: false
+      t.string :icon
+      t.integer :position
+      t.boolean :featured, default: false
+      
+      t.timestamps
+    end
+    add_index :service_categories, :slug, unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_services.rb
+class CreateServices < ActiveRecord::Migration[7.1]
+  def change
+    create_table :services do |t|
+      t.string :title, null: false
+      t.text :description
+      t.text :content
+      t.string :slug, null: false
+      t.references :service_category, foreign_key: true
+      t.boolean :published, default: false
+      t.datetime :published_at
+      t.boolean :featured, default: false
+      t.integer :position
+      t.string :meta_title
+      t.text :meta_description
+      
+      t.timestamps
+    end
+    add_index :services, :slug, unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_service_features.rb
+class CreateServiceFeatures < ActiveRecord::Migration[7.1]
+  def change
+    create_table :service_features do |t|
+      t.references :service, null: false, foreign_key: true
+      t.string :title, null: false
+      t.text :description
+      t.string :icon
+      t.integer :position
+      
+      t.timestamps
+    end
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_blog_categories.rb
+class CreateBlogCategories < ActiveRecord::Migration[7.1]
+  def change
+    create_table :blog_categories do |t|
+      t.string :name, null: false
+      t.text :description
+      t.string :slug, null: false
+      
+      t.timestamps
+    end
+    add_index :blog_categories, :slug, unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_blog_posts.rb
+class CreateBlogPosts < ActiveRecord::Migration[7.1]
+  def change
+    create_table :blog_posts do |t|
+      t.string :title, null: false
+      t.text :excerpt
+      t.text :content
+      t.string :slug, null: false
+      t.references :blog_category, foreign_key: true
+      t.references :user, foreign_key: true
+      t.boolean :published, default: false
+      t.datetime :published_at
+      t.boolean :featured, default: false
+      t.string :meta_title
+      t.text :meta_description
+      
+      t.timestamps
+    end
+    add_index :blog_posts, :slug, unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_blog_tags.rb
+class CreateBlogTags < ActiveRecord::Migration[7.1]
+  def change
+    create_table :blog_tags do |t|
+      t.string :name, null: false
+      t.string :slug, null: false
+      
+      t.timestamps
+    end
+    add_index :blog_tags, :slug, unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_blog_post_tags.rb
+class CreateBlogPostTags < ActiveRecord::Migration[7.1]
+  def change
+    create_table :blog_post_tags do |t|
+      t.references :blog_post, null: false, foreign_key: true
+      t.references :blog_tag, null: false, foreign_key: true
+      
+      t.timestamps
+    end
+    add_index :blog_post_tags, [:blog_post_id, :blog_tag_id], unique: true
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_testimonials.rb
+class CreateTestimonials < ActiveRecord::Migration[7.1]
+  def change
+    create_table :testimonials do |t|
+      t.string :client_name, null: false
+      t.string :client_location
+      t.string :client_title
+      t.text :content, null: false
+      t.boolean :featured, default: false
+      t.boolean :published, default: false
+      t.integer :position
+      
+      t.timestamps
+    end
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_team_members.rb
+class CreateTeamMembers < ActiveRecord::Migration[7.1]
+  def change
+    create_table :team_members do |t|
+      t.string :name, null: false
+      t.string :title
+      t.text :bio
+      t.string :email
+      t.string :linkedin_url
+      t.string :twitter_url
+      t.boolean :featured, default: false
+      t.integer :position
+      
+      t.timestamps
+    end
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_contact_requests.rb
+class CreateContactRequests < ActiveRecord::Migration[7.1]
+  def change
+    create_table :contact_requests do |t|
+      t.string :first_name, null: false
+      t.string :last_name, null: false
+      t.string :email, null: false
+      t.string :phone
+      t.string :subject
+      t.text :message, null: false
+      t.string :claim_type
+      t.boolean :processed, default: false
+      
+      t.timestamps
+    end
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_claim_submissions.rb
+class CreateClaimSubmissions < ActiveRecord::Migration[7.1]
+  def change
+    create_table :claim_submissions do |t|
+      t.string :first_name, null: false
+      t.string :last_name, null: false
+      t.string :email, null: false
+      t.string :phone, null: false
+      t.string :address, null: false
+      t.string :city, null: false
+      t.string :zip_code, null: false
+      t.string :property_type, null: false
+      t.string :insurance_company, null: false
+      t.string :policy_number, null: false
+      t.string :claim_number
+      t.string :existing_claim
+      t.string :claim_type, null: false
+      t.date :date_of_loss, null: false
+      t.text :damage_description, null: false
+      t.string :inspection_done
+      t.date :inspection_date
+      t.text :additional_info
+      t.string :referral_source
+      t.boolean :terms_consent, null: false
+      t.boolean :contact_consent, null: false
+      t.boolean :processed, default: false
+      t.string :status, default: 'new'
+      
+      t.timestamps
+    end
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_faqs.rb
+class CreateFaqs < ActiveRecord::Migration[7.1]
+  def change
+    create_table :faqs do |t|
+      t.string :question, null: false
+      t.text :answer, null: false
+      t.references :service, foreign_key: true
+      t.boolean :published, default: false
+      t.integer :position
+      
+      t.timestamps
+    end
+  end
+end
+
+# db/migrate/YYYYMMDDHHMMSS_create_settings.rb
+class CreateSettings < ActiveRecord::Migration[7.1]
+  def change
+    create_table :settings do |t|
+      t.string :key, null: false
+      t.text :value
+      
+      t.timestamps
+    end
+    add_index :settings, :key, unique: true
+  end
+end
+```
+
+## Models
+
+```ruby
+# app/models/page.rb
+class Page < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+  
+  validates :title, presence: true
+  validates :slug, presence: true, uniqueness: true
+  
+  scope :published, -> { where(published: true) }
+end
+
+# app/models/service_category.rb
+class ServiceCategory < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
+  has_many :services, dependent: :nullify
+  
+  validates :name, presence: true
+  validates :slug, presence: true, uniqueness: true
+  
+  scope :featured, -> { where(featured: true) }
+  scope :ordered, -> { order(position: :asc) }
+end
+
+# app/models/service.rb
+class Service < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+  
+  belongs_to :service_category, optional: true
+  has_many :service_features, dependent: :destroy
+  has_many :faqs, dependent: :nullify
+  has_one_attached :main_image
+  
+  validates :title, presence: true
+  validates :slug, presence: true, uniqueness: true
+  
+  scope :published, -> { where(published: true) }
+  scope :featured, -> { where(featured: true) }
+  scope :ordered, -> { order(position: :asc) }
+end
+
+# app/models/service_feature.rb
+class ServiceFeature < ApplicationRecord
+  belongs_to :service
+  
+  validates :title, presence: true
+  
+  scope :ordered, -> { order(position: :asc) }
+end
+
+# app/models/blog_category.rb
+class BlogCategory < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
+  has_many :blog_posts, dependent: :nullify
+  
+  validates :name, presence: true
+  validates :slug, presence: true, uniqueness: true
+end
+
+# app/models/blog_post.rb
+class BlogPost < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+  
+  belongs_to :blog_category, optional: true
+  belongs_to :user
+  has_many :blog_post_tags, dependent: :destroy
+  has_many :blog_tags, through: :blog_post_tags
+  has_one_attached :featured_image
+  has_rich_text :content
+  
+  validates :title, presence: true
+  validates :slug, presence: true, uniqueness: true
+  
+  scope :published, -> { where(published: true) }
+  scope :featured, -> { where(featured: true) }
+  scope :recent, -> { order(published_at: :desc) }
+  
+  def reading_time
+    words_per_minute = 200
+    text = ActionController::Base.helpers.strip_tags(content.to_s)
+    words = text.scan(/\w+/).size
+    minutes = (words / words_per_minute).floor
+    return 1 if minutes < 1
+    minutes
+  end
+end
+
+# app/models/blog_tag.rb
+class BlogTag < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
+  has_many :blog_post_tags, dependent: :destroy
+  has_many :blog_posts, through: :blog_post_tags
+  
+  validates :name, presence: true
+  validates :slug, presence: true, uniqueness: true
+end
+
+# app/models/blog_post_tag.rb
+class BlogPostTag < ApplicationRecord
+  belongs_to :blog_post
+  belongs_to :blog_tag
+  
+  validates :blog_post_id, uniqueness: { scope: :blog_tag_id }
+end
+
+# app/models/testimonial.rb
+class Testimonial < ApplicationRecord
+  has_one_attached :client_image
+  
+  validates :client_name, presence: true
+  validates :content, presence: true
+  
+  scope :published, -> { where(published: true) }
+  scope :featured, -> { where(featured: true) }
+  scope :ordered, -> { order(position: :asc) }
+end
+
+# app/models/team_member.rb
+class TeamMember < ApplicationRecord
+  has_one_attached :avatar
+  
+  validates :name, presence: true
+  
+  scope :featured, -> { where(featured: true) }
+  scope :ordered, -> { order(position: :asc) }
+end
+
+# app/models/contact_request.rb
+class ContactRequest < ApplicationRecord
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :message, presence: true
+end
+
+# app/models/claim_submission.rb
+class ClaimSubmission < ApplicationRecord
+  has_many_attached :photos
+  has_many_attached :documents
+  
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :phone, presence: true
+  validates :address, presence: true
+  validates :city, presence: true
+  validates :zip_code, presence: true
+  validates :property_type, presence: true
+  validates :insurance_company, presence: true
+  validates :policy_number, presence: true
+  validates :claim_type, presence: true
+  validates :date_of_loss, presence: true
+  validates :damage_description, presence: true
+  validates :terms_consent, acceptance: true
+  validates :contact_consent, acceptance: true
+  
+  validate :photos_content_type
+  validate :documents_content_type
+  
+  def photos_content_type
+    photos.each do |photo|
+      unless photo.content_type.in?(%w(image/jpeg image/png image/gif))
+        errors.add(:photos, 'must be a JPEG, PNG, or GIF file')
+      end
+    end
+  end
+  
+  def documents_content_type
+    documents.each do |document|
+      unless document.content_type.in?(%w(application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document))
+        errors.add(:documents, 'must be a PDF, DOC, or DOCX file')
+      end
+    end
+  end
+end
+
+# app/models/faq.rb
+class Faq < ApplicationRecord
+  belongs_to :service, optional: true
+  
+  validates :question, presence: true
+  validates :answer, presence: true
+  
+  scope :published, -> { where(published: true) }
+  scope :ordered, -> { order(position: :asc) }
+end
+
+# app/models/setting.rb
+class Setting < ApplicationRecord
+  validates :key, presence: true, uniqueness: true
+  
+  class << self
+    def get(key)
+      setting = find_by(key: key)
+      setting&.value
+    end
+    
+    def set(key, value)
+      setting = find_or_initialize_by(key: key)
+      setting.value = value
+      setting.save
+    end
+  end
+end
+
+# app/models/user.rb
+class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+         
+  has_many :blog_posts, dependent: :nullify
+  has_one_attached :avatar
+  
+  validates :email, presence: true, uniqueness: true
+end
+```
+
+## Controllers
+
+```ruby
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  include Pundit::Authorization
+  
+  before_action :set_meta_tags_defaults
+  
+  def set_meta_tags_defaults
+    set_meta_tags site: 'Messeri & Associates',
+                  title: 'Florida Public Insurance Adjusters',
+                  description: 'Messeri & Associates provides expert public insurance adjusting services in Florida, specializing in hurricane, flood, fire, and water damage claims.',
+                  keywords: 'public adjuster, insurance claims, property damage, Florida, hurricane damage, flood damage, fire damage, water damage',
+                  og: {
+                    title: 'Messeri & Associates - Florida Public Insurance Adjusters',
+                    description: 'Expert public insurance adjusting services in Florida',
+                    url: request.original_url,
+                    image: asset_path('og-image.jpg')
+                  }
+  end
+end
+
+# app/controllers/pages_controller.rb
+class PagesController < ApplicationController
+  def home
+    @service_categories = ServiceCategory.featured.ordered.limit(4)
+    @testimonials = Testimonial.published.featured.ordered.limit(3)
+    @team_members = TeamMember.featured.ordered.limit(4)
+    @blog_posts = BlogPost.published.recent.limit(3)
+  end
+  
+  def show
+    @page = Page.friendly.find(params[:id])
+    
+    set_meta_tags title: @page.meta_title.presence || @page.title,
+                  description: @page.meta_description
+                  
+    render layout: @page.layout
+  end
+end
+
+# app/controllers/services_controller.rb
+class ServicesController < ApplicationController
+  def index
+    @service_categories = ServiceCategory.ordered.includes(:services)
+    @services = Service.published.ordered.includes(:service_category)
+    @faqs = Faq.published.ordered.limit(6)
+    
+    set_meta_tags title: 'Our Services',
+                  description: 'Comprehensive public insurance adjusting services for property owners in Florida, including hurricane, flood, fire, and water damage claims.'
+  end
+  
+  def show
+    @service = Service.friendly.find(params[:id])
+    @service_features = @service.service_features.ordered
+    @related_services = Service.published.where.not(id: @service.id).limit(3)
+    @faqs = @service.faqs.published.ordered
+    
+    set_meta_tags title: @service.meta_title.presence || @service.title,
+                  description: @service.meta_description.presence || @service.description,
+                  og: {
+                    image: url_for(@service.main_image) if @service.main_image.attached?
+                  }
+  end
+end
+
+# app/controllers/blog_controller.rb
+class BlogController < ApplicationController
+  def index
+    @q = BlogPost.published.ransack(params[:q])
+    @pagy, @blog_posts = pagy(@q.result.recent, items: 9)
+    @featured_post = BlogPost.published.featured.recent.first
+    @categories = BlogCategory.all
+    @recent_posts = BlogPost.published.recent.limit(3)
+    @tags = BlogTag.all
+    
+    set_meta_tags title: 'Insurance Claim Insights Blog',
+                  description: 'Expert insights, tips, and advice on insurance claims, property damage, and maximizing settlements from Florida\'s leading public adjusters.'
+  end
+  
+  def show
+    @post = BlogPost.friendly.find(params[:id])
+    @related_posts = BlogPost.published.where(blog_category_id: @post.blog_category_id).where.not(id: @post.id).limit(3)
+    
+    set_meta_tags title: @post.meta_title.presence || @post.title,
+                  description: @post.meta_description.presence || @post.excerpt,
+                  og: {
+                    image: url_for(@post.featured_image) if @post.featured_image.attached?
+                  }
+  end
+  
+  def category
+    @category = BlogCategory.friendly.find(params[:id])
+    @pagy, @blog_posts = pagy(BlogPost.published.where(blog_category_id: @category.id).recent, items: 9)
+    
+    set_meta_tags title: "#{@category.name} - Blog",
+                  description: @category.description
+    
+    render :index
+  end
+  
+  def tag
+    @tag = BlogTag.friendly.find(params[:id])
+    @pagy, @blog_posts = pagy(BlogPost.published.joins(:blog_post_tags).where(blog_post_tags: { blog_tag_id: @tag.id }).recent, items: 9)
+    
+    set_meta_tags title: "#{@tag.name} - Blog",
+                  description: "Articles tagged with #{@tag.name}"
+    
+    render :index
+  end
+end
+
+# app/controllers/contact_controller.rb
+class ContactController < ApplicationController
+  def new
+    @contact_request = ContactRequest.new
+    
+    set_meta_tags title: 'Contact Us',
+                  description: 'Contact Messeri & Associates for expert public insurance adjuster services in Florida. Schedule a free consultation to discuss your claim.'
+  end
+  
+  def create
+    @contact_request = ContactRequest.new(contact_request_params)
+    
+    if @contact_request.save
+      # Send notification email
+      ContactMailer.new_contact_request(@contact_request).deliver_later
+      
+      redirect_to thank_you_contact_path
+    else
+      render :new
+    end
+  end
+  
+  def thank_you
+    set_meta_tags title: 'Thank You',
+                  description: 'Thank you for contacting Messeri & Associates. We will get back to you shortly.'
+  end
+  
+  private
+  
+  def contact_request_params
+    params.require(:contact_request).permit(:first_name, :last_name, :email, :phone, :subject, :message, :claim_type)
+  end
+end
+
+# app/controllers/claims_controller.rb
+class ClaimsController < ApplicationController
+  def new
+    @claim_submission = ClaimSubmission.new
+    
+    set_meta_tags title: 'Submit a Claim',
+                  description: 'Submit your insurance claim to Messeri & Associates for expert public insurance adjusting services in Florida.'
+  end
+  
+  def create
+    @claim_submission = ClaimSubmission.new(claim_submission_params)
+    
+    if @claim_submission.save
+      # Attach photos
+      if params[:claim_submission][:photos].present?
+        params[:claim_submission][:photos].each do |photo|
+          @claim_submission.photos.attach(photo)
+        end
+      end
+      
+      # Attach documents
+      if params[:claim_submission][:documents].present?
+        params[:claim_submission][:documents].each do |document|
+          @claim_submission.documents.attach(document)
+        end
+      end
+      
+      # Send notification email
+      ClaimMailer.new_claim_submission(@claim_submission).deliver_later
+      
+      redirect_to thank_you_claims_path
+    else
+      render :new
+    end
+  end
+  
+  def thank_you
+    set_meta_tags title: 'Thank You',
+                  description: 'Thank you for submitting your claim to Messeri & Associates. We will contact you shortly.'
+  end
+  
+  private
+  
+  def claim_submission_params
+    params.require(:claim_submission).permit(
+      :first_name, :last_name, :email, :phone, :address, :city, :zip_code, 
+      :property_type, :insurance_company, :policy_number, :claim_number, 
+      :existing_claim, :claim_type, :date_of_loss, :damage_description, 
+      :inspection_done, :inspection_date, :additional_info, :referral_source, 
+      :terms_consent, :contact_consent
+    )
+  end
+end
+
+# app/controllers/about_controller.rb
+class AboutController < ApplicationController
+  def index
+    @team_members = TeamMember.ordered
+    @testimonials = Testimonial.published.ordered
+    
+    set_meta_tags title: 'About Us',
+                  description: 'Learn about Messeri & Associates, Florida\'s leading public insurance adjusters. Meet our team and discover our approach to maximizing insurance claim settlements.'
+  end
+end
+```
+
+## Views
+
+Structure your views to match the HTML files provided earlier.
+
+```
+app/views/
+  layouts/
+    application.html.erb
+  pages/
+    home.html.erb
+    show.html.erb
+  services/
+    index.html.erb
+    show.html.erb
+  blog/
+    index.html.erb
+    show.html.erb
+    _sidebar.html.erb
+  about/
+    index.html.erb
+  contact/
+    new.html.erb
+    thank_you.html.erb
+  claims/
+    new.html.erb
+    thank_you.html.erb
+  shared/
+    _header.html.erb
+    _footer.html.erb
+    _cta_section.html.erb
+    _testimonials.html.erb
+    _blog_card.html.erb
+    _service_card.html.erb
+```
+
+## Routes
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  devise_for :users
+  
+  root 'pages#home'
+  
+  resources :services, only: [:index, :show]
+  
+  resources :blog, only: [:index, :show], path: 'blog' do
+    get 'category/:id', to: 'blog#category', as: :category, on: :collection
+    get 'tag/:id', to: 'blog#tag', as: :tag, on: :collection
+  end
+  
+  resources :contact, only: [:new, :create], path: 'contact' do
+    get 'thank-you', on: :collection
+  end
+  
+  resources :claims, only: [:new, :create], path: 'claims' do
+    get 'thank-you', on: :collection
+  end
+  
+  get 'about', to: 'about#index'
+  
+  # Dynamic pages
+  get '*id', to: 'pages#show', as: :page, constraints: lambda { |req| Page.exists?(slug: req.path_parameters[:id]) }
+  
+  # Admin routes (implement using active_admin or similar)
+  namespace :admin do
+    resources :dashboard, only: [:index]
+    resources :pages
+    resources :services
+    resources :service_categories
+    resources :blog_posts
+    resources :blog_categories
+    resources :blog_tags
+    resources :testimonials
+    resources :team_members
+    resources :contact_requests
+    resources :claim_submissions
+    resources :faqs
+    resources :settings
+  end
+end
+```
+
+## Admin Dashboard
+
+For the admin dashboard, you can use gems like:
+
+1. **ActiveAdmin**: Full-featured admin framework
+```bash
+rails g active_admin:install
+rails g active_admin:resource Page
+# Similarly for other models
+```
+
+2. **Rails Admin**: Another admin framework option
+```bash
+rails g rails_admin:install
+```
+
+## Assets Organization
+
+```
+app/assets/
+  images/
+    logo.png
+    hero-bg.jpg
+    about/
+    blog/
+    services/
+    team/
+  stylesheets/
+    application.css
+    components/
+      _buttons.scss
+      _cards.scss
+      _forms.scss
+      _header.scss
+      _footer.scss
+    pages/
+      _home.scss
+      _about.scss
+      _services.scss
+      _blog.scss
+      _contact.scss
+      _claims.scss
+  javascript/
+    application.js
+    testimonials_slider.js
+    mobile_nav.js
+    form_validation.js
+```
+
+## Testing Setup
+
+```ruby
+# Gemfile
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
+```
+
+```bash
+rails g rspec:install
+```
+
+## Deployment
+
+For production, you can deploy to:
+
+1. **Heroku**:
+```bash
+heroku create messeri-adjusting
+git push heroku main
+heroku run rails db:migrate
+heroku run rails db:seed
+```
+
+2. **AWS/DigitalOcean with Capistrano**:
+Add to Gemfile:
+```ruby
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-passenger'
+end
+```
+
+```bash
+cap install
+# Configure config/deploy.rb and config/deploy/*.rb
+```
+
+## SEO Considerations
+
+1. Implement structured data (JSON-LD) for services, blog posts, etc.
+2. Create a sitemap.xml file using the `sitemap_generator` gem
+3. Configure meta tags for all pages
+4. Ensure all images have appropriate alt tags
+5. Implement canonical URLs for blog categories and tags
+
+## Performance Optimization
+
+1. Set up image compression and responsive images
+2. Configure caching for public pages
+3. Minify and bundle JavaScript and CSS
+4. Use fragment caching for dynamic content (blog listings, services, etc.)
+5. Optimize database queries with appropriate indexes
+
+## Security Measures
+
+1. Implement strong password policies for admin users
+2. Set up CSRF protection (Rails default)
+3. Configure Content Security Policy
+4. Set up regular backups
+5. Use environment variables for sensitive information
+
+## Maintenance and Updates
+
+1. Set up monitoring for the application (e.g., New Relic, Sentry)
+2. Create a maintenance page template
+3. Implement a version control strategy for content updates
+4. Schedule regular security updates and dependency checks
+
+This guide provides a foundation for implementing the Messeri & Associates website using Ruby on Rails. You can expand on it based on specific requirements and additional features needed.
