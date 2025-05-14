@@ -11,6 +11,119 @@ const nextBtn = document.querySelector('.next-slide');
 let currentSlide = 0;
 let slideInterval;
 
+// Hero Slider Class
+class HeroSlider {
+    constructor() {
+        this.slides = [
+            {
+                image: 'img/hero-1.jpg.jpg',
+                title: 'Strategic Advocacy for Your Insurance Claim',
+                subtitle: 'Expert guidance through the complex world of insurance claims'
+            },
+            {
+                image: 'img/hero-2.jpg.jpg',
+                title: 'Maximize Your Insurance Settlement',
+                subtitle: 'Professional representation to ensure you receive every dollar you deserve'
+            },
+            {
+                image: 'img/hero-3.jpg.jpg',
+                title: 'Your Trusted Claims Advocate',
+                subtitle: 'Dedicated to protecting your interests and securing fair compensation'
+            }
+        ];
+        this.currentSlide = 0;
+        this.sliderContainer = document.querySelector('.hero-slider');
+        this.heroContent = document.querySelector('.hero-content');
+        this.init();
+    }
+
+    init() {
+        // Create slide elements
+        this.slides.forEach((slide, index) => {
+            const slideElement = document.createElement('div');
+            slideElement.className = `hero-slide ${index === 0 ? 'active' : ''}`;
+            slideElement.style.backgroundImage = `url(${slide.image})`;
+            this.sliderContainer.appendChild(slideElement);
+        });
+
+        // Create navigation controls
+        this.createNavigationControls();
+
+        // Update initial content
+        this.updateContent();
+
+        // Start slideshow
+        this.startSlideshow();
+    }
+
+    createNavigationControls() {
+        // Create navigation container
+        const navContainer = document.createElement('div');
+        navContainer.className = 'hero-slider-nav';
+
+        // Create previous button
+        const prevButton = document.createElement('button');
+        prevButton.className = 'hero-nav-btn prev-slide';
+        prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevButton.addEventListener('click', () => this.prevSlide());
+
+        // Create next button
+        const nextButton = document.createElement('button');
+        nextButton.className = 'hero-nav-btn next-slide';
+        nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextButton.addEventListener('click', () => this.nextSlide());
+
+        // Add buttons to container
+        navContainer.appendChild(prevButton);
+        navContainer.appendChild(nextButton);
+
+        // Add navigation to slider
+        this.sliderContainer.appendChild(navContainer);
+    }
+
+    updateContent() {
+        const currentSlideData = this.slides[this.currentSlide];
+        const titleElement = this.heroContent.querySelector('h1');
+        const subtitleElement = this.heroContent.querySelector('p');
+
+        // Add fade-out effect
+        titleElement.style.opacity = '0';
+        subtitleElement.style.opacity = '0';
+
+        // Update content after a short delay
+        setTimeout(() => {
+            titleElement.textContent = currentSlideData.title;
+            subtitleElement.textContent = currentSlideData.subtitle;
+            
+            // Add fade-in effect
+            titleElement.style.opacity = '1';
+            subtitleElement.style.opacity = '1';
+        }, 300);
+    }
+
+    startSlideshow() {
+        setInterval(() => {
+            this.nextSlide();
+        }, 5000); // Change slide every 5 seconds
+    }
+
+    nextSlide() {
+        const slides = document.querySelectorAll('.hero-slide');
+        slides[this.currentSlide].classList.remove('active');
+        this.currentSlide = (this.currentSlide + 1) % slides.length;
+        slides[this.currentSlide].classList.add('active');
+        this.updateContent();
+    }
+
+    prevSlide() {
+        const slides = document.querySelectorAll('.hero-slide');
+        slides[this.currentSlide].classList.remove('active');
+        this.currentSlide = (this.currentSlide - 1 + slides.length) % slides.length;
+        slides[this.currentSlide].classList.add('active');
+        this.updateContent();
+    }
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
@@ -18,6 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize the App
 function initApp() {
+  // Initialize Hero Slider
+  if (document.querySelector('.hero-slider')) {
+    new HeroSlider();
+  }
+
   // Mobile Menu Toggle
   if (mobileToggle) {
     mobileToggle.addEventListener('click', toggleMobileMenu);

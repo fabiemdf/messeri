@@ -18,7 +18,7 @@ This artifact documents the JavaScript components for enhancing the Messeri & As
 ## Testimonial Slider
 
 ```javascript
-// app/javascript/components/testimonial_slider.js
+// js/components/testimonial_slider.js
 
 export class TestimonialSlider {
   constructor(options = {}) {
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Form Validation
 
 ```javascript
-// app/javascript/components/form_validation.js
+// js/components/form_validation.js
 
 export class FormValidator {
   constructor(formSelector, options = {}) {
@@ -347,9 +347,9 @@ document.addEventListener('DOMContentLoaded', () => {
 ## FAQ Accordion
 
 ```javascript
-// app/javascript/components/faq_accordion.js
+// js/components/faq_accordion.js
 
-export class FaqAccordion {
+export class FAQAccordion {
   constructor(options = {}) {
     this.containerSelector = options.containerSelector || '.faq-list';
     this.questionSelector = options.questionSelector || '.faq-question';
@@ -429,7 +429,7 @@ export class FaqAccordion {
 
 // Usage:
 document.addEventListener('DOMContentLoaded', () => {
-  const faqAccordion = new FaqAccordion();
+  const faqAccordion = new FAQAccordion();
   
   // URL hash support to open specific FAQ
   if (window.location.hash) {
@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## File Upload Handler
 
 ```javascript
-// app/javascript/components/file_upload.js
+// js/components/file_upload.js
 
 export class FileUploadHandler {
   constructor(options = {}) {
@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Mobile Navigation
 
 ```javascript
-// app/javascript/components/mobile_navigation.js
+// js/components/mobile_navigation.js
 
 export class MobileNavigation {
   constructor(options = {}) {
@@ -772,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Reading Progress Bar
 
 ```javascript
-// app/javascript/components/reading_progress.js
+// js/components/reading_progress.js
 
 export class ReadingProgress {
   constructor(options = {}) {
@@ -838,7 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Scroll Animations
 
 ```javascript
-// app/javascript/components/scroll_animations.js
+// js/components/scroll_animations.js
 
 export class ScrollAnimations {
   constructor(options = {}) {
@@ -971,7 +971,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Interactive Service Selection
 
 ```javascript
-// app/javascript/components/service_selector.js
+// js/components/service_selector.js
 
 export class ServiceSelector {
   constructor(options = {}) {
@@ -1058,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Sticky Header
 
 ```javascript
-// app/javascript/components/sticky_header.js
+// js/components/sticky_header.js
 
 export class StickyHeader {
   constructor(options = {}) {
@@ -1124,7 +1124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ## Newsletter Subscription
 
 ```javascript
-// app/javascript/components/newsletter_subscription.js
+// js/components/newsletter_subscription.js
 
 export class NewsletterSubscription {
   constructor(options = {}) {
@@ -1267,6 +1267,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
+## Application Entry Point
+
+```javascript
+// js/application.js
+
+import { TestimonialSlider } from './components/testimonial_slider';
+import { FormValidator } from './components/form_validation';
+import { FAQAccordion } from './components/faq_accordion';
+import { FileUploadHandler } from './components/file_upload';
+import { MobileNavigation } from './components/mobile_navigation';
+import { ReadingProgress } from './components/reading_progress';
+import { ScrollAnimations } from './components/scroll_animations';
+import { ServiceSelector } from './components/service_selector';
+import { StickyHeader } from './components/sticky_header';
+import { NewsletterSubscription } from './components/newsletter_subscription';
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize components
+  new TestimonialSlider();
+  new FormValidator('form');
+  new FAQAccordion();
+  new FileUploadHandler();
+  new MobileNavigation();
+  new ReadingProgress();
+  new ScrollAnimations();
+  new ServiceSelector();
+  new StickyHeader();
+  new NewsletterSubscription();
+});
+```
+
 These JavaScript components provide a solid foundation for enhancing the user experience on the Messeri & Associates website. You can integrate them into your Rails application using Webpack or esbuild, depending on your Rails version and configuration.
 
 In your Rails application, you would import and initialize these components in your main JavaScript file:
@@ -1276,7 +1307,7 @@ In your Rails application, you would import and initialize these components in y
 
 import { TestimonialSlider } from './components/testimonial_slider';
 import { FormValidator } from './components/form_validation';
-import { FaqAccordion } from './components/faq_accordion';
+import { FAQAccordion } from './components/faq_accordion';
 import { FileUploadHandler } from './components/file_upload';
 import { MobileNavigation } from './components/mobile_navigation';
 import { ReadingProgress } from './components/reading_progress';
@@ -1290,7 +1321,7 @@ document.addEventListener('DOMContentLoaded', () => {
   new TestimonialSlider();
   new FormValidator('#contactForm');
   new FormValidator('#claimForm');
-  new FaqAccordion();
+  new FAQAccordion();
   new FileUploadHandler({
     dropAreaSelector: '#photoDropArea',
     fileInputSelector: '#photoUpload',
