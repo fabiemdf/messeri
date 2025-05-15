@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tips for Negotiating with Insurance Companies - Messeri & Associates, LLC</title>
-  <meta name="description" content="Learn effective strategies for negotiating with insurance companies to maximize your claim settlement. Expert tips from Florida's leading public adjusters.">
+  <title>Tips for Negotiating with Insurance Companies: A Guide to Maximizing Your Settlement - Messeri & Associates</title>
+  <meta name="description" content="Learn effective strategies for negotiating with insurance companies. Get expert tips on maximizing your claim settlement and protecting your rights.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
   <style>
-    
-	
-	.blog-page {
+    .blog-page {
       padding: 12rem 0 6rem;
     }
     
@@ -75,9 +73,9 @@
     
     .blog-sidebar {
       position: sticky;
-      top: 0;
+      top: 12rem;
       align-self: flex-start;
-      margin-top: 0;
+      margin-top: 7.5rem;
     }
     
     .sidebar-widget {
@@ -282,117 +280,101 @@
       font-size: 1.4rem;
     }
     
-    .post-tags {
-      margin: 4rem 0;
+    .related-topics {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
     }
     
-    .post-tags h3 {
+    .related-topics h3 {
       font-size: 2rem;
       margin-bottom: 1.5rem;
+      color: var(--heading-color);
     }
     
-    .tags-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .related-topics ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
     
-    .tag {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background-color: var(--light-color);
-      border-radius: 20px;
-      font-size: 1.3rem;
-      transition: var(--transition);
-    }
-    
-    .tag:hover {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-    
-    .post-navigation {
-      display: flex;
-      justify-content: space-between;
-      margin: 4rem 0;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--text-color);
-      transition: var(--transition);
-    }
-    
-    .nav-link:hover {
-      color: var(--primary-color);
-    }
-    
-    .nav-link i {
-      font-size: 1.4rem;
-    }
-    
-    .related-posts {
-      margin: 4rem 0;
-    }
-    
-    .related-posts h3 {
-      font-size: 2.4rem;
-      margin-bottom: 2rem;
-    }
-    
-    .related-posts-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-    
-    .related-post-card {
-      background-color: #fff;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-      transition: var(--transition);
-    }
-    
-    .related-post-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .related-post-img {
-      height: 200px;
-    }
-    
-    .related-post-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .related-post-content {
-      padding: 2rem;
-    }
-    
-    .related-post-content h4 {
-      font-size: 1.8rem;
+    .related-topics li {
       margin-bottom: 1rem;
     }
     
-    .related-post-content h4 a {
+    .related-topics li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .related-topics a {
       color: var(--text-color);
+      text-decoration: none;
       transition: var(--transition);
+      display: inline-block;
+      padding: 0.5rem 0;
     }
     
-    .related-post-content h4 a:hover {
+    .related-topics a:hover {
       color: var(--primary-color);
+      transform: translateX(5px);
     }
     
-    .related-post-date {
-      font-size: 1.3rem;
+    .review-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .review-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--heading-color);
+    }
+    
+    .review {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .review-content {
+      margin-bottom: 2rem;
+    }
+    
+    .review-content p {
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      font-style: italic;
+    }
+    
+    .review-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .review-author-info h4 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: var(--heading-color);
+    }
+    
+    .review-author-info p {
+      font-size: 1.4rem;
       color: var(--text-light);
+    }
+    
+    .review-rating {
+      color: #ffd700;
+      font-size: 1.6rem;
+    }
+    
+    .review-rating i {
+      margin-left: 0.2rem;
     }
     
     @media (max-width: 768px) {
@@ -401,34 +383,23 @@
       }
       
       .blog-sidebar {
-        position: static;
+        margin-top: 4rem;
       }
       
-      .related-posts-grid {
-        grid-template-columns: 1fr;
+      .featured-post-img {
+        height: 300px;
       }
-    }
-    @media (max-width: 991px) {
-      .blog-sidebar {
-        position: static;
-        margin-top: 3rem;
+      
+      .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
       }
-    }
-    
-    .featured-post-content h1 {
-      white-space: normal;
-      overflow: visible;
-      width: 100%;
-      word-break: break-word;
-    }
-
-    .blog-content {
-      min-width: 0;
-      width: 100%;
-    }
-    .featured-post-content {
-      min-width: 0;
-      width: 100%;
+      
+      .author-box {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -462,196 +433,120 @@
   </header>
 
   <!-- Blog Post Content -->
-  <main class="blog-page">
+  <section class="blog-page">
     <div class="container">
       <div class="blog-container">
-        <div class="blog-content">
+        <main class="blog-main">
           <article class="featured-post">
-            <div class="featured-post-content">
-              <h1>Tips for Negotiating with Insurance Companies</h1>
-              <div class="post-meta">
-                <div><i class="far fa-calendar"></i> March 15, 2024</div>
-                <div><i class="far fa-user"></i> David Messeri</div>
-                <div><i class="far fa-folder"></i> Insurance Claims</div>
-              </div>
-              <div class="featured-post-img">
-              <img src="../img/insurance-negotiations.jpg" alt="Business professionals reviewing an insurance policy document">
+            <h1>Tips for Negotiating with Insurance Companies: A Guide to Maximizing Your Settlement</h1>
+            
+            <div class="post-meta">
+              <div class="post-date"><i class="far fa-calendar-alt"></i> April 10, 2025</div>
+              <div class="post-author"><i class="far fa-user"></i> David Messeri</div>
+              <div class="post-category"><i class="far fa-folder"></i> Insurance Tips</div>
             </div>
             
-              <div class="article-content">
-                <h2>Understanding Insurance Company Negotiation Tactics</h2>
-                <p>Negotiating with insurance companies can be challenging, but with the right approach, you can maximize your claim settlement. Insurance companies often use various tactics to minimize payouts, but being prepared and knowledgeable can help you achieve a fair settlement.</p>
-
-                <div class="blockquote">
-                  "Successful negotiation with insurance companies requires preparation, persistence, and a clear understanding of your policy and rights. Don't settle for less than you deserve."
+            <div class="featured-post-img">
+              <img src="../img/insurance-negotiations.jpg" alt="Tips for Negotiating with Insurance Companies">
+            </div>
+            
+            <div class="article-content">
+              <p>Negotiating with insurance companies can be challenging, but with the right approach, you can maximize your claim settlement. This guide provides expert tips and strategies to help you navigate the negotiation process effectively.</p>
+              
+              <h2>1. Understand Your Policy</h2>
+              <p>Before entering negotiations, ensure you understand your policy coverage:</p>
+              <ul>
+                <li>Review your policy documents thoroughly</li>
+                <li>Identify covered perils and exclusions</li>
+                <li>Understand your policy limits</li>
+                <li>Know your rights as a policyholder</li>
+              </ul>
+              
+              <div class="blockquote">
+                "Knowledge is power in insurance negotiations. Understanding your policy and rights is the first step to a successful settlement."
+              </div>
+              
+              <h2>2. Document Everything</h2>
+              <p>Thorough documentation strengthens your position:</p>
+              <ul>
+                <li>Take detailed photos of all damage</li>
+                <li>Keep all repair estimates</li>
+                <li>Maintain communication records</li>
+                <li>Document all expenses</li>
+              </ul>
+              
+              <h2>3. Get Professional Estimates</h2>
+              <p>Professional estimates provide credibility:</p>
+              <ul>
+                <li>Obtain multiple contractor estimates</li>
+                <li>Include detailed scope of work</li>
+                <li>Use licensed professionals</li>
+                <li>Document material costs</li>
+              </ul>
+              
+              <h2>4. Be Prepared to Negotiate</h2>
+              <p>Effective negotiation strategies include:</p>
+              <ul>
+                <li>Start with a reasonable demand</li>
+                <li>Support your position with evidence</li>
+                <li>Be professional and persistent</li>
+                <li>Know when to involve a public adjuster</li>
+              </ul>
+              
+              <h2>5. Consider Professional Help</h2>
+              <p>A public adjuster can help by:</p>
+              <ul>
+                <li>Evaluating your claim value</li>
+                <li>Handling negotiations</li>
+                <li>Ensuring proper documentation</li>
+                <li>Protecting your rights</li>
+              </ul>
+              
+              <div class="author-box">
+                <div class="author-avatar">
+                  <img src="../img/profile.jpeg" alt="David Messeri">
                 </div>
-
-                <h2>1. Know Your Policy Inside and Out</h2>
-                <p>Before entering negotiations, thoroughly review your insurance policy to understand:</p>
+                <div class="author-info">
+                  <h3>David Messeri</h3>
+                  <p>Public Insurance Adjuster with over 6 years of experience in handling insurance claims and property assessments.</p>
+                </div>
+              </div>
+              
+              <div class="related-topics">
+                <h3>Related Topics</h3>
                 <ul>
-                  <li>Coverage limits and exclusions</li>
-                  <li>Deductible amounts</li>
-                  <li>Claim filing deadlines</li>
-                  <li>Required documentation</li>
+                  <li><a href="../services.html#hurricane">Hurricane Claims</a></li>
+                  <li><a href="../services.html#flood">Flood Damage</a></li>
+                  <li><a href="../services.html#water">Water Damage</a></li>
+                  <li><a href="../services.html#other">Property Damage</a></li>
                 </ul>
-
-                <h2>2. Document Everything</h2>
-                <p>Comprehensive documentation is crucial for successful negotiations:</p>
-                <ul>
-                  <li>Take detailed photos and videos of all damage</li>
-                  <li>Keep all receipts and invoices</li>
-                  <li>Maintain a log of all communications</li>
-                  <li>Document any temporary repairs made</li>
-                </ul>
-
-                <h2>3. Get Multiple Estimates</h2>
-                <p>Having multiple professional estimates can strengthen your position:</p>
-                <ul>
-                  <li>Obtain estimates from licensed contractors</li>
-                  <li>Compare estimates for consistency</li>
-                  <li>Use estimates to support your claim value</li>
-                  <li>Be prepared to explain any cost differences</li>
-                </ul>
-
-                <h2>4. Understand Common Insurance Company Tactics</h2>
-                <p>Be aware of these common tactics used by insurance companies:</p>
-                <ul>
-                  <li>Delaying the claims process</li>
-                  <li>Offering quick, low settlements</li>
-                  <li>Questioning the cause of damage</li>
-                  <li>Requesting excessive documentation</li>
-                </ul>
-
-                <h2>5. Effective Negotiation Strategies</h2>
-                <p>Use these strategies to strengthen your negotiation position:</p>
-                <ul>
-                  <li>Stay professional and calm</li>
-                  <li>Be prepared with facts and documentation</li>
-                  <li>Know your bottom line</li>
-                  <li>Don't accept the first offer</li>
-                </ul>
-
-                <h2>6. When to Involve a Public Adjuster</h2>
-                <p>Consider hiring a public adjuster when:</p>
-                <ul>
-                  <li>The claim is complex or high-value</li>
-                  <li>You're not comfortable negotiating</li>
-                  <li>The insurance company is being difficult</li>
-                  <li>You need expert guidance</li>
-                </ul>
-
-                <h2>7. Common Mistakes to Avoid</h2>
-                <p>Steer clear of these negotiation pitfalls:</p>
-                <ul>
-                  <li>Accepting the first offer</li>
-                  <li>Not reading the fine print</li>
-                  <li>Missing deadlines</li>
-                  <li>Not keeping proper records</li>
-                </ul>
-
-                <h2>8. The Role of Professional Help</h2>
-                <p>A public adjuster can provide valuable assistance by:</p>
-                <ul>
-                  <li>Evaluating your claim thoroughly</li>
-                  <li>Handling all negotiations</li>
-                  <li>Ensuring proper documentation</li>
-                  <li>Maximizing your settlement</li>
-                </ul>
-
-                <div class="author-box">
-                  <div class="author-avatar">
-                    <img src="../img/profile.jpeg" alt="David Messeri">
+              </div>
+              
+              <div class="review-section">
+                <h3>What Our Clients Say</h3>
+                <div class="review">
+                  <div class="review-content">
+                    <p>"I would highly recommend Fraser Property and Adjusting to make an insurance claim. We had a lot of damage after Sally last year and experienced dealing with an insurance claim. We called Fraser and received quick service and outstanding customer service. Jenna and David (Messeri) came out on time and were very professional and helpful! Kudos!"</p>
                   </div>
-                  <div class="author-info">
-                    <h3>David Messeri</h3>
-                    <p>Public Adjuster & Insurance Claims Expert</p>
-                  </div>
-                </div>
-
-                <div class="post-tags">
-                  <h3>Related Topics</h3>
-                  <div class="tags-list">
-                    <a href="#" class="tag">Insurance Claims</a>
-                    <a href="#" class="tag">Negotiation</a>
-                    <a href="#" class="tag">Claims Process</a>
-                    <a href="#" class="tag">Settlement</a>
-                    <a href="#" class="tag">Insurance Tips</a>
-                  </div>
-                </div>
-
-                <div class="social-share">
-                  <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                  <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-                </div>
-
-                <div class="post-navigation">
-                  <a href="insurance-claim-process.html" class="nav-link">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>Previous: The Insurance Claim Process: What to Expect</span>
-                  </a>
-                  <a href="essential-documentation-insurance-claims.html" class="nav-link">
-                    <span>Next: Essential Documentation for Insurance Claims</span>
-                    <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-
-                <div class="related-posts">
-                  <h3>Related Articles</h3>
-                  <div class="related-posts-grid">
-                    <div class="related-post-card">
-                      <div class="related-post-img">
-                        <img src="../img/insurance-claim-process.jpg" alt="Insurance Claim Process">
-                      </div>
-                      <div class="related-post-content">
-                        <h4>The Insurance Claim Process: What to Expect</h4>
-                        <p>A comprehensive guide to navigating your insurance claim.</p>
-                      </div>
+                  <div class="review-author">
+                    <div class="review-author-info">
+                      <h4>Kathy Stanfield</h4>
+                      <p><a href="https://maps.app.goo.gl/rEBd1ET8mgNAwX4YA" target="_blank" style="color: inherit;"><i class="fab fa-google"></i> Google Review</a></p>
                     </div>
-                    <div class="related-post-card">
-                      <div class="related-post-img">
-                        <img src="../img/insurance documentation.jpg" alt="Insurance Documentation">
-                      </div>
-                      <div class="related-post-content">
-                        <h4>Essential Documentation for Insurance Claims</h4>
-                        <p>Learn what documents you need for a successful claim.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="testimonial-box" style="margin: 4rem 0; padding: 3rem; background-color: var(--light-color); border-radius: var(--border-radius);">
-                  <div class="testimonial-header" style="display: flex; align-items: center; margin-bottom: 2rem;">
-                    <div class="stars" style="color: #ffd700; font-size: 2rem; margin-right: 1rem;">
+                    <div class="review-rating">
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                     </div>
-                    <a href="https://www.google.com/maps/reviews/@30.4606959,-87.2960532,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNlbXN5Ujd3RRAB!2m1!1s0x0:0xdc40bd0e75d27eb1?entry=ttu&g_ep=EgoyMDI1MDUxMS4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" style="color: var(--text-light); font-size: 1.4rem;">
-                      <i class="fab fa-google"></i> Google Review
-                    </a>
                   </div>
-                  <blockquote style="font-style: italic; margin-bottom: 2rem; font-size: 1.6rem; line-height: 1.6;">
-                    "We used Fraser after suffering roof damage that our insurance company (UPC) attempted to resolve with a less than professional settlement. David Messeri and the rest of the team @ Fraser were very thorough and professional in taking on our case.
-                    <br><br>
-                    Mr. Ari Fraser was superb in our arbitration review, working on our behalf to earn a more reasonable settlement with UPC.
-                    <br><br>
-                    Highly recommend Fraser if you have an issue with an insurance claim."
-                  </blockquote>
-                </div>
-
-                <div class="cta-box">
-                  <h3>Need Help Negotiating Your Claim?</h3>
-                  <p>Let our experienced public adjusters handle the negotiation process for you. Contact Messeri & Associates, LLC today for expert assistance.</p>
-                  <a href="../contact.html" class="btn btn-primary">Contact Us Today</a>
                 </div>
               </div>
             </div>
           </article>
-        </div>
+        </main>
+        
         <aside class="blog-sidebar">
           <div class="sidebar-widget">
             <h3 class="widget-title">Search</h3>
@@ -664,11 +559,11 @@
           <div class="sidebar-widget">
             <h3 class="widget-title">Categories</h3>
             <ul class="categories-list">
-              <li><a href="../blog/category/insurance-claims.html">Insurance Claims <span>12</span></a></li>
-              <li><a href="../blog/category/property-damage.html">Property Damage <span>8</span></a></li>
-              <li><a href="../blog/category/hurricane-damage.html">Hurricane Damage <span>6</span></a></li>
-              <li><a href="../blog/category/water-damage.html">Water Damage <span>5</span></a></li>
-              <li><a href="../blog/category/insurance-laws.html">Insurance Laws <span>4</span></a></li>
+              <li><a href="#">Hurricane Claims <span>12</span></a></li>
+              <li><a href="#">Property Damage <span>8</span></a></li>
+              <li><a href="#">Insurance Tips <span>15</span></a></li>
+              <li><a href="#">Claims Process <span>10</span></a></li>
+              <li><a href="#">Legal Updates <span>5</span></a></li>
             </ul>
           </div>
           
@@ -676,30 +571,21 @@
             <h3 class="widget-title">Recent Posts</h3>
             <ul class="recent-posts-list">
               <li>
-                <a href="5-things-insurance-companies-dont-want-you-to-know.html" class="recent-post-img">
-                  <img src="../images/blog/insurance-secrets.jpg" alt="Insurance Secrets">
-                </a>
+                <div class="recent-post-img">
+                  <img src="../img/confusing-frustrating-process.jpg" alt="5 Things Insurance Companies Don't Want You to Know">
+                </div>
                 <div class="recent-post-content">
                   <h4><a href="5-things-insurance-companies-dont-want-you-to-know.html">5 Things Insurance Companies Don't Want You to Know</a></h4>
-                  <div class="recent-post-date">March 10, 2024</div>
+                  <div class="recent-post-date">May 1, 2025</div>
                 </div>
               </li>
               <li>
-                <a href="essential-documentation-insurance-claims.html" class="recent-post-img">
-                  <img src="../images/blog/documentation.jpg" alt="Insurance Documentation">
-                </a>
-                <div class="recent-post-content">
-                  <h4><a href="essential-documentation-insurance-claims.html">Essential Documentation for Insurance Claims</a></h4>
-                  <div class="recent-post-date">March 5, 2024</div>
+                <div class="recent-post-img">
+                  <img src="../img/insurance documentation.jpg" alt="Essential Documentation">
                 </div>
-              </li>
-              <li>
-                <a href="insurance-claim-process.html" class="recent-post-img">
-                  <img src="../images/blog/claim-process.jpg" alt="Insurance Claim Process">
-                </a>
                 <div class="recent-post-content">
-                  <h4><a href="insurance-claim-process.html">Understanding the Insurance Claim Process</a></h4>
-                  <div class="recent-post-date">February 28, 2024</div>
+                  <h4><a href="essential-documentation-for-insurance-claims.html">Essential Documentation for Insurance Claims</a></h4>
+                  <div class="recent-post-date">April 20, 2025</div>
                 </div>
               </li>
             </ul>
@@ -707,7 +593,7 @@
         </aside>
       </div>
     </div>
-  </main>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -743,8 +629,18 @@
           <h4>Contact Us</h4>
           <div class="contact-info">
             <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
-            <p><i class="fas fa-phone"></i> (305) 494-5820</p>
-            <p><i class="fas fa-envelope"></i> david@messeriadjusting.com</p>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:3054945820">(305) 494-5820</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+            </div>
+            <div class="contact-item license">
+              <i class="fas fa-id-card"></i>
+              <span>Licensed Public Insurance Adjuster. License #W602412<br>WIND Certified Appraiser</span>
+            </div>
           </div>
           <div class="social-links">
             <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>

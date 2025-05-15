@@ -3,49 +3,215 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Insurance Claim Process: What to Expect - Messeri & Associates, LLC</title>
-  <meta name="description" content="Learn about the complete insurance claim process, from initial filing to settlement. Expert guidance on navigating each step of your insurance claim.">
+  <title>Understanding the Insurance Claim Process: A Complete Guide - Messeri & Associates</title>
+  <meta name="description" content="Learn about the insurance claim process from start to finish. Get expert guidance on filing claims, documentation requirements, and maximizing your settlement.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
   <style>
-    /* Blog Post Specific Styles */
-    .blog-post-page {
+    .blog-page {
       padding: 12rem 0 6rem;
     }
     
-    .blog-post-container {
-      max-width: 800px;
-      margin: 0 auto;
+    .blog-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
     }
     
-    .featured-image {
+    .featured-post {
+      margin-bottom: 5rem;
+    }
+    
+    .featured-post-img {
       width: 100%;
       height: 400px;
       border-radius: var(--border-radius);
       overflow: hidden;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
     
-    .featured-image img {
+    .featured-post-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .featured-post:hover .featured-post-img img {
+      transform: scale(1.05);
+    }
+    
+    .featured-post-content h2 {
+      margin-bottom: 1.5rem;
     }
     
     .post-meta {
       display: flex;
-      gap: 2rem;
+      align-items: center;
       margin-bottom: 2rem;
       color: var(--text-light);
       font-size: 1.4rem;
     }
     
+    .post-meta > div {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem;
+    }
+    
     .post-meta i {
       margin-right: 0.5rem;
       color: var(--primary-color);
+    }
+    
+    .post-excerpt {
+      margin-bottom: 2rem;
+    }
+    
+    .blog-sidebar {
+      position: sticky;
+      top: 12rem;
+      align-self: flex-start;
+      margin-top: 7.5rem;
+    }
+    
+    .sidebar-widget {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .widget-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .widget-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+    
+    .search-form {
+      display: flex;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      border-right: none;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.5rem;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .search-btn {
+      padding: 0 1.5rem;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .search-btn:hover {
+      background-color: #004b8c;
+    }
+    
+    .categories-list,
+    .recent-posts-list {
+      list-style: none;
+    }
+    
+    .categories-list li {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.2rem;
+    }
+    
+    .categories-list li:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .categories-list a {
+      color: var(--text-color);
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .categories-list a:hover {
+      color: var(--primary-color);
+    }
+    
+    .categories-list span {
+      background-color: var(--light-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .recent-posts-list li {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .recent-posts-list li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .recent-post-img {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .recent-post-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .recent-post-content h4 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .recent-post-content h4 a {
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+    
+    .recent-post-content h4 a:hover {
+      color: var(--primary-color);
+    }
+    
+    .recent-post-date {
+      font-size: 1.3rem;
+      color: var(--text-light);
     }
     
     .article-content {
@@ -114,149 +280,125 @@
       font-size: 1.4rem;
     }
     
-    .post-tags {
-      margin: 4rem 0;
+    .related-topics {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
     }
     
-    .post-tags h3 {
+    .related-topics h3 {
       font-size: 2rem;
       margin-bottom: 1.5rem;
+      color: var(--heading-color);
     }
     
-    .tags-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .related-topics ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
     
-    .tag {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background-color: var(--light-color);
-      border-radius: 20px;
-      font-size: 1.3rem;
-      transition: var(--transition);
-    }
-    
-    .tag:hover {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-    
-    .post-navigation {
-      display: flex;
-      justify-content: space-between;
-      margin: 4rem 0;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--text-color);
-      transition: var(--transition);
-    }
-    
-    .nav-link:hover {
-      color: var(--primary-color);
-    }
-    
-    .nav-link i {
-      font-size: 1.4rem;
-    }
-    
-    .related-posts {
-      margin: 4rem 0;
-    }
-    
-    .related-posts h3 {
-      font-size: 2.4rem;
-      margin-bottom: 2rem;
-    }
-    
-    .related-posts-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-    
-    .related-post-card {
-      background-color: #fff;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-      transition: var(--transition);
-    }
-    
-    .related-post-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .related-post-img {
-      height: 200px;
-    }
-    
-    .related-post-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .related-post-content {
-      padding: 2rem;
-    }
-    
-    .related-post-content h4 {
-      font-size: 1.8rem;
+    .related-topics li {
       margin-bottom: 1rem;
     }
     
-    .related-post-content p {
-      color: var(--text-light);
-      font-size: 1.4rem;
+    .related-topics li:last-child {
+      margin-bottom: 0;
     }
     
-    .social-share {
-      display: flex;
-      gap: 1rem;
-      margin: 4rem 0;
-    }
-    
-    .social-share a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: var(--light-color);
+    .related-topics a {
       color: var(--text-color);
+      text-decoration: none;
       transition: var(--transition);
+      display: inline-block;
+      padding: 0.5rem 0;
     }
     
-    .social-share a:hover {
-      background-color: var(--primary-color);
-      color: #fff;
+    .related-topics a:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+    
+    .review-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .review-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--heading-color);
+    }
+    
+    .review {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .review-content {
+      margin-bottom: 2rem;
+    }
+    
+    .review-content p {
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      font-style: italic;
+    }
+    
+    .review-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .review-author-info h4 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: var(--heading-color);
+    }
+    
+    .review-author-info p {
+      font-size: 1.4rem;
+      color: var(--text-light);
+    }
+    
+    .review-rating {
+      color: #ffd700;
+      font-size: 1.6rem;
+    }
+    
+    .review-rating i {
+      margin-left: 0.2rem;
     }
     
     @media (max-width: 768px) {
-      .blog-post-page {
-        padding: 10rem 0 4rem;
+      .blog-container {
+        grid-template-columns: 1fr;
       }
       
-      .featured-image {
+      .blog-sidebar {
+        margin-top: 4rem;
+      }
+      
+      .featured-post-img {
         height: 300px;
       }
       
       .post-meta {
         flex-direction: column;
+        align-items: flex-start;
         gap: 1rem;
       }
       
-      .related-posts-grid {
-        grid-template-columns: 1fr;
+      .author-box {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -291,174 +433,167 @@
   </header>
 
   <!-- Blog Post Content -->
-  <article class="blog-post-page">
+  <section class="blog-page">
     <div class="container">
-      <div class="blog-post-container">
-        <div class="post-header">
-          <h1>The Insurance Claim Process: What to Expect</h1>
-          <div class="post-meta">
-            <div class="post-date"><i class="far fa-calendar-alt"></i> March 1, 2025</div>
-            <div class="post-author"><i class="far fa-user"></i> David Messeri</div>
-            <div class="post-category"><i class="far fa-folder"></i> Claims Process</div>
-          </div>
-        </div>
-
-        <div class="featured-image">
-          <img src="../img/insurance-claim-process.jpg" alt="Insurance Claim Process">
-        </div>
-
-        <div class="article-content">
-          <h2>Understanding the Insurance Claim Process</h2>
-          <p>Filing an insurance claim can be overwhelming, especially when dealing with property damage. Understanding the process can help you navigate it more effectively and ensure you receive the settlement you deserve. Here's a comprehensive guide to what you can expect during the insurance claim process.</p>
-
-          <div class="blockquote">
-            "Knowledge is power when it comes to insurance claims. Understanding each step of the process can help you avoid common pitfalls and maximize your settlement."
-          </div>
-
-          <h2>1. Initial Damage Assessment</h2>
-          <p>The first step in the claims process is to assess the damage to your property. This involves:</p>
-          <ul>
-            <li>Documenting all visible damage with photos and videos</li>
-            <li>Making temporary repairs to prevent further damage</li>
-            <li>Keeping all receipts for emergency repairs</li>
-            <li>Creating a detailed inventory of damaged items</li>
-          </ul>
-
-          <h2>2. Filing the Claim</h2>
-          <p>Once you've assessed the damage, you'll need to file your claim with your insurance company. This involves:</p>
-          <ul>
-            <li>Contacting your insurance company as soon as possible</li>
-            <li>Providing your policy number and basic information</li>
-            <li>Submitting a detailed description of the damage</li>
-            <li>Providing documentation of the damage</li>
-          </ul>
-
-          <h2>3. Insurance Adjuster Inspection</h2>
-          <p>After filing your claim, an insurance adjuster will be assigned to your case. During the inspection:</p>
-          <ul>
-            <li>The adjuster will visit your property to assess the damage</li>
-            <li>They will take their own photos and measurements</li>
-            <li>They may ask questions about the damage and your policy</li>
-            <li>They will create an estimate of the damage</li>
-          </ul>
-
-          <h2>4. Claim Review and Settlement Offer</h2>
-          <p>The insurance company will review the adjuster's report and make a settlement offer. This process involves:</p>
-          <ul>
-            <li>Reviewing the adjuster's findings</li>
-            <li>Comparing the damage to your policy coverage</li>
-            <li>Calculating the settlement amount</li>
-            <li>Presenting you with a settlement offer</li>
-          </ul>
-
-          <h2>5. Settlement Negotiation</h2>
-          <p>If you believe the settlement offer is too low, you can negotiate. This step may involve:</p>
-          <ul>
-            <li>Reviewing the adjuster's estimate</li>
-            <li>Obtaining your own estimates from contractors</li>
-            <li>Providing additional documentation</li>
-            <li>Working with a public adjuster to negotiate on your behalf</li>
-          </ul>
-
-          <h2>6. Final Settlement and Payment</h2>
-          <p>Once you agree to a settlement, the final steps include:</p>
-          <ul>
-            <li>Signing the settlement agreement</li>
-            <li>Receiving the settlement payment</li>
-            <li>Beginning the repair process</li>
-            <li>Keeping records of all repairs and expenses</li>
-          </ul>
-
-          <h2>Common Challenges in the Claims Process</h2>
-          <p>Many policyholders face challenges during the claims process, including:</p>
-          <ul>
-            <li>Delayed response from insurance companies</li>
-            <li>Low initial settlement offers</li>
-            <li>Disputes over coverage</li>
-            <li>Complex documentation requirements</li>
-          </ul>
-
-          <h2>How a Public Adjuster Can Help</h2>
-          <p>Working with a public adjuster can help you navigate the claims process more effectively. A public adjuster can:</p>
-          <ul>
-            <li>Help document the damage thoroughly</li>
-            <li>Review your policy coverage</li>
-            <li>Negotiate with the insurance company</li>
-            <li>Ensure you receive a fair settlement</li>
-          </ul>
-
-          <div class="author-box">
-            <div class="author-avatar">
-              <img src="../img/profile.jpeg" alt="David Messeri">
+      <div class="blog-container">
+        <main class="blog-main">
+          <article class="featured-post">
+            <h1>Understanding the Insurance Claim Process: A Complete Guide</h1>
+            
+            <div class="post-meta">
+              <div class="post-date"><i class="far fa-calendar-alt"></i> April 15, 2025</div>
+              <div class="post-author"><i class="far fa-user"></i> David Messeri</div>
+              <div class="post-category"><i class="far fa-folder"></i> Claims Process</div>
             </div>
-            <div class="author-info">
-              <h3>David Messeri</h3>
-              <p>Public Adjuster & Insurance Claims Expert</p>
+            
+            <div class="featured-post-img">
+              <img src="../img/hero-1.jpg.jpg" alt="Understanding the Insurance Claim Process">
             </div>
-          </div>
-
-          <div class="post-tags">
-            <h3>Related Topics</h3>
-            <div class="tags-list">
-              <a href="#" class="tag">Insurance Claims</a>
-              <a href="#" class="tag">Claims Process</a>
-              <a href="#" class="tag">Property Damage</a>
-              <a href="#" class="tag">Settlement</a>
-              <a href="#" class="tag">Insurance Tips</a>
-            </div>
-          </div>
-
-          <div class="social-share">
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-          </div>
-
-          <div class="post-navigation">
-            <a href="essential-documentation-insurance-claims.html" class="nav-link">
-              <i class="fas fa-arrow-left"></i>
-              <span>Previous: Essential Documentation for Insurance Claims</span>
-            </a>
-            <a href="negotiating-with-insurance-companies.html" class="nav-link">
-              <span>Next: Tips for Negotiating with Insurance Companies</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-
-          <div class="related-posts">
-            <h3>Related Articles</h3>
-            <div class="related-posts-grid">
-              <div class="related-post-card">
-                <div class="related-post-img">
-                  <img src="../img/insurance documentation.jpg" alt="Insurance Documentation">
+            
+            <div class="article-content">
+              <p>Navigating the insurance claim process can be overwhelming, especially when dealing with property damage. This comprehensive guide will walk you through each step of the process, helping you understand your rights and maximize your claim settlement.</p>
+              
+              <h2>1. Initial Steps After Damage</h2>
+              <p>When damage occurs to your property, take these immediate actions:</p>
+              <ul>
+                <li>Ensure safety and prevent further damage</li>
+                <li>Document the damage with photos and videos</li>
+                <li>Contact your insurance company</li>
+                <li>Keep records of all expenses</li>
+              </ul>
+              
+              <div class="blockquote">
+                "Proper documentation is crucial for a successful claim. Take detailed photos and keep all receipts for emergency repairs and temporary living expenses."
+              </div>
+              
+              <h2>2. Filing Your Claim</h2>
+              <p>The claim filing process involves:</p>
+              <ul>
+                <li>Contacting your insurance company</li>
+                <li>Providing policy information</li>
+                <li>Submitting initial documentation</li>
+                <li>Understanding your coverage</li>
+              </ul>
+              
+              <h2>3. The Inspection Process</h2>
+              <p>During the inspection phase:</p>
+              <ul>
+                <li>Insurance adjuster visits your property</li>
+                <li>Damage is assessed and documented</li>
+                <li>Scope of work is determined</li>
+                <li>Initial estimate is prepared</li>
+              </ul>
+              
+              <h2>4. Documentation Requirements</h2>
+              <p>Essential documentation includes:</p>
+              <ul>
+                <li>Photos and videos of damage</li>
+                <li>Repair estimates</li>
+                <li>Receipts for expenses</li>
+                <li>Communication records</li>
+              </ul>
+              
+              <h2>5. Settlement and Payment</h2>
+              <p>The final steps involve:</p>
+              <ul>
+                <li>Reviewing the settlement offer</li>
+                <li>Understanding payment terms</li>
+                <li>Completing necessary repairs</li>
+                <li>Submitting final documentation</li>
+              </ul>
+              
+              <div class="author-box">
+                <div class="author-avatar">
+                  <img src="../img/profile.jpeg" alt="David Messeri">
                 </div>
-                <div class="related-post-content">
-                  <h4>Essential Documentation for Insurance Claims</h4>
-                  <p>Learn what documents you need for a successful claim.</p>
+                <div class="author-info">
+                  <h3>David Messeri</h3>
+                  <p>Public Insurance Adjuster with over 6 years of experience in handling insurance claims and property assessments.</p>
                 </div>
               </div>
-              <div class="related-post-card">
-                <div class="related-post-img">
-                  <img src="../img/insurance-negotiations.jpg" alt="Insurance Negotiations">
-                </div>
-                <div class="related-post-content">
-                  <h4>Tips for Negotiating with Insurance Companies</h4>
-                  <p>Expert strategies for maximizing your settlement.</p>
+              
+              <div class="related-topics">
+                <h3>Related Topics</h3>
+                <ul>
+                  <li><a href="../services.html#hurricane">Hurricane Claims</a></li>
+                  <li><a href="../services.html#flood">Flood Damage</a></li>
+                  <li><a href="../services.html#water">Water Damage</a></li>
+                  <li><a href="../services.html#other">Property Damage</a></li>
+                </ul>
+              </div>
+              
+              <div class="review-section">
+                <h3>What Our Clients Say</h3>
+                <div class="review">
+                  <div class="review-content">
+                    <p>"I would highly recommend Fraser Property and Adjusting to make an insurance claim. We had a lot of damage after Sally last year and experienced dealing with an insurance claim. We called Fraser and received quick service and outstanding customer service. Jenna and David (Messeri) came out on time and were very professional and helpful! Kudos!"</p>
+                  </div>
+                  <div class="review-author">
+                    <div class="review-author-info">
+                      <h4>Kathy Stanfield</h4>
+                      <p><a href="https://maps.app.goo.gl/rEBd1ET8mgNAwX4YA" target="_blank" style="color: inherit;"><i class="fab fa-google"></i> Google Review</a></p>
+                    </div>
+                    <div class="review-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </article>
+        </main>
+        
+        <aside class="blog-sidebar">
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Search</h3>
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="Search articles...">
+              <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
           </div>
-
-          <div class="cta-box">
-            <h3>Need Help With Your Insurance Claim?</h3>
-            <p>Don't navigate the complex insurance claim process alone. Contact Messeri & Associates, LLC for expert guidance and support.</p>
-            <a href="../contact.html" class="btn btn-primary">Contact Us Today</a>
+          
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Categories</h3>
+            <ul class="categories-list">
+              <li><a href="#">Hurricane Claims <span>12</span></a></li>
+              <li><a href="#">Property Damage <span>8</span></a></li>
+              <li><a href="#">Insurance Tips <span>15</span></a></li>
+              <li><a href="#">Claims Process <span>10</span></a></li>
+              <li><a href="#">Legal Updates <span>5</span></a></li>
+            </ul>
           </div>
-        </div>
+          
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Recent Posts</h3>
+            <ul class="recent-posts-list">
+              <li>
+                <div class="recent-post-img">
+                  <img src="../img/confusing-frustrating-process.jpg" alt="5 Things Insurance Companies Don't Want You to Know">
+                </div>
+                <div class="recent-post-content">
+                  <h4><a href="5-things-insurance-companies-dont-want-you-to-know.html">5 Things Insurance Companies Don't Want You to Know</a></h4>
+                  <div class="recent-post-date">May 1, 2025</div>
+                </div>
+              </li>
+              <li>
+                <div class="recent-post-img">
+                  <img src="../img/insurance documentation.jpg" alt="Essential Documentation">
+                </div>
+                <div class="recent-post-content">
+                  <h4><a href="essential-documentation-for-insurance-claims.html">Essential Documentation for Insurance Claims</a></h4>
+                  <div class="recent-post-date">April 20, 2025</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
       </div>
     </div>
-  </article>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -494,8 +629,18 @@
           <h4>Contact Us</h4>
           <div class="contact-info">
             <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
-            <p><i class="fas fa-phone"></i> (305) 494-5820</p>
-            <p><i class="fas fa-envelope"></i> david@messeriadjusting.com</p>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:3054945820">(305) 494-5820</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+            </div>
+            <div class="contact-item license">
+              <i class="fas fa-id-card"></i>
+              <span>Licensed Public Insurance Adjuster. License #W602412<br>WIND Certified Appraiser</span>
+            </div>
           </div>
           <div class="social-links">
             <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>

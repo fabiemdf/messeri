@@ -3,319 +3,660 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding the Insurance Appraisal Process | Messeri & Associates</title>
-    <meta name="description" content="Learn how the insurance appraisal process works and how it can help resolve claim disputes with your insurance company without litigation.">
-    
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="/css/main.css">
-    
+    <title>Understanding the Insurance Appraisal Process: A Step-by-Step Guide - Messeri & Associates</title>
+    <meta name="description" content="Learn about the insurance appraisal process and how it can help resolve claim disputes. Get expert guidance on navigating the appraisal process for your property damage claim.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
     <style>
-        /* Blog page specific styles from the provided CSS */
-        .featured-post-content h1 {
-          white-space: normal;
-          overflow: visible;
-          width: 100%;
-          word-break: break-word;
-          line-height: 1.3;
-          margin-bottom: 2rem;
-          font-size: 3.6rem;
-          hyphens: auto;
-          max-width: 100%;
-          display: block;
-        }
-
-        .blog-container {
-          display: grid;
-          grid-template-columns: 2fr 1fr;
-          gap: 4rem;
-          align-items: start;
-        }
-
-        .blog-sidebar {
-          position: sticky;
-          top: 12rem;
-          align-self: flex-start;
-          padding-top: 0;
-          margin-top: 0;
-        }
-
-        .blog-content {
-          min-width: 0;
-          width: 100%;
-          overflow-wrap: break-word;
-        }
-
-        .featured-post-content {
-          min-width: 0;
-          width: 100%;
-          overflow-wrap: break-word;
-        }
-
-        .post-meta {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          margin-bottom: 2rem;
-          color: var(--text-light);
-          font-size: 1.4rem;
-        }
-
-        @media (max-width: 991px) {
-          .blog-sidebar {
-            position: static;
-            margin-top: 3rem;
-          }
-          
-          .featured-post-content h1 {
-            font-size: 3rem;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .featured-post-content h1 {
-            font-size: 2.6rem;
-          }
+        .blog-page {
+            padding: 12rem 0 6rem;
         }
         
-        /* Additional styles for blog content */
-        .blog-content h2 {
-            font-size: 2.4rem;
-            margin-top: 4rem;
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+        
+        .featured-post {
+            margin-bottom: 5rem;
+        }
+        
+        .featured-post-img {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .featured-post:hover .featured-post-img img {
+            transform: scale(1.05);
+        }
+        
+        .featured-post-content h2 {
             margin-bottom: 1.5rem;
         }
         
-        .blog-content p {
-            margin-bottom: 1.8rem;
-            line-height: 1.6;
+        .post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-size: 1.4rem;
         }
         
-        .blog-content ul, .blog-content ol {
+        .post-meta > div {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+        }
+        
+        .post-meta i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .post-excerpt {
+            margin-bottom: 2rem;
+        }
+        
+        .blog-sidebar {
+            position: sticky;
+            top: 12rem;
+            align-self: flex-start;
+            margin-top: 7.5rem;
+        }
+        
+        .sidebar-widget {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .widget-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .widget-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 1.2rem;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-btn {
+            padding: 0 1.5rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            background-color: #004b8c;
+        }
+        
+        .categories-list,
+        .recent-posts-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.2rem;
+        }
+        
+        .categories-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .categories-list a {
+            color: var(--text-color);
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .categories-list a:hover {
+            color: var(--primary-color);
+        }
+        
+        .categories-list span {
+            background-color: var(--light-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .recent-posts-list li {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .recent-posts-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .recent-post-img {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .recent-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-content h4 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recent-post-content h4 a {
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .recent-post-content h4 a:hover {
+            color: var(--primary-color);
+        }
+        
+        .recent-post-date {
+            font-size: 1.3rem;
+            color: var(--text-light);
+        }
+        
+        .article-content {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .article-content h2 {
+            font-size: 2.8rem;
+            margin: 4rem 0 2rem;
+            color: var(--heading-color);
+        }
+        
+        .article-content p {
+            margin-bottom: 2rem;
+        }
+        
+        .article-content ul {
             margin-bottom: 2rem;
             padding-left: 2rem;
         }
         
-        .blog-content li {
-            margin-bottom: 0.8rem;
+        .article-content li {
+            margin-bottom: 1rem;
         }
         
-        .featured-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 3rem;
-        }
-        
-        .cta-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #007bff;
+        .blockquote {
+            border-left: 4px solid var(--primary-color);
             padding: 2rem;
             margin: 3rem 0;
-            border-radius: 4px;
+            background-color: var(--light-color);
+            font-style: italic;
         }
         
-        .category-badge {
-            display: inline-block;
-            background-color: #e9f5ff;
-            color: #007bff;
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            margin-right: 1rem;
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
         }
         
-        .recent-posts-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
         }
         
-        .recent-posts-item:last-child {
-            border-bottom: none;
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .recent-posts-title {
-            font-weight: 600;
+        .author-info h3 {
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            display: block;
         }
         
-        .sidebar-heading {
-            font-size: 1.8rem;
+        .author-info p {
+            color: var(--text-light);
+            font-size: 1.4rem;
+        }
+        
+        .related-topics {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+        }
+        
+        .related-topics h3 {
+            font-size: 2rem;
             margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #f0f0f0;
+            color: var(--heading-color);
+        }
+        
+        .related-topics ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .related-topics li {
+            margin-bottom: 1rem;
+        }
+        
+        .related-topics li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .related-topics a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+        
+        .related-topics a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .review-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+        }
+        
+        .review-section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--heading-color);
+        }
+        
+        .review {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .review-content {
+            margin-bottom: 2rem;
+        }
+        
+        .review-content p {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            font-style: italic;
+        }
+        
+        .review-author {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .review-author-info h4 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--heading-color);
+        }
+        
+        .review-author-info p {
+            font-size: 1.4rem;
+            color: var(--text-light);
+        }
+        
+        .review-rating {
+            color: #ffd700;
+            font-size: 1.6rem;
+        }
+        
+        .review-rating i {
+            margin-left: 0.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-sidebar {
+                margin-top: 4rem;
+            }
+            
+            .featured-post-img {
+                height: 300px;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header would go here -->
-    <header class="site-header">
-        <!-- Navigation would go here -->
-    </header>
-    
-    <main>
+    <!-- Navigation -->
+    <header class="header">
         <div class="container">
-            <div class="blog-header">
-                <div class="breadcrumbs">
-                    <a href="/">Home</a> / <a href="/blog">Blog</a> / Understanding the Insurance Appraisal Process
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../img/logo.png" alt="Messeri & Associates, LLC">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../claims.html">Claims</a></li>
+                        <li><a href="../blog.html" class="active">Blog</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            
+        </div>
+    </header>
+
+    <!-- Blog Post Content -->
+    <section class="blog-page">
+        <div class="container">
             <div class="blog-container">
-                <div class="blog-content">
+                <main class="blog-main">
                     <article class="featured-post">
-                        <img src="/api/placeholder/1200/600" alt="Insurance Appraisal Process" class="featured-image">
+                        <h1>Understanding the Insurance Appraisal Process: A Step-by-Step Guide</h1>
                         
-                        <div class="featured-post-content">
-                            <div class="post-meta">
-                                <span class="category-badge">Claims Process</span>
-                                <span class="post-date">February 10, 2025</span>
+                        <div class="post-meta">
+                            <div class="post-date"><i class="far fa-calendar-alt"></i> April 5, 2025</div>
+                            <div class="post-author"><i class="far fa-user"></i> David Messeri</div>
+                            <div class="post-category"><i class="far fa-folder"></i> Claims Process</div>
+                        </div>
+                        
+                        <div class="featured-post-img">
+                            <img src="../img/insurance-appraisal.jpg" alt="Understanding the Insurance Appraisal Process">
+                        </div>
+                        
+                        <div class="article-content">
+                            <p>When you and your insurance company disagree on the value of your claim, the appraisal process can be a valuable tool for resolution. This guide will walk you through the insurance appraisal process, helping you understand your rights and how to navigate this often complex procedure.</p>
+                            
+                            <h2>1. What is the Appraisal Process?</h2>
+                            <p>The appraisal process is a dispute resolution method that involves:</p>
+                            <ul>
+                                <li>Selecting independent appraisers</li>
+                                <li>Evaluating the damage</li>
+                                <li>Determining the value of the loss</li>
+                                <li>Reaching a binding decision</li>
+                            </ul>
+                            
+                            <div class="blockquote">
+                                "The appraisal process provides a fair and efficient way to resolve claim disputes without going to court. It's often faster and less expensive than litigation."
                             </div>
                             
-                            <h1>Understanding the Insurance Appraisal Process</h1>
-                            
-                            <p>When you and your insurance company disagree on a claim value, the appraisal process can help resolve the dispute without the need for costly litigation. As WIND Certified Appraisers with extensive experience in Florida insurance claims, we've guided countless property owners through this important process.</p>
-                            
-                            <h2>What is Insurance Appraisal?</h2>
-                            <p>Insurance appraisal is a formal dispute resolution method included in most property insurance policies. It provides a way to resolve disagreements about the amount of loss when you and your insurance company cannot reach an agreement. Unlike litigation, the appraisal process focuses solely on the value of damages, not on coverage issues.</p>
-                            
-                            <h2>When Should You Invoke Appraisal?</h2>
-                            <p>Consider the appraisal process when:</p>
+                            <h2>2. When to Request Appraisal</h2>
+                            <p>Consider requesting appraisal when:</p>
                             <ul>
-                                <li>Your insurance company's damage estimate is significantly lower than independent estimates</li>
-                                <li>The insurance adjuster overlooked substantial damages</li>
-                                <li>Negotiations have stalled and settlement offers remain inadequate</li>
-                                <li>You want to avoid the time and expense of litigation</li>
+                                <li>There's a significant difference in damage estimates</li>
+                                <li>Coverage disputes arise</li>
+                                <li>Scope of damage is contested</li>
+                                <li>Replacement cost calculations differ</li>
                             </ul>
                             
-                            <h2>The Key Players in the Appraisal Process</h2>
-                            <p>The appraisal involves three main parties:</p>
-                            <ol>
-                                <li><strong>Your Appraiser</strong>: You select and hire this professional to represent your interests</li>
-                                <li><strong>Insurer's Appraiser</strong>: Selected by your insurance company</li>
-                                <li><strong>The Umpire</strong>: A neutral third party jointly selected by both appraisers (or appointed by a court if the appraisers cannot agree)</li>
-                            </ol>
-                            
-                            <h2>The Appraisal Process: Step by Step</h2>
-                            <ol>
-                                <li><strong>Initiating Appraisal</strong>: Either you or your insurance company can formally invoke the appraisal provision by sending written notice.</li>
-                                <li><strong>Selecting Appraisers</strong>: Both parties select their own qualified appraiser. Your appraiser should have experience in damage assessment and construction costs.</li>
-                                <li><strong>Choosing an Umpire</strong>: The two appraisers select a neutral umpire. If they cannot agree, either party can petition the court to appoint one.</li>
-                                <li><strong>Damage Assessment</strong>: Each appraiser independently evaluates the damage to your property and prepares a detailed estimate.</li>
-                                <li><strong>Appraisal Meeting</strong>: The appraisers meet to compare their findings and attempt to resolve differences. The umpire gets involved only for items where the appraisers cannot agree.</li>
-                                <li><strong>Award Determination</strong>: The final award is determined when any two of the three participants (your appraiser, the insurer's appraiser, or the umpire) agree on the amount of loss.</li>
-                                <li><strong>Payment</strong>: Once the award is signed, your insurance company must pay the determined amount, minus any applicable deductible.</li>
-                            </ol>
-                            
-                            <h2>The Advantages of Appraisal</h2>
+                            <h2>3. The Appraisal Process Steps</h2>
+                            <p>The process typically follows these steps:</p>
                             <ul>
-                                <li><strong>Efficiency</strong>: Typically faster than litigation, often concluding within 60-90 days</li>
-                                <li><strong>Cost-Effectiveness</strong>: Generally less expensive than going to court</li>
-                                <li><strong>Expert Evaluation</strong>: Properties are assessed by professionals with industry expertise</li>
-                                <li><strong>Binding Resolution</strong>: The appraisal award is binding on both parties</li>
-                                <li><strong>Preservation of Relationships</strong>: Less adversarial than litigation</li>
+                                <li>Requesting appraisal in writing</li>
+                                <li>Selecting your appraiser</li>
+                                <li>Choosing an umpire</li>
+                                <li>Conducting the appraisal</li>
+                                <li>Receiving the final decision</li>
                             </ul>
                             
-                            <h2>Potential Challenges to Be Aware Of</h2>
+                            <h2>4. Choosing Your Appraiser</h2>
+                            <p>Selecting the right appraiser is crucial:</p>
                             <ul>
-                                <li><strong>Appraiser Selection</strong>: The expertise and negotiation skills of your appraiser greatly impact the outcome</li>
-                                <li><strong>Scope Disputes</strong>: Disagreements about what damages should be included in the appraisal</li>
-                                <li><strong>Policy Interpretation</strong>: Differences in interpreting policy language can complicate the process</li>
-                                <li><strong>Costs</strong>: You're responsible for your appraiser's fee and half of the umpire's fee</li>
+                                <li>Look for experience in your type of claim</li>
+                                <li>Verify credentials and qualifications</li>
+                                <li>Check references and past performance</li>
+                                <li>Ensure they're independent and unbiased</li>
                             </ul>
                             
-                            <h2>How a Public Adjuster Can Help</h2>
-                            <p>As licensed public adjusters with appraisal certification, we can:</p>
+                            <h2>5. Preparing for Appraisal</h2>
+                            <p>Proper preparation is essential:</p>
                             <ul>
-                                <li>Evaluate whether appraisal is appropriate for your claim</li>
-                                <li>Serve as your appraiser or recommend qualified professionals</li>
-                                <li>Document damages comprehensively to strengthen your position</li>
-                                <li>Navigate policy language and procedural requirements</li>
-                                <li>Negotiate effectively with the insurer's appraiser</li>
-                                <li>Help select a fair and knowledgeable umpire</li>
+                                <li>Gather all documentation</li>
+                                <li>Organize evidence of damage</li>
+                                <li>Prepare detailed estimates</li>
+                                <li>Review your policy coverage</li>
                             </ul>
                             
-                            <h2>Preparing for the Appraisal Process</h2>
-                            <p>Successful appraisals require thorough preparation:</p>
-                            <ul>
-                                <li>Gather all claim-related documents, including the policy and correspondence</li>
-                                <li>Document all damages with detailed photos and videos</li>
-                                <li>Obtain independent repair estimates from qualified contractors</li>
-                                <li>Track all expenses related to the damage</li>
-                                <li>Maintain a communication log with your insurance company</li>
-                            </ul>
+                            <div class="author-box">
+                                <div class="author-avatar">
+                                    <img src="../img/profile.jpeg" alt="David Messeri">
+                                </div>
+                                <div class="author-info">
+                                    <h3>David Messeri</h3>
+                                    <p>Public Insurance Adjuster with over 6 years of experience in handling insurance claims and property assessments.</p>
+                                </div>
+                            </div>
                             
-                            <h2>Is Appraisal Right for Your Claim?</h2>
-                            <p>While appraisal can be an effective way to resolve valuation disputes, it's not appropriate for every situation. Coverage disputes, for example, cannot be resolved through appraisal. A qualified public adjuster can help you determine if appraisal is the right path for your specific claim.</p>
+                            <div class="related-topics">
+                                <h3>Related Topics</h3>
+                                <ul>
+                                    <li><a href="../services.html#hurricane">Hurricane Claims</a></li>
+                                    <li><a href="../services.html#flood">Flood Damage</a></li>
+                                    <li><a href="../services.html#water">Water Damage</a></li>
+                                    <li><a href="../services.html#other">Property Damage</a></li>
+                                </ul>
+                            </div>
                             
-                            <h2>Why Choose Messeri & Associates for Appraisal Assistance</h2>
-                            <p>At Messeri & Associates, we bring meticulous attention to detail and a deep understanding of policy language and building science to the appraisal process. As WIND Certified Appraisers and Licensed Public Insurance Adjusters in Florida, we have the expertise to effectively advocate for fair claim settlements.</p>
-                            
-                            <p>Whether you need guidance on invoking the appraisal clause, representation as your appointed appraiser, or comprehensive claim preparation, our team is ready to help you navigate this complex process.</p>
-                            
-                            <div class="cta-box">
-                                <h3>Need Help With Your Insurance Claim?</h3>
-                                <p>Contact us today for a free consultation about your insurance claim and to learn more about how the appraisal process might benefit your situation.</p>
-                                <a href="/contact" class="btn btn-primary">Contact Us Now</a>
+                            <div class="review-section">
+                                <h3>What Our Clients Say</h3>
+                                <div class="review">
+                                    <div class="review-content">
+                                        <p>"I would highly recommend Fraser Property and Adjusting to make an insurance claim. We had a lot of damage after Sally last year and experienced dealing with an insurance claim. We called Fraser and received quick service and outstanding customer service. Jenna and David (Messeri) came out on time and were very professional and helpful! Kudos!"</p>
+                                    </div>
+                                    <div class="review-author">
+                                        <div class="review-author-info">
+                                            <h4>Kathy Stanfield</h4>
+                                            <p><a href="https://maps.app.goo.gl/rEBd1ET8mgNAwX4YA" target="_blank" style="color: inherit;"><i class="fab fa-google"></i> Google Review</a></p>
+                                        </div>
+                                        <div class="review-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>
-                </div>
+                </main>
                 
                 <aside class="blog-sidebar">
                     <div class="sidebar-widget">
-                        <h3 class="sidebar-heading">About the Author</h3>
-                        <div class="author-box">
-                            <img src="/api/placeholder/100/100" alt="David Messeri" class="author-image">
-                            <h4>David Messeri</h4>
-                            <p>WIND Certified Appraiser & Licensed Public Insurance Adjuster in Florida</p>
-                        </div>
+                        <h3 class="widget-title">Search</h3>
+                        <form class="search-form">
+                            <input type="text" class="search-input" placeholder="Search articles...">
+                            <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                        </form>
                     </div>
                     
                     <div class="sidebar-widget">
-                        <h3 class="sidebar-heading">Recent Posts</h3>
-                        <div class="recent-posts">
-                            <div class="recent-posts-item">
-                                <a href="#" class="recent-posts-title">Hurricane Season Preparation Guide</a>
-                                <span class="post-date">January 15, 2025</span>
-                            </div>
-                            <div class="recent-posts-item">
-                                <a href="#" class="recent-posts-title">5 Signs Your Insurance Claim Was Underpaid</a>
-                                <span class="post-date">December 10, 2024</span>
-                            </div>
-                            <div class="recent-posts-item">
-                                <a href="#" class="recent-posts-title">Water Damage vs. Flood Damage: Policy Differences</a>
-                                <span class="post-date">November 25, 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="sidebar-widget">
-                        <h3 class="sidebar-heading">Categories</h3>
-                        <ul class="category-list">
-                            <li><a href="#">Claims Process (8)</a></li>
-                            <li><a href="#">Hurricane Damage (6)</a></li>
-                            <li><a href="#">Water Damage (5)</a></li>
-                            <li><a href="#">Policy Analysis (4)</a></li>
-                            <li><a href="#">Fire Claims (3)</a></li>
+                        <h3 class="widget-title">Categories</h3>
+                        <ul class="categories-list">
+                            <li><a href="#">Hurricane Claims <span>12</span></a></li>
+                            <li><a href="#">Property Damage <span>8</span></a></li>
+                            <li><a href="#">Insurance Tips <span>15</span></a></li>
+                            <li><a href="#">Claims Process <span>10</span></a></li>
+                            <li><a href="#">Legal Updates <span>5</span></a></li>
                         </ul>
                     </div>
                     
                     <div class="sidebar-widget">
-                        <h3 class="sidebar-heading">Free Claim Review</h3>
-                        <div class="sidebar-cta">
-                            <p>Not sure if you're getting a fair settlement? Let us review your claim at no cost.</p>
-                            <a href="/contact" class="btn btn-secondary">Get Free Review</a>
-                        </div>
+                        <h3 class="widget-title">Recent Posts</h3>
+                        <ul class="recent-posts-list">
+                            <li>
+                                <div class="recent-post-img">
+                                    <img src="../img/confusing-frustrating-process.jpg" alt="5 Things Insurance Companies Don't Want You to Know">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4><a href="5-things-insurance-companies-dont-want-you-to-know.html">5 Things Insurance Companies Don't Want You to Know</a></h4>
+                                    <div class="recent-post-date">May 1, 2025</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="recent-post-img">
+                                    <img src="../img/insurance documentation.jpg" alt="Essential Documentation">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4><a href="essential-documentation-for-insurance-claims.html">Essential Documentation for Insurance Claims</a></h4>
+                                    <div class="recent-post-date">April 20, 2025</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
             </div>
         </div>
-    </main>
-    
-    <!-- Footer would go here -->
-    <footer class="site-footer">
-        <!-- Footer content would go here -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../img/logo.png" alt="Messeri & Associates, LLC">
+                    </div>
+                    <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="../services.html#hurricane">Hurricane Claims</a></li>
+                        <li><a href="../services.html#flood">Flood Damage</a></li>
+                        <li><a href="../services.html#fire">Fire & Smoke</a></li>
+                        <li><a href="../services.html#water">Water & Plumbing</a></li>
+                        <li><a href="../services.html#other">Other Claims</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:3054945820">(305) 494-5820</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+                        </div>
+                        <div class="contact-item license">
+                            <i class="fas fa-id-card"></i>
+                            <span>Licensed Public Insurance Adjuster. License #W602412<br>WIND Certified Appraiser</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>
