@@ -698,6 +698,41 @@ img {
   padding-left: 0.5rem;
 }
 
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+  font-size: 1.5rem;
+}
+
+.contact-item i {
+  color: var(--secondary);
+  margin-right: var(--space-sm);
+  font-size: 1.8rem;
+  margin-top: 0.3rem;
+}
+
+.contact-item a {
+  color: #b0b0b0;
+  transition: color var(--transition-fast);
+}
+
+.contact-item a:hover {
+  color: var(--white);
+}
+
+.contact-item address {
+  font-style: normal;
+  color: #b0b0b0;
+  margin: 0;
+}
+
+.contact-item license {
+  font-style: normal;
+  color: #b0b0b0;
+  margin: 0;
+}
+
 .contact-info p {
   display: flex;
   align-items: flex-start;

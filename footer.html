@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messeri & Associates, LLC - Public Insurance Adjusters</title>
+  <meta name="description" content="Messeri & Associates provides expert public insurance adjusting services in Florida, specializing in hurricane, flood, fire, and water damage claims.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-column about-column">
+                <div class="footer-logo">
+                    <img src="img/logo.png" alt="Messeri & Associates" class="footer-logo-image">
+                </div>
+                <p class="footer-description">
+                    Messeri & Associates is a leading public insurance adjusting firm, committed to advocating for policyholders and maximizing legitimate claim settlements.
+                </p>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column services-column">
+                <h3 class="footer-title">Services</h3>
+                <ul class="footer-links">
+                    <li><a href="/services/hurricane-claims.html">Hurricane Claims</a></li>
+                    <li><a href="/services/water-damage.html">Water Damage</a></li>
+                    <li><a href="/services/fire-claims.html">Fire Claims</a></li>
+                    <li><a href="/services/appraisal.html">Appraisal Services</a></li>
+                    <li><a href="/services/expert-witness.html">Expert Witness</a></li>
+                    <li><a href="/services/estimating.html">Estimating</a></li>
+                    <li><a href="/services/consulting.html">Consulting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column quick-links-column">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/claims.html">Claims Process</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/testimonials.html">Testimonials</a></li>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="/privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column contact-column">
+                <h3 class="footer-title">Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <address>19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</address>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:3054945820">(305) 494-5820</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+                    </div>
+                    <div class="contact-item license">
+                        <i class="fas fa-id-card"></i>
+                        <span>Licensed Public Insurance Adjuster<br>WIND Certified Appraiser</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+            </div>
+            <div class="service-areas">
+                <p>Serving South Florida, Orlando, Tampa and surrounding areas</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CTA Banner -->
+    <div class="footer-cta-banner">
+        <div class="cta-banner-content">
+            <h3>Need help with an insurance claim?</h3>
+            <p>Get expert assistance from Florida's trusted public adjusters</p>
+            <a href="/contact.html" class="cta-button">Request Free Consultation</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+        // Load common elements (header, footer)
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../includes/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    
+                    // Highlight active nav item
+                    const blogNavItem = document.querySelector('.nav-menu a[href="/blog"]');
+                    if (blogNavItem) {
+                        blogNavItem.classList.add('active');
+                    }
+                });
+                
+            fetch('../includes/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+                
+            // Load recent posts from JSON file
+            fetch('../data/posts.json')
+                .then(response => response.json())
+                .then(data => {
+                    const recentPosts = document.querySelector('.recent-posts .post-list');
+                    // Get posts excluding current post
+                    const posts = data.posts
+                        .filter(post => post.slug !== 'navigate-insurance-claim-process-after-hurricane')
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .slice(0, 3);
+                    
+                    posts.forEach(post => {
+                        recentPosts.innerHTML += `
+                            <li>
+                                <a href="../posts/${post.slug}.html">
+                                    <img src="${post.thumbnail}" alt="${post.title}" class="post-thumbnail">
+                                    <div class="post-info">
+                                        <h4>${post.title}</h4>
+                                        <span class="post-date">${formatDate(post.date)}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        `;
+                    });
+                });
+                
+            // Helper function to format date
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return date.toLocaleDateString('en-US', options);
+            }
+        });
+    </script>
+
+<script>
+    // Back to top button functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        if (backToTopButton) {
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            // Scroll to top when clicked
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    });
+</script>
