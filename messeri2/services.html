@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services - Messeri & Associates, LLC</title>
+  <meta name="description" content="Explore our comprehensive public insurance adjusting services including hurricane, flood, fire, water damage, and more. Expert claim representation in Florida.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Additional Services Page Styles -->
+  <style>
+    .services-page {
+      padding: 12rem 0 6rem;
+    }
+    
+    .services-overview {
+      margin-bottom: 6rem;
+    }
+    
+    .service-item {
+      scroll-margin-top: 120px;
+    }
+    
+    .service-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .service-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .service-image img {
+      width: 100%;
+      display: block;
+      transition: var(--transition);
+    }
+    
+    .service-item:hover .service-image img {
+      transform: scale(1.05);
+    }
+    
+    .service-info h2 {
+      margin-bottom: 2rem;
+    }
+    
+    .service-info p {
+      margin-bottom: 2rem;
+    }
+    
+    .service-features {
+      margin: 3rem 0;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-icon {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-right: 1.5rem;
+      min-width: 2rem;
+      text-align: center;
+    }
+    
+    .reversed .service-content {
+      grid-template-columns: 1fr 1.5fr;
+    }
+    
+    .reversed .service-info {
+      order: 1;
+    }
+    
+    .reversed .service-image {
+      order: 2;
+    }
+    
+    .expertise-section {
+      padding: 6rem 0;
+      background-color: var(--light-color);
+      margin: 6rem 0;
+    }
+    
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    
+    .expertise-item {
+      background-color: #fff;
+      padding: 3rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .expertise-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .expertise-icon {
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      text-align: center;
+      background-color: var(--light-color);
+      color: var(--primary-color);
+      font-size: 2.8rem;
+      border-radius: 50%;
+      margin-bottom: 2rem;
+    }
+    
+    .expertise-item h3 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .faq-section {
+      padding: 6rem 0;
+    }
+    
+    .faq-list {
+      max-width: 800px;
+      margin: 4rem auto 0;
+    }
+    
+    .faq-item {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 2rem;
+      background-color: #fff;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      transition: var(--transition);
+    }
+    
+    .faq-question:hover {
+      color: var(--primary-color);
+    }
+    
+    .faq-question i {
+      transition: var(--transition);
+    }
+    
+    .faq-question.active {
+      color: var(--primary-color);
+    }
+    
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      padding: 0 2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .faq-answer.active {
+      padding: 0 2rem 2rem;
+      max-height: 500px;
+    }
+    
+    @media (max-width: 991px) {
+      .service-content,
+      .reversed .service-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .service-info,
+      .reversed .service-info,
+      .service-image,
+      .reversed .service-image {
+        order: 0;
+      }
+    }
+  </style>
+</head>
+<body class="services-page">
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/logo2.png" alt="Messeri & Associates, LLC">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="claims.html">Claims</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services Page Content -->
+  <section class="services-page">
+    <div class="container">
+      <div class="section-header">
+        <h1>Our Services</h1>
+        <p>Comprehensive public insurance adjusting services for property owners in Florida</p>
+      </div>
+      
+      <!-- Services Overview -->
+      <div class="services-overview">
+        <p class="text-center">Messeri & Associates provides expert public insurance adjusting services for all types of property damage claims. We represent you, not the insurance company, ensuring you receive the maximum settlement you're entitled to under your policy.</p>
+        
+        <div class="services-grid">
+          <a href="#hurricane" class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-wind"></i>
+            </div>
+            <h3>Hurricane Damage</h3>
+            <p>Comprehensive claims assistance for wind, water, and structural damage from hurricanes and tropical storms.</p>
+            <span class="read-more">Learn More</span>
+          </a>
+          <a href="#flood" class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-water"></i>
+            </div>
+            <h3>Flood Damage</h3>
+            <p>Expert navigation of complex flood insurance policies and thorough documentation of all damages.</p>
+            <span class="read-more">Learn More</span>
+          </a>
+          <a href="#fire" class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <h3>Fire & Smoke</h3>
+            <p>Detailed assessment of visible and hidden damages from fire, smoke, and firefighting efforts.</p>
+            <span class="read-more">Learn More</span>
+          </a>
+          <a href="#water" class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-faucet"></i>
+            </div>
+            <h3>Water & Plumbing</h3>
+            <p>Thorough evaluation of water damage from burst pipes, leaks, and backup incidents.</p>
+            <span class="read-more">Learn More</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Detailed Services -->
+      <div class="detailed-services">
+        <!-- Hurricane Damage -->
+        <div id="hurricane" class="service-item">
+          <div class="service-content">
+            <div class="service-info">
+              <h2>Hurricane Damage Claims</h2>
+              <p>Florida property owners are all too familiar with the devastating impact of hurricanes and tropical storms. When disaster strikes, having an experienced public adjuster on your side is crucial to ensure you receive the full compensation you're entitled to under your insurance policy.</p>
+              <p>At Messeri & Associates, we specialize in handling hurricane damage claims, providing comprehensive assistance throughout the entire claims process, from initial documentation to final settlement.</p>
+              
+              <div class="service-features">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Thorough documentation of all visible and hidden hurricane damage</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Expert assessment of structural damage, including roof, siding, and foundation issues</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Identification of water intrusion and potential mold issues</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Detailed inventory of personal property damage</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Negotiation of fair settlements for business interruption and loss of use</div>
+                </div>
+              </div>
+              
+              <a href="claims.html" class="btn btn-primary">File a Hurricane Claim</a>
+            </div>
+            <div class="service-image">
+              <img src="img/hurricane-damage.jpg" alt="Hurricane Damage">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Flood Damage -->
+        <div id="flood" class="service-item reversed">
+          <div class="service-content">
+            <div class="service-info">
+              <h2>Flood Damage Claims</h2>
+              <p>Flood damage presents unique challenges when it comes to insurance claims. Standard homeowners insurance policies typically exclude flood damage, requiring separate flood insurance coverage through the National Flood Insurance Program (NFIP) or private insurers.</p>
+              <p>Our team at Messeri & Associates has extensive experience navigating the complexities of flood insurance claims, ensuring our clients receive the maximum compensation for their flood-related losses.</p>
+              
+              <div class="service-features">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Expert interpretation of flood insurance policies and coverage limitations</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Thorough documentation of water height, affected areas, and resulting damage</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Detailed assessment of structural damage to foundation, walls, and flooring</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Comprehensive inventory of damaged personal property</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Strategic negotiation with NFIP and private flood insurers</div>
+                </div>
+              </div>
+              
+              <a href="claims.html" class="btn btn-primary">File a Flood Claim</a>
+            </div>
+            <div class="service-image">
+              <img src="img/flood-damage.jpg" alt="Flood Damage">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fire & Smoke -->
+        <div id="fire" class="service-item">
+          <div class="service-content">
+            <div class="service-info">
+              <h2>Fire & Smoke Damage Claims</h2>
+              <p>Fire damage can be devastating, affecting not only the areas directly touched by flames but also causing extensive smoke and water damage throughout your property. The emotional impact of fire damage often makes it difficult for property owners to effectively navigate the complex claims process.</p>
+              <p>At Messeri & Associates, we provide compassionate yet aggressive representation for fire damage claims, ensuring all aspects of your loss are properly documented and fairly compensated.</p>
+              
+              <div class="service-features">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Comprehensive assessment of structural damage from fire, heat, and firefighting efforts</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Detailed documentation of smoke damage to contents and building materials</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Evaluation of water damage from fire suppression systems and firefighting</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Expert assessment of additional living expenses and business interruption losses</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Strategic negotiation for fair and comprehensive settlements</div>
+                </div>
+              </div>
+              
+              <a href="claims.html" class="btn btn-primary">File a Fire Claim</a>
+            </div>
+            <div class="service-image">
+              <img src="img/fire-damage.jpg" alt="Fire & Smoke Damage">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Water & Plumbing -->
+        <div id="water" class="service-item reversed">
+          <div class="service-content">
+            <div class="service-info">
+              <h2>Water & Plumbing Damage Claims</h2>
+              <p>Water damage from plumbing failures, appliance malfunctions, or roof leaks can cause significant damage to your property. Often, the full extent of water damage isn't immediately visible, leading to undervalued insurance claims and potential long-term issues like mold growth and structural deterioration.</p>
+              <p>Our team at Messeri & Associates specializes in thoroughly documenting water damage claims to ensure all aspects of your loss, both visible and hidden, are properly compensated.</p>
+              
+              <div class="service-features">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Expert assessment of water damage from burst pipes, leaks, and backups</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Thorough inspection for hidden moisture and potential mold issues</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Detailed documentation of damage to flooring, walls, ceilings, and personal property</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Strategic negotiation with insurance adjusters for proper remediation costs</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Assistance with temporary housing arrangements when necessary</div>
+                </div>
+              </div>
+              
+              <a href="claims.html" class="btn btn-primary">File a Water Damage Claim</a>
+            </div>
+            <div class="service-image">
+              <img src="img/water-damage.jpg" alt="Water & Plumbing Damage">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Other Services -->
+        <div id="other" class="service-item">
+          <div class="service-content">
+            <div class="service-info">
+              <h2>Additional Services</h2>
+              <p>Beyond our core expertise in hurricane, flood, fire, and water damage claims, Messeri & Associates offers a range of specialized services to meet the diverse needs of property owners throughout Florida.</p>
+              <p>Our team's extensive experience and deep understanding of insurance policies allow us to effectively handle various types of claims, ensuring our clients receive fair compensation for all covered losses.</p>
+              
+              <div class="service-features">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Roof damage claims from wind, hail, and other covered perils</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Mold damage assessment and remediation claims</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Theft and vandalism claims</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Commercial property damage claims</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Business interruption and loss of income claims</div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <div class="feature-text">Policy review and claim reopening services</div>
+                </div>
+              </div>
+              
+              <a href="contact.html" class="btn btn-primary">Contact Us About Your Claim</a>
+            </div>
+            <div class="service-image">
+              <img src="img/other-services.jpg" alt="Additional Services">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Expertise Section -->
+    <div class="expertise-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Expertise</h2>
+          <p>Specialized services that set Messeri & Associates apart</p>
+        </div>
+        
+        <div class="expertise-grid">
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <i class="fas fa-gavel"></i>
+            </div>
+            <h3>Expert Witness Services</h3>
+            <p>We provide expert testimony and documentation for insurance disputes, litigation support, and appraisal proceedings.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h3>Appraisal Services</h3>
+            <p>As a WIND Certified Appraiser, David Messeri provides professional appraisal services for disputed insurance claims.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <i class="fas fa-search-dollar"></i>
+            </div>
+            <h3>Claim Reopening</h3>
+            <p>We review previously settled claims to identify underpaid or overlooked damage, helping clients recover additional compensation.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <i class="fas fa-file-contract"></i>
+            </div>
+            <h3>Policy Review</h3>
+            <p>Our thorough policy reviews help property owners understand their coverage and identify potential gaps before disaster strikes.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3>Estimating Services</h3>
+            <p>We provide detailed damage estimates using industry-standard software to ensure accurate calculation of repair costs.</p>
+          </div>
+          
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3>Commercial Claims</h3>
+            <p>We handle complex commercial property claims, including business interruption and loss of income calculations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+          <p>Common questions about our public insurance adjusting services</p>
+        </div>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              What is a public insurance adjuster? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>A public insurance adjuster is a licensed professional who represents policyholders, not insurance companies, in the claims process. We work exclusively for you, the policyholder, to ensure your claim is properly documented and that you receive the maximum settlement you're entitled to under your policy. Unlike insurance company adjusters who work to minimize the insurer's payout, public adjusters advocate solely for your interests.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              How much does it cost to hire a public adjuster? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Public adjusters typically work on a contingency fee basis, meaning we only get paid when you receive a settlement from your insurance company. In Florida, public adjuster fees are regulated by state law and cannot exceed 20% of the claim payment. For claims resulting from a declared state of emergency, the fee is limited to 10% of the claim payment for one year after the declaration.</p>
+              <p>At Messeri & Associates, we provide a free initial consultation and claim evaluation. There are no upfront costs or hidden fees.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              When should I hire a public adjuster? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>It's best to hire a public adjuster as early in the claims process as possible, ideally before you file your claim. This allows us to properly document the damage from the outset and ensure your claim is presented effectively from the beginning.</p>
+              <p>However, we can also assist with claims that have already been filed, are being underpaid, or have been denied. Even if you've already received a settlement offer, we can review it to determine if it adequately covers all of your losses.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              How long does the claims process take? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>The duration of the claims process varies depending on the complexity of the claim, the extent of the damage, and the responsiveness of your insurance company. Simple claims may be resolved in a few weeks, while more complex claims can take several months.</p>
+              <p>At Messeri & Associates, we work diligently to expedite the process while ensuring that no aspect of your claim is overlooked. We maintain regular communication with you throughout the process, keeping you informed of progress and any developments in your claim.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Will my insurance company drop me if I hire a public adjuster? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>No, your insurance company cannot legally cancel, refuse to renew, or increase your premium rates solely because you hired a public adjuster. This would be considered an unfair claims practice under Florida law.</p>
+              <p>Insurance companies are accustomed to working with public adjusters, and our involvement often helps streamline the claims process by ensuring that all documentation is properly prepared and submitted.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              What areas of Florida do you serve? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Messeri & Associates provides public adjusting services throughout Florida, with a focus on South Florida, Orlando, and Tampa areas. We are licensed to operate throughout the entire state and have experience handling claims in all regions of Florida.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to get the settlement you deserve?</h2>
+        <p>Contact us today for a free consultation and claim evaluation.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </div>
+          <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#hurricane">Hurricane Claims</a></li>
+            <li><a href="services.html#flood">Flood Damage</a></li>
+            <li><a href="services.html#fire">Fire & Smoke</a></li>
+            <li><a href="services.html#water">Water & Plumbing</a></li>
+            <li><a href="services.html#other">Other Claims</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy<br>Miami, FL 33180</p>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:3054945820">(305) 494-5820</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+            </div>
+            <div class="contact-item license">
+              <i class="fas fa-id-card"></i>
+              <span>Licensed Public Insurance Adjuster. License #W602412<br>WIND Certified Appraiser</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- FAQ Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // FAQ Accordion
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          // Toggle active class on the question
+          this.classList.toggle('active');
+          
+          // Toggle active class on the answer
+          const answer = this.nextElementSibling;
+          answer.classList.toggle('active');
+          
+          // Close other open questions
+          faqQuestions.forEach(otherQuestion => {
+            if (otherQuestion !== question) {
+              otherQuestion.classList.remove('active');
+              otherQuestion.nextElementSibling.classList.remove('active');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

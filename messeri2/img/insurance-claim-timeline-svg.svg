@@ -1,0 +1,87 @@
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="300" fill="white" rx="10" ry="10" stroke="#e0e0e0" stroke-width="1" />
+  
+  <!-- Timeline Line -->
+  <line x1="120" y1="60" x2="780" y2="60" stroke="#0056b3" stroke-width="3" />
+  
+  <!-- Section 1: Initial Contact -->
+  <g>
+    <!-- Circle with number -->
+    <circle cx="120" cy="60" r="25" fill="#0056b3" />
+    <text x="120" y="65" font-family="Arial" font-size="18" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">1</text>
+    
+    <!-- Title -->
+    <text x="120" y="100" font-family="Arial" font-size="16" fill="#0056b3" text-anchor="middle" font-weight="bold">Initial Contact</text>
+    
+    <!-- Bullet points -->
+    <circle cx="80" cy="130" r="3" fill="#444444" />
+    <text x="90" y="135" font-family="Arial" font-size="14" fill="#444444">Report damage to insurance company</text>
+    
+    <circle cx="80" cy="155" r="3" fill="#444444" />
+    <text x="90" y="160" font-family="Arial" font-size="14" fill="#444444">Document initial damage</text>
+    
+    <circle cx="80" cy="180" r="3" fill="#444444" />
+    <text x="90" y="185" font-family="Arial" font-size="14" fill="#444444">Get claim number</text>
+  </g>
+  
+  <!-- Section 2: Inspection -->
+  <g>
+    <!-- Circle with number -->
+    <circle cx="340" cy="60" r="25" fill="#0056b3" />
+    <text x="340" y="65" font-family="Arial" font-size="18" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">2</text>
+    
+    <!-- Title -->
+    <text x="340" y="100" font-family="Arial" font-size="16" fill="#0056b3" text-anchor="middle" font-weight="bold">Inspection</text>
+    
+    <!-- Bullet points -->
+    <circle cx="300" cy="130" r="3" fill="#444444" />
+    <text x="310" y="135" font-family="Arial" font-size="14" fill="#444444">Insurance adjuster visit</text>
+    
+    <circle cx="300" cy="155" r="3" fill="#444444" />
+    <text x="310" y="160" font-family="Arial" font-size="14" fill="#444444">Detailed damage assessment</text>
+    
+    <circle cx="300" cy="180" r="3" fill="#444444" />
+    <text x="310" y="185" font-family="Arial" font-size="14" fill="#444444">Photo documentation</text>
+  </g>
+  
+  <!-- Section 3: Documentation -->
+  <g>
+    <!-- Circle with number -->
+    <circle cx="560" cy="60" r="25" fill="#0056b3" />
+    <text x="560" y="65" font-family="Arial" font-size="18" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">3</text>
+    
+    <!-- Title -->
+    <text x="560" y="100" font-family="Arial" font-size="16" fill="#0056b3" text-anchor="middle" font-weight="bold">Documentation</text>
+    
+    <!-- Bullet points -->
+    <circle cx="520" cy="130" r="3" fill="#444444" />
+    <text x="530" y="135" font-family="Arial" font-size="14" fill="#444444">Gather repair estimates</text>
+    
+    <circle cx="520" cy="155" r="3" fill="#444444" />
+    <text x="530" y="160" font-family="Arial" font-size="14" fill="#444444">Collect receipts</text>
+    
+    <circle cx="520" cy="180" r="3" fill="#444444" />
+    <text x="530" y="185" font-family="Arial" font-size="14" fill="#444444">Compile evidence</text>
+  </g>
+  
+  <!-- Section 4: Settlement -->
+  <g>
+    <!-- Circle with number -->
+    <circle cx="780" cy="60" r="25" fill="#0056b3" />
+    <text x="780" y="65" font-family="Arial" font-size="18" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">4</text>
+    
+    <!-- Title -->
+    <text x="780" y="100" font-family="Arial" font-size="16" fill="#0056b3" text-anchor="middle" font-weight="bold">Settlement</text>
+    
+    <!-- Bullet points -->
+    <circle cx="740" cy="130" r="3" fill="#444444" />
+    <text x="750" y="135" font-family="Arial" font-size="14" fill="#444444">Review offer</text>
+    
+    <circle cx="740" cy="155" r="3" fill="#444444" />
+    <text x="750" y="160" font-family="Arial" font-size="14" fill="#444444">Negotiate if needed</text>
+    
+    <circle cx="740" cy="180" r="3" fill="#444444" />
+    <text x="750" y="185" font-family="Arial" font-size="14" fill="#444444">Accept settlement</text>
+  </g>
+</svg>

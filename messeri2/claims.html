@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Claim - Messeri & Associates, LLC</title>
+  <meta name="description" content="Submit your insurance claim to Messeri & Associates for expert public insurance adjusting services in Florida.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Additional Claims Page Styles -->
+  <style>
+    .claims-page {
+      padding: 12rem 0 6rem;
+    }
+    
+    .claims-info-section {
+      margin-bottom: 5rem;
+    }
+    
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    .info-card {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      box-shadow: var(--box-shadow);
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .info-icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--light-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 2rem;
+      flex-shrink: 0;
+    }
+    
+    .info-icon i {
+      font-size: 2.4rem;
+      color: var(--primary-color);
+    }
+    
+    .info-content h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .claims-form-section {
+      background-color: var(--light-color);
+      padding: 5rem 0;
+      border-radius: var(--border-radius);
+    }
+    
+    .claims-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 4rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .form-section {
+      margin-bottom: 4rem;
+    }
+    
+    .form-section-title {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+    
+    .form-group {
+      margin-bottom: 2rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.6rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .form-check-input {
+      margin-right: 1rem;
+      width: 18px;
+      height: 18px;
+    }
+    
+    .form-check-label {
+      font-size: 1.5rem;
+    }
+    
+    .form-file {
+      margin-top: 1rem;
+    }
+    
+    .file-drop-area {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    
+    .file-drop-area:hover {
+      border-color: var(--primary-color);
+    }
+    
+    .file-message {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    
+    .file-input {
+      display: none;
+    }
+    
+    .btn-browse {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+      color: var(--primary-color);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-browse:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    
+    .file-list {
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--light-color);
+      padding: 0.8rem 1.2rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 0.5rem;
+    }
+    
+    .file-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 1rem;
+    }
+    
+    .file-remove {
+      color: var(--danger-color);
+      cursor: pointer;
+    }
+    
+    .form-note {
+      font-size: 1.4rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+    
+    .error-message {
+      color: var(--danger-color);
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body class="claims-page">
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/logo2.png" alt="Messeri & Associates, LLC">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="claims.html" class="active">Claims</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Claims Page Content -->
+  <section class="claims-page">
+    <div class="container">
+      <div class="section-header">
+        <h1>Submit Your Insurance Claim</h1>
+        <p>Start the process of getting the settlement you deserve</p>
+      </div>
+      
+      <!-- Claims Info Section -->
+      <div class="claims-info-section">
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="info-content">
+              <h3>Free Initial Consultation</h3>
+              <p>We'll evaluate your situation and determine if you have a viable claim at no cost to you.</p>
+            </div>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="info-content">
+              <h3>No Upfront Costs</h3>
+              <p>We only get paid when you receive your settlement from the insurance company.</p>
+            </div>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="info-content">
+              <h3>Licensed & Bonded</h3>
+              <p>Messeri & Associates is a fully licensed and bonded public adjuster firm in the state of Florida.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Claims Form Section -->
+      <div class="claims-form-section">
+        <div class="container">
+          <div class="claims-form">
+            <form id="claimForm" action="/submit-claim" method="POST" enctype="multipart/form-data">
+              <!-- Personal Information -->
+              <div class="form-section">
+                <h3 class="form-section-title">Personal Information</h3>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName" class="form-label">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName" class="form-label">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" required>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="address" class="form-label">Property Address *</label>
+                    <input type="text" id="address" name="address" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="city" class="form-label">City *</label>
+                    <input type="text" id="city" name="city" class="form-control" required>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="zipCode" class="form-label">Zip Code *</label>
+                    <input type="text" id="zipCode" name="zipCode" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="propertyType" class="form-label">Property Type *</label>
+                    <select id="propertyType" name="propertyType" class="form-control" required>
+                      <option value="">Select property type</option>
+                      <option value="residential">Residential - Single Family</option>
+                      <option value="condo">Residential - Condo/Townhouse</option>
+                      <option value="multi-family">Multi-Family Residence</option>
+                      <option value="commercial">Commercial Property</option>
+                      <option value="industrial">Industrial Property</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Insurance Information -->
+              <div class="form-section">
+                <h3 class="form-section-title">Insurance Information</h3>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="insuranceCompany" class="form-label">Insurance Company *</label>
+                    <input type="text" id="insuranceCompany" name="insuranceCompany" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="policyNumber" class="form-label">Policy Number *</label>
+                    <input type="text" id="policyNumber" name="policyNumber" class="form-control" required>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="claimNumber" class="form-label">Claim Number (if available)</label>
+                    <input type="text" id="claimNumber" name="claimNumber" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="existingClaim" class="form-label">Have you already filed a claim?</label>
+                    <select id="existingClaim" name="existingClaim" class="form-control">
+                      <option value="">Select an option</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Incident Information -->
+              <div class="form-section">
+                <h3 class="form-section-title">Incident Information</h3>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="claimType" class="form-label">Type of Claim *</label>
+                    <select id="claimType" name="claimType" class="form-control" required>
+                      <option value="">Select claim type</option>
+                      <option value="hurricane">Hurricane Damage</option>
+                      <option value="flood">Flood Damage</option>
+                      <option value="fire">Fire & Smoke Damage</option>
+                      <option value="water">Water & Plumbing Damage</option>
+                      <option value="wind">Wind Damage</option>
+                      <option value="hail">Hail Damage</option>
+                      <option value="roof">Roof Damage</option>
+                      <option value="mold">Mold Damage</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="dateOfLoss" class="form-label">Date of Loss *</label>
+                    <input type="date" id="dateOfLoss" name="dateOfLoss" class="form-control" required>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="damageDescription" class="form-label">Description of Damage *</label>
+                  <textarea id="damageDescription" name="damageDescription" class="form-control" required></textarea>
+                  <p class="form-note">Please provide a detailed description of the damage to your property.</p>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Has the insurance company already inspected the property?</label>
+                  <div class="form-check">
+                    <input type="radio" id="inspectionYes" name="inspectionDone" value="yes" class="form-check-input">
+                    <label for="inspectionYes" class="form-check-label">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" id="inspectionNo" name="inspectionDone" value="no" class="form-check-input">
+                    <label for="inspectionNo" class="form-check-label">No</label>
+                  </div>
+                </div>
+                
+                <div id="inspectionDateGroup" class="form-group" style="display: none;">
+                  <label for="inspectionDate" class="form-label">Date of Inspection</label>
+                  <input type="date" id="inspectionDate" name="inspectionDate" class="form-control">
+                </div>
+              </div>
+              
+              <!-- Documentation -->
+              <div class="form-section">
+                <h3 class="form-section-title">Documentation</h3>
+                
+                <div class="form-group">
+                  <label class="form-label">Upload Photos of Damage (Optional)</label>
+                  <p class="form-note">You can upload photos of your property damage to help us assess your claim more efficiently.</p>
+                  
+                  <div class="file-drop-area" id="photoDropArea">
+                    <div class="file-message">Drag and drop files here or</div>
+                    <div class="btn-browse">Browse Files</div>
+                    <input type="file" id="photoUpload" name="photos[]" class="file-input" accept="image/*" multiple>
+                  </div>
+                  
+                  <div class="file-list" id="photoList"></div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Upload Policy Documents (Optional)</label>
+                  <p class="form-note">Upload your insurance policy, declarations page, or any correspondence from your insurance company.</p>
+                  
+                  <div class="file-drop-area" id="docDropArea">
+                    <div class="file-message">Drag and drop files here or</div>
+                    <div class="btn-browse">Browse Files</div>
+                    <input type="file" id="docUpload" name="documents[]" class="file-input" accept=".pdf,.doc,.docx" multiple>
+                  </div>
+                  
+                  <div class="file-list" id="docList"></div>
+                </div>
+              </div>
+              
+              <!-- Additional Information -->
+              <div class="form-section">
+                <h3 class="form-section-title">Additional Information</h3>
+                
+                <div class="form-group">
+                  <label for="additionalInfo" class="form-label">Any Additional Information</label>
+                  <textarea id="additionalInfo" name="additionalInfo" class="form-control"></textarea>
+                  <p class="form-note">Please provide any additional information that might help us better understand your claim.</p>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">How did you hear about us?</label>
+                  <select id="referralSource" name="referralSource" class="form-control">
+                    <option value="">Select an option</option>
+                    <option value="search">Search Engine</option>
+                    <option value="social">Social Media</option>
+                    <option value="friend">Friend/Family Referral</option>
+                    <option value="professional">Professional Referral</option>
+                    <option value="advertisement">Advertisement</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Consent and Submit -->
+              <div class="form-section">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" id="termsConsent" name="termsConsent" class="form-check-input" required>
+                    <label for="termsConsent" class="form-check-label">I consent to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>.</label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" id="contactConsent" name="contactConsent" class="form-check-input" required>
+                    <label for="contactConsent" class="form-check-label">I consent to being contacted by Messeri & Associates regarding my claim.</label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Submit Claim</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Need help with your claim?</h2>
+        <p>Call us at (305) 494-5820 for immediate assistance with your insurance claim.</p>
+        <a href="tel:3054945820" class="btn btn-secondary">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </div>
+          <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#hurricane">Hurricane Claims</a></li>
+            <li><a href="services.html#flood">Flood Damage</a></li>
+            <li><a href="services.html#fire">Fire & Smoke</a></li>
+            <li><a href="services.html#water">Water & Plumbing</a></li>
+            <li><a href="services.html#other">Other Claims</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy<br>Miami, FL 33180</p>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:3054945820">(305) 494-5820</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+            </div>
+            <div class="contact-item license">
+              <i class="fas fa-id-card"></i>
+              <span>Licensed Public Insurance Adjuster. License #W602412<br>WIND Certified Appraiser</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Claims Form Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Toggle inspection date field based on radio selection
+      const inspectionYes = document.getElementById('inspectionYes');
+      const inspectionNo = document.getElementById('inspectionNo');
+      const inspectionDateGroup = document.getElementById('inspectionDateGroup');
+      
+      if (inspectionYes && inspectionNo && inspectionDateGroup) {
+        inspectionYes.addEventListener('change', function() {
+          if (this.checked) {
+            inspectionDateGroup.style.display = 'block';
+          }
+        });
+        
+        inspectionNo.addEventListener('change', function() {
+          if (this.checked) {
+            inspectionDateGroup.style.display = 'none';
+          }
+        });
+      }
+      
+      // File upload handling for photos
+      const photoDropArea = document.getElementById('photoDropArea');
+      const photoInput = document.getElementById('photoUpload');
+      const photoList = document.getElementById('photoList');
+      
+      if (photoDropArea && photoInput && photoList) {
+        // Open file dialog when clicking on drop area
+        photoDropArea.addEventListener('click', function() {
+          photoInput.click();
+        });
+        
+        // Handle file selection
+        photoInput.addEventListener('change', function() {
+          handleFiles(this.files, photoList);
+        });
+        
+        // Handle drag and drop
+        photoDropArea.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          photoDropArea.classList.add('active');
+        });
+        
+        photoDropArea.addEventListener('dragleave', function() {
+          photoDropArea.classList.remove('active');
+        });
+        
+        photoDropArea.addEventListener('drop', function(e) {
+          e.preventDefault();
+          photoDropArea.classList.remove('active');
+          handleFiles(e.dataTransfer.files, photoList);
+        });
+      }
+      
+      // File upload handling for documents
+      const docDropArea = document.getElementById('docDropArea');
+      const docInput = document.getElementById('docUpload');
+      const docList = document.getElementById('docList');
+      
+      if (docDropArea && docInput && docList) {
+        // Open file dialog when clicking on drop area
+        docDropArea.addEventListener('click', function() {
+          docInput.click();
+        });
+        
+        // Handle file selection
+        docInput.addEventListener('change', function() {
+          handleFiles(this.files, docList);
+        });
+        
+        // Handle drag and drop
+        docDropArea.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          docDropArea.classList.add('active');
+        });
+        
+        docDropArea.addEventListener('dragleave', function() {
+          docDropArea.classList.remove('active');
+        });
+        
+        docDropArea.addEventListener('drop', function(e) {
+          e.preventDefault();
+          docDropArea.classList.remove('active');
+          handleFiles(e.dataTransfer.files, docList);
+        });
+      }
+      
+      // Form validation
+      const claimForm = document.getElementById('claimForm');
+      
+      if (claimForm) {
+        claimForm.addEventListener('submit', function(e) {
+          if (!validateForm()) {
+            e.preventDefault();
+          }
+        });
+      }
+    });
+    
+    // Handle the selected files
+    function handleFiles(files, listElement) {
+      if (!files || !listElement) return;
+      
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // Create file item element
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        
+        // File name
+        const fileName = document.createElement('div');
+        fileName.className = 'file-name';
+        fileName.textContent = file.name;
+        
+        // Remove button
+        const removeBtn = document.createElement('div');
+        removeBtn.className = 'file-remove';
+        removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        removeBtn.addEventListener('click', function() {
+          fileItem.remove();
+        });
+        
+        // Append elements
+        fileItem.appendChild(fileName);
+        fileItem.appendChild(removeBtn);
+        listElement.appendChild(fileItem);
+      }
+    }
+    
+    // Form validation
+    function validateForm() {
+      const form = document.getElementById('claimForm');
+      let isValid = true;
+      
+      // Check required fields
+      const requiredFields = form.querySelectorAll('[required]');
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('error');
+          
+          // Check for existing error message
+          const errorMsg = field.nextElementSibling;
+          if (errorMsg && errorMsg.classList.contains('error-message')) {
+            errorMsg.style.display = 'block';
+          } else {
+            // Create error message
+            const message = document.createElement('span');
+            message.className = 'error-message';
+            message.textContent = 'This field is required';
+            field.parentNode.insertBefore(message, field.nextSibling);
+          }
+        } else {
+          field.classList.remove('error');
+          
+          // Hide error message if exists
+          const errorMsg = field.nextElementSibling;
+          if (errorMsg && errorMsg.classList.contains('error-message')) {
+            errorMsg.style.display = 'none';
+          }
+        }
+      });
+      
+      // Validate email format if provided
+      const emailField = form.querySelector('#email');
+      if (emailField && emailField.value.trim()) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailField.value)) {
+          isValid = false;
+          emailField.classList.add('error');
+          
+          // Check for existing error message
+          const errorMsg = emailField.nextElementSibling;
+          if (errorMsg && errorMsg.classList.contains('error-message')) {
+            errorMsg.textContent = 'Please enter a valid email address';
+            errorMsg.style.display = 'block';
+          } else {
+            // Create error message
+            const message = document.createElement('span');
+            message.className = 'error-message';
+            message.textContent = 'Please enter a valid email address';
+            emailField.parentNode.insertBefore(message, emailField.nextSibling);
+          }
+        }
+      }
+      
+      // Validate phone format if provided
+      const phoneField = form.querySelector('#phone');
+      if (phoneField && phoneField.value.trim()) {
+        const phonePattern = /^[\d\s\-\(\)\.]+$/;
+        if (!phonePattern.test(phoneField.value)) {
+          isValid = false;
+          phoneField.classList.add('error');
+          
+          // Check for existing error message
+          const errorMsg = phoneField.nextElementSibling;
+          if (errorMsg && errorMsg.classList.contains('error-message')) {
+            errorMsg.textContent = 'Please enter a valid phone number';
+            errorMsg.style.display = 'block';
+          } else {
+            // Create error message
+            const message = document.createElement('span');
+            message.className = 'error-message';
+            message.textContent = 'Please enter a valid phone number';
+            phoneField.parentNode.insertBefore(message, phoneField.nextSibling);
+          }
+        }
+      }
+      
+      // Check consent checkboxes
+      const termsConsent = document.getElementById('termsConsent');
+      const contactConsent = document.getElementById('contactConsent');
+      
+      if (termsConsent && !termsConsent.checked) {
+        isValid = false;
+        
+        // Find the label and add error styling
+        const label = document.querySelector('label[for="termsConsent"]');
+        if (label) {
+          label.classList.add('error');
+        }
+        
+        // Check for existing error message
+        const errorMsg = termsConsent.parentNode.nextElementSibling;
+        if (errorMsg && errorMsg.classList.contains('error-message')) {
+          errorMsg.style.display = 'block';
+        } else {
+          // Create error message
+          const message = document.createElement('span');
+          message.className = 'error-message';
+          message.textContent = 'You must accept the terms to continue';
+          termsConsent.parentNode.parentNode.insertBefore(message, termsConsent.parentNode.nextSibling);
+        }
+      } else if (termsConsent) {
+        // Find the label and remove error styling
+        const label = document.querySelector('label[for="termsConsent"]');
+        if (label) {
+          label.classList.remove('error');
+        }
+        
+        // Hide error message if exists
+        const errorMsg = termsConsent.parentNode.nextElementSibling;
+        if (errorMsg && errorMsg.classList.contains('error-message')) {
+          errorMsg.style.display = 'none';
+        }
+      }
+      
+      if (contactConsent && !contactConsent.checked) {
+        isValid = false;
+        
+        // Find the label and add error styling
+        const label = document.querySelector('label[for="contactConsent"]');
+        if (label) {
+          label.classList.add('error');
+        }
+        
+        // Check for existing error message
+        const errorMsg = contactConsent.parentNode.nextElementSibling;
+        if (errorMsg && errorMsg.classList.contains('error-message')) {
+          errorMsg.style.display = 'block';
+        } else {
+          // Create error message
+          const message = document.createElement('span');
+          message.className = 'error-message';
+          message.textContent = 'You must consent to being contacted';
+          contactConsent.parentNode.parentNode.insertBefore(message, contactConsent.parentNode.nextSibling);
+        }
+      } else if (contactConsent) {
+        // Find the label and remove error styling
+        const label = document.querySelector('label[for="contactConsent"]');
+        if (label) {
+          label.classList.remove('error');
+        }
+        
+        // Hide error message if exists
+        const errorMsg = contactConsent.parentNode.nextElementSibling;
+        if (errorMsg && errorMsg.classList.contains('error-message')) {
+          errorMsg.style.display = 'none';
+        }
+      }
+      
+      return isValid;
+    }
+  </script>
+</body>
+</html>

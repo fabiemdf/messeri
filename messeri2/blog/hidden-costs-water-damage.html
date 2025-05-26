@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidden Costs of Water Damage: What Insurance Companies Don't Tell You - Messeri & Associates</title>
+  <meta name="description" content="Discover the hidden costs of water damage that insurance companies often don't disclose. Learn how to protect yourself and ensure proper coverage for all water damage expenses.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .blog-page {
+      padding: 12rem 0 6rem;
+    }
+    
+    .blog-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+    
+    .featured-post {
+      margin-bottom: 5rem;
+    }
+    
+    .featured-post-img {
+      width: 100%;
+      height: 400px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    
+    .featured-post-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .featured-post:hover .featured-post-img img {
+      transform: scale(1.05);
+    }
+    
+    .featured-post-content h2 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .post-meta {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      color: var(--text-light);
+      font-size: 1.4rem;
+    }
+    
+    .post-meta > div {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem;
+    }
+    
+    .post-meta i {
+      margin-right: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .post-excerpt {
+      margin-bottom: 2rem;
+    }
+    
+    .blog-sidebar {
+      position: sticky;
+      top: 12rem;
+      align-self: flex-start;
+      margin-top: 7.5rem;
+    }
+    
+    .sidebar-widget {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .widget-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .widget-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+    
+    .search-form {
+      display: flex;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      border-right: none;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.5rem;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .search-btn {
+      padding: 0 1.5rem;
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .search-btn:hover {
+      background-color: #004b8c;
+    }
+    
+    .categories-list,
+    .recent-posts-list {
+      list-style: none;
+    }
+    
+    .categories-list li {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.2rem;
+    }
+    
+    .categories-list li:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .categories-list a {
+      color: var(--text-color);
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .categories-list a:hover {
+      color: var(--primary-color);
+    }
+    
+    .categories-list span {
+      background-color: var(--light-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .recent-posts-list li {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .recent-posts-list li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .recent-post-img {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .recent-post-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .recent-post-content h4 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .recent-post-content h4 a {
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+    
+    .recent-post-content h4 a:hover {
+      color: var(--primary-color);
+    }
+    
+    .recent-post-date {
+      font-size: 1.3rem;
+      color: var(--text-light);
+    }
+    
+    .article-content {
+      font-size: 1.6rem;
+      line-height: 1.8;
+      color: var(--text-color);
+    }
+    
+    .article-content h2 {
+      font-size: 2.8rem;
+      margin: 4rem 0 2rem;
+      color: var(--heading-color);
+    }
+    
+    .article-content p {
+      margin-bottom: 2rem;
+    }
+    
+    .article-content ul {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+    }
+    
+    .article-content li {
+      margin-bottom: 1rem;
+    }
+    
+    .blockquote {
+      border-left: 4px solid var(--primary-color);
+      padding: 2rem;
+      margin: 3rem 0;
+      background-color: var(--light-color);
+      font-style: italic;
+    }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin: 4rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .author-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-info h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .author-info p {
+      color: var(--text-light);
+      font-size: 1.4rem;
+    }
+    
+    .related-topics {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .related-topics h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--heading-color);
+    }
+    
+    .related-topics ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .related-topics li {
+      margin-bottom: 1rem;
+    }
+    
+    .related-topics li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .related-topics a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+      padding: 0.5rem 0;
+    }
+    
+    .related-topics a:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+    
+    .review-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+    }
+    
+    .review-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--heading-color);
+    }
+    
+    .review {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .review-content {
+      margin-bottom: 2rem;
+    }
+    
+    .review-content p {
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      font-style: italic;
+    }
+    
+    .review-author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .review-author-info h4 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: var(--heading-color);
+    }
+    
+    .review-author-info p {
+      font-size: 1.4rem;
+      color: var(--text-light);
+    }
+    
+    .review-rating {
+      color: #ffd700;
+      font-size: 1.6rem;
+    }
+    
+    .review-rating i {
+      margin-left: 0.2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .blog-sidebar {
+        margin-top: 4rem;
+      }
+      
+      .featured-post-img {
+        height: 300px;
+      }
+      
+      .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      
+      .author-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="../index.html">
+            <img src="../img/logo.png" alt="Messeri & Associates, LLC">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../claims.html">Claims</a></li>
+            <li><a href="../blog.html" class="active">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Blog Post Content -->
+  <section class="blog-page">
+    <div class="container">
+      <div class="blog-container">
+        <main class="blog-main">
+          <article class="featured-post">
+            <h1>Hidden Costs of Water Damage: What Insurance Companies Don't Tell You</h1>
+            
+            <div class="post-meta">
+              <div class="post-date"><i class="far fa-calendar-alt"></i> April 10, 2025</div>
+              <div class="post-author"><i class="far fa-user"></i> David Messeri</div>
+              <div class="post-category"><i class="far fa-folder"></i> Water Damage</div>
+            </div>
+            
+            <div class="featured-post-img">
+              <img src="../img/water-damage.jpg" alt="Hidden Costs of Water Damage">
+            </div>
+            
+            <div class="article-content">
+              <p>Water damage can be devastating to your property, but what many homeowners don't realize is that the initial damage is often just the beginning. There are numerous hidden costs associated with water damage that insurance companies may not fully disclose. Understanding these costs is crucial for protecting your property and ensuring you receive adequate compensation.</p>
+              
+              <h2>1. Structural Damage</h2>
+              <p>Water can cause extensive structural damage that may not be immediately visible:</p>
+              <ul>
+                <li>Weakened foundation</li>
+                <li>Compromised load-bearing walls</li>
+                <li>Damaged support beams</li>
+                <li>Eroded concrete and masonry</li>
+              </ul>
+              
+              <div class="blockquote">
+                "Water damage can compromise your home's structural integrity in ways that aren't immediately visible. Regular inspections and proper documentation are essential."
+              </div>
+              
+              <h2>2. Mold and Health Hazards</h2>
+              <p>Hidden moisture can lead to serious health issues:</p>
+              <ul>
+                <li>Mold growth in walls and ceilings</li>
+                <li>Air quality problems</li>
+                <li>Respiratory issues</li>
+                <li>Allergic reactions</li>
+              </ul>
+              
+              <h2>3. Electrical System Damage</h2>
+              <p>Water can cause dangerous electrical problems:</p>
+              <ul>
+                <li>Corroded wiring</li>
+                <li>Damaged circuit breakers</li>
+                <li>Compromised outlets</li>
+                <li>Fire hazards</li>
+              </ul>
+              
+              <h2>4. Hidden Moisture Issues</h2>
+              <p>Water can travel to unexpected places:</p>
+              <ul>
+                <li>Behind walls and under floors</li>
+                <li>In insulation and crawl spaces</li>
+                <li>Within HVAC systems</li>
+                <li>In ceiling cavities</li>
+              </ul>
+              
+              <h2>5. Long-term Maintenance Costs</h2>
+              <p>Water damage can lead to ongoing expenses:</p>
+              <ul>
+                <li>Increased insurance premiums</li>
+                <li>Regular moisture monitoring</li>
+                <li>Preventive maintenance</li>
+                <li>Property value depreciation</li>
+              </ul>
+              
+              <div class="author-box">
+                <div class="author-avatar">
+                  <img src="../img/profile.jpeg" alt="David Messeri">
+                </div>
+                <div class="author-info">
+                  <h3>David Messeri</h3>
+                  <p>Public Insurance Adjuster with over 6 years of experience in handling water damage claims and property assessments.</p>
+                </div>
+              </div>
+              
+              <div class="related-topics">
+                <h3>Related Topics</h3>
+                <ul>
+                  <li><a href="../services.html#hurricane">Hurricane Claims</a></li>
+                  <li><a href="../services.html#flood">Flood Damage</a></li>
+                  <li><a href="../services.html#water">Water Damage</a></li>
+                  <li><a href="../services.html#other">Property Damage</a></li>
+                </ul>
+              </div>
+              
+              <div class="review-section">
+                <h3>What Our Clients Say</h3>
+                <div class="review">
+                  <div class="review-content">
+                    <p>"When I couldn't resolve an insurance claim with my insurance company, my neighbor recommended I try Fraser. I've never used a property adjuster before, but through Fraser, I learned how vital they are in handling a claim. The team continuously answered my questions, acted upon my behalf in dealing with the insurance company, listened to my requests, and got results through mediation. I mainly worked with David (Messeri) and Jenna, both of whom were professional and thorough. If I need services again, I know where to go. Thank you for the support."</p>
+                  </div>
+                  <div class="review-author">
+                    <div class="review-author-info">
+                      <h4>Kyle James</h4>
+                      <p><a href="https://maps.app.goo.gl/DA8drfgEAgT1X2nn7" target="_blank" style="color: inherit;"><i class="fab fa-google"></i> Google Review</a></p>
+                    </div>
+                    <div class="review-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </main>
+        
+        <aside class="blog-sidebar">
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Search</h3>
+            <form class="search-form">
+              <input type="text" class="search-input" placeholder="Search articles...">
+              <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+          
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Categories</h3>
+            <ul class="categories-list">
+              <li><a href="#">Hurricane Claims <span>12</span></a></li>
+              <li><a href="#">Property Damage <span>8</span></a></li>
+              <li><a href="#">Insurance Tips <span>15</span></a></li>
+              <li><a href="#">Claims Process <span>10</span></a></li>
+              <li><a href="#">Legal Updates <span>5</span></a></li>
+            </ul>
+          </div>
+          
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Recent Posts</h3>
+            <ul class="recent-posts-list">
+              <li>
+                <div class="recent-post-img">
+                  <img src="../img/confusing-frustrating-process.jpg" alt="5 Things Insurance Companies Don't Want You to Know">
+                </div>
+                <div class="recent-post-content">
+                  <h4><a href="5-things-insurance-companies-dont-want-you-to-know.html">5 Things Insurance Companies Don't Want You to Know</a></h4>
+                  <div class="recent-post-date">May 1, 2025</div>
+                </div>
+              </li>
+              <li>
+                <div class="recent-post-img">
+                  <img src="../img/insurance documentation.jpg" alt="Essential Documentation">
+                </div>
+                <div class="recent-post-content">
+                  <h4><a href="essential-documentation-for-insurance-claims.html">Essential Documentation for Insurance Claims</a></h4>
+                  <div class="recent-post-date">April 20, 2025</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="../img/logo.png" alt="Messeri & Associates, LLC">
+          </div>
+          <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="../services.html#hurricane">Hurricane Claims</a></li>
+            <li><a href="../services.html#flood">Flood Damage</a></li>
+            <li><a href="../services.html#fire">Fire & Smoke</a></li>
+            <li><a href="../services.html#water">Water & Plumbing</a></li>
+            <li><a href="../services.html#other">Other Claims</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:3054945820">(305) 494-5820</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:david@messeriadjusting.com">david@messeriadjusting.com</a>
+            </div>
+            <div class="contact-item license">
+              <i class="fas fa-id-card"></i>
+              <span>Licensed Public Insurance Adjuster. License #W602412<br>WIND Certified Appraiser</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html> 

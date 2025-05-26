@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messeri & Associates, LLC - Public Insurance Adjusters</title>
+  <meta name="description" content="Messeri & Associates provides expert public insurance adjusting services in Florida, specializing in hurricane, flood, fire, and water damage claims.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+
+
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+
+		  <a href="/">
+                <img src="img/logo.png" alt="Messeri & Associates" class="logo-image">
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li class="has-dropdown">
+                    <a href="/services.html">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/services/hurricane-claims.html">Hurricane Claims</a></li>
+                        <li><a href="/services/water-damage.html">Water Damage</a></li>
+                        <li><a href="/services/fire-claims.html">Fire Claims</a></li>
+                        <li><a href="/services/appraisal.html">Appraisal Services</a></li>
+                        <li><a href="/services/expert-witness.html">Expert Witness</a></li>
+                    </ul>
+                </li>
+                <li><a href="/claims.html">Claims Process</a></li>
+                <li><a href="/blog" class="active">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-cta">
+            <a href="tel:3054945820" class="phone-link"><i class="fas fa-phone"></i> (305) 494-5820</a>
+            <a href="/contact.html" class="cta-button">Free Consultation</a>
+        </div>
+        
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <span class="hamburger-icon"></span>
+        </button>
+    </div>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div class="mobile-menu">
+        <ul class="mobile-nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li class="mobile-dropdown">
+                <a href="/services.html">Services</a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="/services/hurricane-claims.html">Hurricane Claims</a></li>
+                    <li><a href="/services/water-damage.html">Water Damage</a></li>
+                    <li><a href="/services/fire-claims.html">Fire Claims</a></li>
+                    <li><a href="/services/appraisal.html">Appraisal Services</a></li>
+                    <li><a href="/services/expert-witness.html">Expert Witness</a></li>
+                </ul>
+            </li>
+            <li><a href="/claims.html">Claims Process</a></li>
+            <li><a href="/blog" class="active">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li class="mobile-cta"><a href="/contact.html" class="cta-button">Free Consultation</a></li>
+        </ul>
+    </div>
+</header>
+
+<script>
+    // Mobile menu toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+        }
+        
+        // Handle mobile dropdowns
+        mobileDropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (e.target === this.querySelector('a')) {
+                    e.preventDefault();
+                    this.classList.toggle('open');
+                }
+            });
+        });
+        
+        // Make the header sticky on scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('.site-header');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('sticky');
+                
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    header.classList.add('hide');
+                } else {
+                    // Scrolling up
+                    header.classList.remove('hide');
+                }
+            } else {
+                header.classList.remove('sticky');
+                header.classList.remove('hide');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    });
+</script>

@@ -1,0 +1,189 @@
+# Add a logo to the top-left corner of the slider
+
+story_slider_with_logo_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Public Adjuster Story Slider</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+    }
+
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      z-index: 20;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .slider {
+      display: flex;
+      height: 100vh;
+      width: 600vw;
+      transition: transform 1s ease-in-out;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: white;
+    }
+
+    .overlay {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .overlay h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .overlay p {
+      font-size: 1.25rem;
+      max-width: 800px;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .nav {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .nav button {
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: white;
+      font-size: 2em;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .nav button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo in corner -->
+  <div class="logo">
+    <img src="logo3.png" alt="Logo">
+  </div>
+
+  <div class="nav">
+    <button onclick="moveSlide(-1)">‹</button>
+    <button onclick="moveSlide(1)">›</button>
+  </div>
+
+  <div class="slider" id="slider">
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');">
+      <div class="overlay">
+        <h1>Beautiful Home</h1>
+        <p>A dream house full of peace and love... until disaster strikes.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('hurricane-damage.jpg');">
+      <div class="overlay">
+        <h1>Storm Hits</h1>
+        <p>Mother Nature unleashes her fury. Roofs torn, basements flooded. The dream begins to fade.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6950');">
+      <div class="overlay">
+        <h1>Family in Disarray</h1>
+        <p>Displacement, confusion, and frustration take over as the family grapples with the chaos.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586880244406-7b3f99a9b7a4');">
+      <div class="overlay">
+        <h1>Insurance Lets Them Down</h1>
+        <p>The insurance company offers less than what it will take to rebuild. The family is left shocked and helpless.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1616401788043-8d7c5fd970d2');">
+      <div class="overlay">
+        <h1>Public Adjuster Saves the Day</h1>
+        <p>A skilled Public Adjuster steps in, fights for every dollar, and restores hope for the family.</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1560180474-e8563fd75bab');">
+      <div class="overlay">
+        <h1>Home Sweet Home</h1>
+        <p>Repaired. Restored. Renewed. The family returns to a home they love, thanks to the power of professional advocacy.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const slider = document.getElementById('slider');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function moveSlide(direction) {
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      slider.style.transform = 'translateX(' + (-100 * currentIndex) + 'vw)';
+    }
+
+    setInterval(() => {
+      moveSlide(1);
+    }, 6000);
+  </script>
+
+</body>
+</html>
+"""
+
+# Save updated file with logo
+file_path = "/mnt/data/public_adjuster_story_slider_with_logo.html"
+with open(file_path, "w") as f:
+    f.write(story_slider_with_logo_html)
+
+file_path

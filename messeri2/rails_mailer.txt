@@ -1,0 +1,724 @@
+# Rails Mailers for Messeri & Associates
+
+This document outlines the email templates and mailer configurations for the Messeri & Associates website. These mailers will handle contact form submissions, claim submissions, and newsletter subscriptions.
+
+## Contact Mailer
+
+```ruby
+# app/mailers/contact_mailer.rb
+class ContactMailer < ApplicationMailer
+  default to: 'david@messeriadjusting.com'
+  
+  def new_contact_request(contact_request)
+    @contact_request = contact_request
+    mail(
+      subject: "New Contact Request: #{@contact_request.subject}",
+      reply_to: @contact_request.email
+    )
+  end
+  
+  def contact_confirmation(contact_request)
+    @contact_request = contact_request
+    mail(
+      to: @contact_request.email,
+      subject: "Thank You for Contacting Messeri & Associates"
+    )
+  end
+end
+```
+
+## Claim Mailer
+
+```ruby
+# app/mailers/claim_mailer.rb
+class ClaimMailer < ApplicationMailer
+  default to: 'david@messeriadjusting.com'
+  
+  def new_claim_submission(claim_submission)
+    @claim_submission = claim_submission
+    mail(
+      subject: "New Claim Submission: #{@claim_submission.claim_type}",
+      reply_to: @claim_submission.email
+    )
+  end
+  
+  def claim_confirmation(claim_submission)
+    @claim_submission = claim_submission
+    mail(
+      to: @claim_submission.email,
+      subject: "Your Claim Submission to Messeri & Associates"
+    )
+  end
+  
+  def claim_status_update(claim_submission, status, message)
+    @claim_submission = claim_submission
+    @status = status
+    @message = message
+    
+    mail(
+      to: @claim_submission.email,
+      subject: "Update on Your Insurance Claim - #{@status}"
+    )
+  end
+end
+```
+
+## Newsletter Mailer
+
+```ruby
+# app/mailers/newsletter_mailer.rb
+class NewsletterMailer < ApplicationMailer
+  default from: 'newsletter@messeriadjusting.com'
+  
+  def welcome_email(subscriber)
+    @subscriber = subscriber
+    @unsubscribe_url = unsubscribe_newsletter_url(token: @subscriber.unsubscribe_token)
+    
+    mail(
+      to: @subscriber.email,
+      subject: "Welcome to Messeri & Associates Insurance Claim Insights"
+    )
+  end
+  
+  def newsletter_email(subscriber, newsletter)
+    @subscriber = subscriber
+    @newsletter = newsletter
+    @unsubscribe_url = unsubscribe_newsletter_url(token: @subscriber.unsubscribe_token)
+    
+    mail(
+      to: @subscriber.email,
+      subject: @newsletter.subject
+    )
+  end
+end
+```
+
+## Application Mailer
+
+```ruby
+# app/mailers/application_mailer.rb
+class ApplicationMailer < ActionMailer::Base
+  default from: 'notification@messeriadjusting.com'
+  layout 'mailer'
+  
+  before_action :add_company_logo_attachment
+  
+  private
+  
+  def add_company_logo_attachment
+    attachments.inline['logo.png'] = File.read(Rails.root.join('app/assets/images/logo.png'))
+  end
+end
+```
+
+## Email Templates
+
+### Contact Request Notification
+
+```erb
+<!-- app/views/contact_mailer/new_contact_request.html.erb -->
+<h1>New Contact Request</h1>
+
+<p><strong>Name:</strong> <%= @contact_request.first_name %> <%= @contact_request.last_name %></p>
+<p><strong>Email:</strong> <%= @contact_request.email %></p>
+<p><strong>Phone:</strong> <%= @contact_request.phone %></p>
+<p><strong>Subject:</strong> <%= @contact_request.subject %></p>
+<p><strong>Claim Type:</strong> <%= @contact_request.claim_type %></p>
+
+<h2>Message:</h2>
+<div style="background-color: #f7f7f7; padding: 15px; border-radius: 5px;">
+  <%= simple_format(@contact_request.message) %>
+</div>
+
+<p>
+  <strong>Received:</strong> <%= @contact_request.created_at.strftime('%B %d, %Y at %I:%M %p') %>
+</p>
+
+<p>
+  You can reply directly to this email to respond to the client.
+</p>
+```
+
+### Contact Confirmation
+
+```erb
+<!-- app/views/contact_mailer/contact_confirmation.html.erb -->
+<div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+  <div style="text-align: center; padding: 20px 0;">
+    <%= image_tag attachments['logo.png'].url, alt: 'Messeri & Associates, LLC', style: 'max-width: 200px;' %>
+  </div>
+  
+  <div style="background-color: #f7f9fc; padding: 30px; border-radius: 5px;">
+    <h1 style="color: #003366; margin-top: 0;">Thank You for Contacting Us</h1>
+    
+    <p>Dear <%= @contact_request.first_name %>,</p>
+    
+    <p>Thank you for reaching out to Messeri & Associates. We have received your message and will get back to you shortly, typically within 24 business hours.</p>
+    
+    <p>Here's a copy of the information you submitted:</p>
+    
+    <div style="background-color: #fff; padding: 20px; border-radius: 5px; margin: 20px 0;">
+      <p><strong>Subject:</strong> <%= @contact_request.subject %></p>
+      <p><strong>Claim Type:</strong> <%= @contact_request.claim_type %></p>
+      <p><strong>Message:</strong><br><%= simple_format(@contact_request.message) %></p>
+    </div>
+    
+    <p>If you need immediate assistance, please don't hesitate to call us at (305) 494-5820.</p>
+    
+    <p>Best regards,</p>
+    <p>
+      <strong>David Messeri</strong><br>
+      Licensed Public Adjuster<br>
+      Messeri & Associates, LLC
+    </p>
+  </div>
+  
+  <div style="text-align: center; padding: 20px; font-size: 12px; color: #666;">
+    <p>
+      Messeri & Associates, LLC<br>
+      19401 W Dixie Hwy, APT 236<br>
+      Miami, FL 33180<br>
+      (305) 494-5820
+    </p>
+    <p>&copy; <%= Date.today.year %> Messeri & Associates, LLC. All rights reserved.</p>
+  </div>
+</div>
+```
+
+### Claim Submission Notification
+
+```erb
+<!-- app/views/claim_mailer/new_claim_submission.html.erb -->
+<h1>New Claim Submission</h1>
+
+<h2>Client Information</h2>
+<p><strong>Name:</strong> <%= @claim_submission.first_name %> <%= @claim_submission.last_name %></p>
+<p><strong>Email:</strong> <%= @claim_submission.email %></p>
+<p><strong>Phone:</strong> <%= @claim_submission.phone %></p>
+
+<h2>Property Information</h2>
+<p><strong>Address:</strong> <%= @claim_submission.address %></p>
+<p><strong>City:</strong> <%= @claim_submission.city %></p>
+<p><strong>Zip Code:</strong> <%= @claim_submission.zip_code %></p>
+<p><strong>Property Type:</strong> <%= @claim_submission.property_type %></p>
+
+<h2>Claim Information</h2>
+<p><strong>Insurance Company:</strong> <%= @claim_submission.insurance_company %></p>
+<p><strong>Policy Number:</strong> <%= @claim_submission.policy_number %></p>
+<p><strong>Claim Number:</strong> <%= @claim_submission.claim_number.present? ? @claim_submission.claim_number : 'Not provided' %></p>
+<p><strong>Existing Claim:</strong> <%= @claim_submission.existing_claim.present? ? @claim_submission.existing_claim : 'Not specified' %></p>
+<p><strong>Claim Type:</strong> <%= @claim_submission.claim_type %></p>
+<p><strong>Date of Loss:</strong> <%= @claim_submission.date_of_loss.strftime('%B %d, %Y') %></p>
+
+<h2>Damage Description</h2>
+<div style="background-color: #f7f7f7; padding: 15px; border-radius: 5px;">
+  <%= simple_format(@claim_submission.damage_description) %>
+</div>
+
+<h2>Inspection Information</h2>
+<p><strong>Has the property been inspected by the insurance company?</strong> <%= @claim_submission.inspection_done.present? ? @claim_submission.inspection_done : 'Not specified' %></p>
+<% if @claim_submission.inspection_done == 'yes' && @claim_submission.inspection_date.present? %>
+  <p><strong>Inspection Date:</strong> <%= @claim_submission.inspection_date.strftime('%B %d, %Y') %></p>
+<% end %>
+
+<% if @claim_submission.additional_info.present? %>
+  <h2>Additional Information</h2>
+  <div style="background-color: #f7f7f7; padding: 15px; border-radius: 5px;">
+    <%= simple_format(@claim_submission.additional_info) %>
+  </div>
+<% end %>
+
+<p><strong>Referral Source:</strong> <%= @claim_submission.referral_source.present? ? @claim_submission.referral_source : 'Not specified' %></p>
+
+<h2>Attachments</h2>
+<% if @claim_submission.photos.attached? %>
+  <p><strong>Photos:</strong> <%= @claim_submission.photos.count %> file(s) attached</p>
+  <ul>
+    <% @claim_submission.photos.each do |photo| %>
+      <li><%= photo.filename %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p><strong>Photos:</strong> None</p>
+<% end %>
+
+<% if @claim_submission.documents.attached? %>
+  <p><strong>Documents:</strong> <%= @claim_submission.documents.count %> file(s) attached</p>
+  <ul>
+    <% @claim_submission.documents.each do |document| %>
+      <li><%= document.filename %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p><strong>Documents:</strong> None</p>
+<% end %>
+
+<p>
+  <strong>Submission Date:</strong> <%= @claim_submission.created_at.strftime('%B %d, %Y at %I:%M %p') %>
+</p>
+```
+
+### Claim Confirmation
+
+```erb
+<!-- app/views/claim_mailer/claim_confirmation.html.erb -->
+<div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+  <div style="text-align: center; padding: 20px 0;">
+    <%= image_tag attachments['logo.png'].url, alt: 'Messeri & Associates, LLC', style: 'max-width: 200px;' %>
+  </div>
+  
+  <div style="background-color: #f7f9fc; padding: 30px; border-radius: 5px;">
+    <h1 style="color: #003366; margin-top: 0;">Claim Submission Received</h1>
+    
+    <p>Dear <%= @claim_submission.first_name %>,</p>
+    
+    <p>Thank you for submitting your insurance claim to Messeri & Associates. We have received your submission and will review it promptly.</p>
+    
+    <div style="background-color: #fff; padding: 20px; border-radius: 5px; margin: 20px 0;">
+      <h3 style="margin-top: 0; color: #003366;">Claim Details</h3>
+      <p><strong>Claim Type:</strong> <%= @claim_submission.claim_type %></p>
+      <p><strong>Date of Loss:</strong> <%= @claim_submission.date_of_loss.strftime('%B %d, %Y') %></p>
+      <p><strong>Insurance Company:</strong> <%= @claim_submission.insurance_company %></p>
+      <p><strong>Policy Number:</strong> <%= @claim_submission.policy_number %></p>
+      <% if @claim_submission.claim_number.present? %>
+        <p><strong>Claim Number:</strong> <%= @claim_submission.claim_number %></p>
+      <% end %>
+    </div>
+    
+    <h3 style="color: #003366;">What Happens Next?</h3>
+    
+    <ol style="padding-left: 20px;">
+      <li>One of our licensed public adjusters will contact you within 24 business hours to discuss your claim.</li>
+      <li>We'll schedule an initial inspection of your property to document the damage thoroughly.</li>
+      <li>Our team will develop a comprehensive claim strategy based on your specific situation and policy coverage.</li>
+      <li>We'll keep you informed throughout the entire process as we work to maximize your settlement.</li>
+    </ol>
+    
+    <p>If you need immediate assistance or have any questions, please don't hesitate to call us at (305) 494-5820.</p>
+    
+    <p>Best regards,</p>
+    <p>
+      <strong>David Messeri</strong><br>
+      Licensed Public Adjuster<br>
+      Messeri & Associates, LLC
+    </p>
+  </div>
+  
+  <div style="text-align: center; padding: 20px; font-size: 12px; color: #666;">
+    <p>
+      Messeri & Associates, LLC<br>
+      19401 W Dixie Hwy, APT 236<br>
+      Miami, FL 33180<br>
+      (305) 494-5820
+    </p>
+    <p>&copy; <%= Date.today.year %> Messeri & Associates, LLC. All rights reserved.</p>
+  </div>
+</div>
+```
+
+### Claim Status Update
+
+```erb
+<!-- app/views/claim_mailer/claim_status_update.html.erb -->
+<div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+  <div style="text-align: center; padding: 20px 0;">
+    <%= image_tag attachments['logo.png'].url, alt: 'Messeri & Associates, LLC', style: 'max-width: 200px;' %>
+  </div>
+  
+  <div style="background-color: #f7f9fc; padding: 30px; border-radius: 5px;">
+    <h1 style="color: #003366; margin-top: 0;">Claim Status Update</h1>
+    
+    <p>Dear <%= @claim_submission.first_name %>,</p>
+    
+    <div style="background-color: #fff; padding: 20px; border-radius: 5px; margin: 20px 0;">
+      <h3 style="margin-top: 0; color: #003366;">Your Claim Status: <%= @status %></h3>
+      
+      <div style="margin-top: 20px;">
+        <%= simple_format(@message) %>
+      </div>
+    </div>
+    
+    <div style="background-color: #fff; padding: 20px; border-radius: 5px; margin: 20px 0;">
+      <h3 style="margin-top: 0; color: #003366;">Claim Details</h3>
+      <p><strong>Claim Type:</strong> <%= @claim_submission.claim_type %></p>
+      <p><strong>Date of Loss:</strong> <%= @claim_submission.date_of_loss.strftime('%B %d, %Y') %></p>
+      <p><strong>Insurance Company:</strong> <%= @claim_submission.insurance_company %></p>
+      <p><strong>Policy Number:</strong> <%= @claim_submission.policy_number %></p>
+      <% if @claim_submission.claim_number.present? %>
+        <p><strong>Claim Number:</strong> <%= @claim_submission.claim_number %></p>
+      <% end %>
+    </div>
+    
+    <p>If you have any questions about this update or your claim in general, please don't hesitate to contact us at (305) 494-5820 or reply to this email.</p>
+    
+    <p>Best regards,</p>
+    <p>
+      <strong>David Messeri</strong><br>
+      Licensed Public Adjuster<br>
+      Messeri & Associates, LLC
+    </p>
+  </div>
+  
+  <div style="text-align: center; padding: 20px; font-size: 12px; color: #666;">
+    <p>
+      Messeri & Associates, LLC<br>
+      19401 W Dixie Hwy, APT 236<br>
+      Miami, FL 33180<br>
+      (305) 494-5820
+    </p>
+    <p>&copy; <%= Date.today.year %> Messeri & Associates, LLC. All rights reserved.</p>
+  </div>
+</div>
+```
+
+### Newsletter Welcome Email
+
+```erb
+<!-- app/views/newsletter_mailer/welcome_email.html.erb -->
+<div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+  <div style="text-align: center; padding: 20px 0;">
+    <%= image_tag attachments['logo.png'].url, alt: 'Messeri & Associates, LLC', style: 'max-width: 200px;' %>
+  </div>
+  
+  <div style="background-color: #f7f9fc; padding: 30px; border-radius: 5px;">
+    <h1 style="color: #003366; margin-top: 0;">Welcome to Our Newsletter!</h1>
+    
+    <p>Thank you for subscribing to the Messeri & Associates Insurance Claim Insights newsletter. You'll receive valuable information about:</p>
+    
+    <ul style="padding-left: 20px;">
+      <li>Tips for maximizing your insurance claims</li>
+      <li>Updates on Florida insurance laws and regulations</li>
+      <li>Hurricane preparedness and recovery strategies</li>
+      <li>Common insurance claim pitfalls and how to avoid them</li>
+      <li>Success stories from our clients</li>
+    </ul>
+    
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="https://www.messeriadjusting.com/blog" style="background-color: #003366; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Visit Our Blog</a>
+    </div>
+    
+    <p>We respect your inbox and will only send content that we believe will be valuable to you. You can expect to receive our newsletter monthly.</p>
+    
+    <p>If you have any questions or would like to discuss a potential insurance claim, please don't hesitate to contact us.</p>
+    
+    <p>Best regards,</p>
+    <p>
+      <strong>David Messeri</strong><br>
+      Licensed Public Adjuster<br>
+      Messeri & Associates, LLC
+    </p>
+  </div>
+  
+  <div style="text-align: center; padding: 20px; font-size: 12px; color: #666;">
+    <p>
+      Messeri & Associates, LLC<br>
+      19401 W Dixie Hwy, APT 236<br>
+      Miami, FL 33180<br>
+      (305) 494-5820
+    </p>
+    <p>&copy; <%= Date.today.year %> Messeri & Associates, LLC. All rights reserved.</p>
+    <p>
+      <a href="<%= @unsubscribe_url %>" style="color: #666;">Unsubscribe</a> from this newsletter.
+    </p>
+  </div>
+</div>
+```
+
+## Email Layout
+
+```erb
+<!-- app/views/layouts/mailer.html.erb -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+      }
+      
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+      }
+      
+      .email-header {
+        background-color: #003366;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      .email-content {
+        padding: 20px;
+      }
+      
+      .email-footer {
+        background-color: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #666666;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        color: #003366;
+      }
+      
+      a {
+        color: #e8833a;
+        text-decoration: none;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e8833a;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="email-container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
+```
+
+## Email Configuration
+
+```ruby
+# config/environments/development.rb
+Rails.application.configure do
+  # ... other configs
+  
+  # Use letter_opener in development
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+end
+
+# config/environments/production.rb
+Rails.application.configure do
+  # ... other configs
+  
+  # SMTP settings for production
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    domain:               'messeriadjusting.com',
+    user_name:            ENV['SENDGRID_USERNAME'],
+    password:             ENV['SENDGRID_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+  config.action_mailer.default_url_options = { host: 'messeriadjusting.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+end
+```
+
+## Newsletter Model and Subscriber Model
+
+```ruby
+# app/models/newsletter.rb
+class Newsletter < ApplicationRecord
+  validates :subject, presence: true
+  validates :content, presence: true
+  
+  has_rich_text :content
+  
+  scope :published, -> { where(published: true) }
+  
+  def send_to_subscribers
+    Subscriber.active.find_each do |subscriber|
+      NewsletterMailer.newsletter_email(subscriber, self).deliver_later
+    end
+    
+    update(sent_at: Time.current)
+  end
+end
+
+# app/models/subscriber.rb
+class Subscriber < ApplicationRecord
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  
+  before_create :generate_unsubscribe_token
+  
+  scope :active, -> { where(active: true) }
+  
+  def unsubscribe
+    update(active: false)
+  end
+  
+  private
+  
+  def generate_unsubscribe_token
+    self.unsubscribe_token = SecureRandom.urlsafe_base64(32)
+  end
+end
+```
+
+## Email Previews
+
+```ruby
+# test/mailers/previews/contact_mailer_preview.rb
+class ContactMailerPreview < ActionMailer::Preview
+  def new_contact_request
+    contact_request = ContactRequest.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '(555) 123-4567',
+      subject: 'Hurricane Damage Inquiry',
+      claim_type: 'Hurricane',
+      message: "Hello,\n\nI recently experienced hurricane damage to my property and I'm interested in your services. Could you please contact me to discuss?\n\nThanks,\nJohn"
+    )
+    
+    ContactMailer.new_contact_request(contact_request)
+  end
+  
+  def contact_confirmation
+    contact_request = ContactRequest.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '(555) 123-4567',
+      subject: 'Hurricane Damage Inquiry',
+      claim_type: 'Hurricane',
+      message: "Hello,\n\nI recently experienced hurricane damage to my property and I'm interested in your services. Could you please contact me to discuss?\n\nThanks,\nJohn"
+    )
+    
+    ContactMailer.contact_confirmation(contact_request)
+  end
+end
+
+# test/mailers/previews/claim_mailer_preview.rb
+class ClaimMailerPreview < ActionMailer::Preview
+  def new_claim_submission
+    claim_submission = ClaimSubmission.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '(555) 123-4567',
+      address: '123 Main Street',
+      city: 'Miami',
+      zip_code: '33180',
+      property_type: 'Residential - Single Family',
+      insurance_company: 'ABC Insurance',
+      policy_number: 'POL12345678',
+      claim_number: 'CLM87654321',
+      existing_claim: 'yes',
+      claim_type: 'Hurricane',
+      date_of_loss: Date.new(2025, 4, 15),
+      damage_description: "Hurricane caused significant roof damage, resulting in water intrusion. Several rooms have water damage to ceilings and walls. Some windows are broken as well.",
+      inspection_done: 'yes',
+      inspection_date: Date.new(2025, 4, 18),
+      additional_info: "The insurance adjuster who came out estimated about $5,000 in damages, which seems way too low considering the extent of the damage.",
+      referral_source: 'Friend/Family Referral',
+      terms_consent: true,
+      contact_consent: true
+    )
+    
+    ClaimMailer.new_claim_submission(claim_submission)
+  end
+  
+  def claim_confirmation
+    claim_submission = ClaimSubmission.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '(555) 123-4567',
+      address: '123 Main Street',
+      city: 'Miami',
+      zip_code: '33180',
+      property_type: 'Residential - Single Family',
+      insurance_company: 'ABC Insurance',
+      policy_number: 'POL12345678',
+      claim_number: 'CLM87654321',
+      existing_claim: 'yes',
+      claim_type: 'Hurricane',
+      date_of_loss: Date.new(2025, 4, 15),
+      damage_description: "Hurricane caused significant roof damage, resulting in water intrusion. Several rooms have water damage to ceilings and walls. Some windows are broken as well.",
+      inspection_done: 'yes',
+      inspection_date: Date.new(2025, 4, 18),
+      additional_info: "The insurance adjuster who came out estimated about $5,000 in damages, which seems way too low considering the extent of the damage.",
+      referral_source: 'Friend/Family Referral',
+      terms_consent: true,
+      contact_consent: true
+    )
+    
+    ClaimMailer.claim_confirmation(claim_submission)
+  end
+  
+  def claim_status_update
+    claim_submission = ClaimSubmission.new(
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+      phone: '(555) 123-4567',
+      address: '123 Main Street',
+      city: 'Miami',
+      zip_code: '33180',
+      property_type: 'Residential - Single Family',
+      insurance_company: 'ABC Insurance',
+      policy_number: 'POL12345678',
+      claim_number: 'CLM87654321',
+      existing_claim: 'yes',
+      claim_type: 'Hurricane',
+      date_of_loss: Date.new(2025, 4, 15),
+      damage_description: "Hurricane caused significant roof damage, resulting in water intrusion.",
+      inspection_done: 'yes',
+      inspection_date: Date.new(2025, 4, 18),
+      referral_source: 'Friend/Family Referral',
+      terms_consent: true,
+      contact_consent: true
+    )
+    
+    status = "In Progress"
+    message = "We have completed our detailed damage assessment and have submitted a comprehensive claim package to your insurance company. Our damage estimate totals $45,678.90, which includes all structural damage, water damage, and personal property loss.\n\nWe are now waiting for the insurance company to review our documentation. We typically expect an initial response within 10-14 business days, and we will update you as soon as we hear back from them.\n\nIn the meantime, if you have any questions or concerns, please don't hesitate to contact us."
+    
+    ClaimMailer.claim_status_update(claim_submission, status, message)
+  end
+end
+
+# test/mailers/previews/newsletter_mailer_preview.rb
+class NewsletterMailerPreview < ActionMailer::Preview
+  def welcome_email
+    subscriber = Subscriber.new(
+      email: 'john.doe@example.com',
+      unsubscribe_token: SecureRandom.urlsafe_base64(32)
+    )
+    
+    NewsletterMailer.welcome_email(subscriber)
+  end
+  
+  def newsletter_email
+    subscriber = Subscriber.new(
+      email: 'john.doe@example.com',
+      unsubscribe_token: SecureRandom.urlsafe_base64(32)
+    )
+    
+    newsletter = Newsletter.new(
+      subject: '2025 Hurricane Season Preparation Tips',
+      content: "<h2>Prepare for Hurricane Season Before It's Too Late</h2><p>The 2025 hurricane season is predicted to be one of the most active in recent years. In this newsletter, we'll share essential preparation tips to help protect your property...</p>"
+    )
+    
+    NewsletterMailer.newsletter_email(subscriber, newsletter)
+  end
+end
+```
+
+This completes the implementation of the mailers for the Messeri & Associates website. These templates and configurations provide a professional and consistent email experience for users interacting with the website's various forms and features.

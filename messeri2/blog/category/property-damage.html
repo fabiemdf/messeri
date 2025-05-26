@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Damage - Blog - Messeri & Associates</title>
+  <meta name="description" content="Expert guidance on documenting and handling property damage, from fire damage to structural issues, and navigating the insurance claims process.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .category-header {
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 18rem 0 4rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-top: 0;
+    }
+    
+    .category-header h1 {
+      font-size: 3.6rem;
+      margin-bottom: 1rem;
+    }
+    
+    .category-description {
+      font-size: 1.8rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    .category-posts {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      margin-top: 0;
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    
+    .post-card {
+      background: #fff;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .post-image {
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .post-content {
+      padding: 2rem;
+    }
+    
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      font-size: 1.4rem;
+    }
+    
+    .post-meta i {
+      margin-right: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .post-title {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    
+    .post-excerpt {
+      color: var(--text-color);
+      font-size: 1.6rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .read-more {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: var(--primary-color);
+      color: #fff;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .read-more:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .category-sidebar {
+      margin-top: 4rem;
+    }
+    
+    .sidebar-widget {
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 3rem;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .widget-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--heading-color);
+    }
+    
+    .categories-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .categories-list li {
+      margin-bottom: 1rem;
+    }
+    
+    .categories-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: var(--light-color);
+      border-radius: var(--border-radius);
+      color: var(--text-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .categories-list a:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    
+    .category-count {
+      background-color: #fff;
+      color: var(--primary-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-header h1 {
+        font-size: 2.8rem;
+      }
+      
+      .category-description {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="../../index.html">
+            <img src="../../img/logo.png" alt="Messeri & Associates, LLC">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../services.html">Services</a></li>
+            <li><a href="../../claims.html">Claims</a></li>
+            <li><a href="../../blog.html" class="active">Blog</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Header -->
+  <section class="category-header">
+    <div class="container">
+      <h1>Property Damage</h1>
+      <p class="category-description">Expert guidance on documenting and handling property damage, from fire damage to structural issues, and navigating the insurance claims process.</p>
+    </div>
+  </section>
+
+  <!-- Category Posts -->
+  <section class="category-posts">
+    <div class="container">
+      <div class="posts-grid">
+        <article class="post-card">
+          <div class="post-image">
+            <img src="../../img/blog/post-2.jpg" alt="How to Document Property Damage After a Fire">
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span><i class="far fa-calendar-alt"></i> March 20, 2025</span>
+              <span><i class="far fa-user"></i> David Messeri</span>
+            </div>
+            <h2 class="post-title">
+              <a href="../documenting-property-damage-after-fire.html">How to Document Property Damage After a Fire: A Comprehensive Guide</a>
+            </h2>
+            <p class="post-excerpt">Learn the essential steps for properly documenting fire damage to ensure a successful insurance claim and full recovery.</p>
+            <a href="../documenting-property-damage-after-fire.html" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-image">
+            <img src="../../img/blog/post-5.jpg" alt="Why Insurance Carriers Deny Roof Damage Claims">
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span><i class="far fa-calendar-alt"></i> March 1, 2025</span>
+              <span><i class="far fa-user"></i> David Messeri</span>
+            </div>
+            <h2 class="post-title">
+              <a href="../why-insurance-carriers-deny-roof-damage-claims.html">Why Insurance Carriers Deny Roof Damage Claims and How to Fight Back</a>
+            </h2>
+            <p class="post-excerpt">Understanding common reasons for roof damage claim denials and strategies to effectively challenge them.</p>
+            <a href="../why-insurance-carriers-deny-roof-damage-claims.html" class="read-more">Read More</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="category-sidebar">
+        <div class="sidebar-widget">
+          <h3 class="widget-title">Categories</h3>
+          <ul class="categories-list">
+            <li>
+              <a href="insurance-claims.html">
+                Insurance Claims
+                <span class="category-count">2</span>
+              </a>
+            </li>
+            <li>
+              <a href="water-damage.html">
+                Water Damage
+                <span class="category-count">2</span>
+              </a>
+            </li>
+            <li>
+              <a href="hurricane-season.html">
+                Hurricane Season
+                <span class="category-count">2</span>
+              </a>
+            </li>
+            <li>
+              <a href="insurance-laws.html">
+                Insurance Laws
+                <span class="category-count">2</span>
+              </a>
+            </li>
+            <li>
+              <a href="property-damage.html">
+                Property Damage
+                <span class="category-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Messeri & Associates, LLC">
+          </div>
+          <p>Dedicated to maximizing every legitimate dollar under your insurance policy with strategic advocacy and meticulous attention to detail.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#hurricane">Hurricane Claims</a></li>
+            <li><a href="services.html#flood">Flood Damage</a></li>
+            <li><a href="services.html#fire">Fire & Smoke</a></li>
+            <li><a href="services.html#water">Water & Plumbing</a></li>
+            <li><a href="services.html#other">Other Claims</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 19401 W Dixie Hwy, APT 236<br>Miami, FL 33180</p>
+            <p><i class="fas fa-phone"></i> (305) 494-5820</p>
+            <p><i class="fas fa-envelope"></i> david@messeriadjusting.com</p>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/david-messeri-b72338169" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Messeri & Associates, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html> 
